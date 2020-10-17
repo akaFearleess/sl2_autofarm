@@ -212,7 +212,7 @@ spawn(function()
             end
             if reset then
                 for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
-                    if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 and not v.Value < 20 then
+                    if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 then
                         player.Character:BreakJoints()
                     end
                 end
