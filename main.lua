@@ -202,8 +202,8 @@ spawn(function()
                 if v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
                     --repeat wait()
                         pcall(function()
-                            toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
-                            if (player.Character.HumanoidRootPart.Position-v.HumanoidRootPart.Position).Magnitude > 11 then
+                            toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
+                            if (player.Character.HumanoidRootPart.Position-v.HumanoidRootPart.Position).Magnitude > 5 then
                                 v.Humanoid.Health = 0
                             end
                         end)
