@@ -18,7 +18,7 @@ local player = game.Players.LocalPlayer
 local mission = player.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory")
 function toTarget(pos, targetPos, targetCFrame)
     local tween_s = game:service"TweenService"
-    local info = TweenInfo.new((targetPos - pos).Magnitude/500, Enum.EasingStyle.Linear)
+    local info = TweenInfo.new((targetPos - pos).Magnitude/750, Enum.EasingStyle.Linear)
     local tween, err = pcall(function()
         local tween = tween_s:Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = targetCFrame * CFrame.fromAxisAngle(Vector3.new(1,0,0), math.rad(90))})
         tween:Play()
