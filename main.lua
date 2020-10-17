@@ -1,3 +1,11 @@
+--[[
+GAME LINK https://www.roblox.com/games/4616652839/TEN-TAILS-Shinobi-Life-2
+Script from reavreav@v3rmillion.net 
+reav#2966
+_G.speed = 750
+loadstring(game:HttpGet("https://raw.githubusercontent.com/reavscripts/sl2_autofarm/main/main.lua", true))()
+]]
+
 repeat wait() until game:IsLoaded()
 --antitp bypass
 if workspace:FindFirstChild("CCoff") then
