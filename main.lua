@@ -53,14 +53,14 @@ local war
 c:Toggle("War Mode",function(bool)
     war = bool
 end)
-local reset
-c:Toggle("Reset after round 20",function(bool)
-    reset = bool
-end)
-local warscroll
-c:Toggle("Scroll Sniper",function(bool)
-    warscroll = bool
-end)
+--local reset
+--c:Toggle("Reset after round 20",function(bool)
+--    reset = bool
+--end)
+--local warscroll
+--c:Toggle("Scroll Sniper",function(bool)
+--    warscroll = bool
+--end)
 
 local d = w:CreateFolder("Quests Maker")
 d:Button("Rushs",function()
