@@ -53,10 +53,10 @@ local war
 c:Toggle("War Mode",function(bool)
     war = bool
 end)
---local reset
---c:Toggle("Reset after round 20",function(bool)
---    reset = bool
---end)
+local reset
+c:Toggle("Reset after round 20",function(bool)
+    reset = bool
+end)
 --local warscroll
 --c:Toggle("Scroll Sniper",function(bool)
 --    warscroll = bool
@@ -213,7 +213,8 @@ spawn(function()
             if reset then
                 for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
                     if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 then
-                        player.Character:BreakJoints()
+			repeat wait()
+			until v.round.Value == 0
                     end
                 end
             end
