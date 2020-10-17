@@ -1,4 +1,3 @@
-_G.speed = 750
 repeat wait() until game:IsLoaded()
 --antitp bypass
 if workspace:FindFirstChild("CCoff") then
