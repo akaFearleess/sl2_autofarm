@@ -200,14 +200,15 @@ spawn(function()
         if war then
             for i,v in pairs(workspace.npc:GetChildren()) do
                 if v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
-                    --repeat wait()
+                    wait(.5)
+			--repeat wait()
                         pcall(function()
                             toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
                             if (player.Character.HumanoidRootPart.Position-v.HumanoidRootPart.Position).Magnitude > 5 then
                                 v.Humanoid.Health = 0
                             end
                         end)
-                    --until not v.Humanoid.Health == 0 or not war or not v
+                   	--until not v.Humanoid.Health == 0 or not war or not v
                 end
             end
             if reset then
