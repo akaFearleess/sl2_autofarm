@@ -1,3 +1,4 @@
+_G.speed = 750
 repeat wait() until game:IsLoaded()
 --antitp bypass
 if workspace:FindFirstChild("CCoff") then
@@ -18,7 +19,7 @@ local player = game.Players.LocalPlayer
 local mission = player.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory")
 function toTarget(pos, targetPos, targetCFrame)
     local tween_s = game:service"TweenService"
-    local info = TweenInfo.new((targetPos - pos).Magnitude/_G.speed, Enum.EasingStyle.Linear)
+    local info = TweenInfo.new((targetPos - pos).Magnitude/750, Enum.EasingStyle.Linear)
     local tween, err = pcall(function()
         local tween = tween_s:Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = targetCFrame * CFrame.fromAxisAngle(Vector3.new(1,0,0), math.rad(90))})
         tween:Play()
@@ -52,6 +53,10 @@ local c = w:CreateFolder("War Farm")
 local war 
 c:Toggle("War Mode",function(bool)
     war = bool
+end)
+local reset
+c:Toggle("Reset after round 20",function(bool)
+    reset = bool
 end)
 local warscroll
 c:Toggle("Scroll Sniper",function(bool)
@@ -204,6 +209,13 @@ spawn(function()
                             end
                         end)
                     --until not v.Humanoid.Health == 0 or not war or not v
+                end
+            end
+            if reset then
+                for i,v in pairs(game:GetService("Workspace").warserver:GetChildren()) do
+                    if v.Name == "round" and v.Value < 20 then
+                        player.Character:BreakJoints()
+                    end
                 end
             end
         end
