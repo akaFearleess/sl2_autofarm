@@ -3,7 +3,6 @@ GAME LINK https://www.roblox.com/games/4616652839/TEN-TAILS-Shinobi-Life-2
 v3rm: https://v3rmillion.net/showthread.php?tid=1063031
 Discord: reav#2966
 Discord Server: https://discord.gg/DqZVPH
-
 Usage:
 _G.speed = 750
 loadstring(game:HttpGet("https://raw.githubusercontent.com/reavscripts/sl2_autofarm/main/main.lua", true))()
@@ -216,10 +215,16 @@ spawn(function()
     while wait() do
         if war then
             for i,v in pairs(workspace.npc:GetChildren()) do
-                if v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
+                if v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and not v:FindFirstChild("megaboss") then
                     wait(.1)
                     pcall(function()
-			v.Humanoid.Health = 0
+		            	v.Humanoid.Health = 0
+                    end)
+                elseif v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and v:FindFirstChild("megaboss") then
+                    pcall(function()
+                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
+                        wait(3)
+                        v.Humanoid.Health = 0
                     end)
                 end
             end
