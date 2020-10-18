@@ -68,15 +68,6 @@ local reset
 c:Toggle("Reset after round 21",function(bool)
     reset = bool
 end)
---Suggested by Moddi#2715
-if game.Workspace:FindFirstChild("warserver") then
-    local roundR = c:Label("Round: "..game.Workspace.warserver.round.Value,{
-        TextSize = 25; 
-        TextColor = Color3.fromRGB(255,255,255);
-        BgColor = Color3.fromRGB(26,26,26); 
-    }) 
-end
-
 
 local d = w:CreateFolder("Quests Maker")
 d:Button("Rushs",function()
@@ -222,13 +213,6 @@ spawn(function()
                     end
                 end
             end
-        end
-    end
-end)
-spawn(function()
-    while wait() do
-        if war then
-            roundR:Refresh("Round: "..game.Workspace.warserver.round.Value)
         end
     end
 end)
