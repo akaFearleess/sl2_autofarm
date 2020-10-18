@@ -93,6 +93,25 @@ d:Button("Punches",function()
         wait(.3)
     end
 end)
+local e = w:CreateFolder("Misc")
+e:Label("made by reav#2966 | ver 1.5",{
+    TextSize = 16;
+    TextColor = Color3.fromRGB(255,255,255); 
+    BgColor = Color3.fromRGB(69,69,69);
+    
+}) 
+e:Label("ver 1.5",{
+    TextSize = 16;
+    TextColor = Color3.fromRGB(255,255,255); 
+    BgColor = Color3.fromRGB(69,69,69);
+    
+}) 
+e:Label("Discord: https://discord.io/reavscripts",{
+    TextSize = 16;
+    TextColor = Color3.fromRGB(255,255,255); 
+    BgColor = Color3.fromRGB(69,69,69);
+    
+}) 
 game:GetService('RunService').Stepped:connect(function()
 	if autofarm then
 	    pcall(function()
