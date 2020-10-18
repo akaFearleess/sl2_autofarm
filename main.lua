@@ -1,7 +1,10 @@
 --[[
 GAME LINK https://www.roblox.com/games/4616652839/TEN-TAILS-Shinobi-Life-2
-Script from reavreav@v3rmillion.net 
-reav#2966
+v3rm: https://v3rmillion.net/showthread.php?tid=1063031
+Discord: reav#2966
+Discord Server: https://discord.gg/DqZVPH
+
+Usage:
 _G.speed = 750
 loadstring(game:HttpGet("https://raw.githubusercontent.com/reavscripts/sl2_autofarm/main/main.lua", true))()
 ]]
