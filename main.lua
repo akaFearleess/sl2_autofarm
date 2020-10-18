@@ -66,11 +66,13 @@ c:Toggle("Reset after round 21",function(bool)
     reset = bool
 end)
 --Suggested by Moddi#2715
-local roundR = c:Label("Round: "..game.Workspace.warserver.round.Value,{
-    TextSize = 25; 
-    TextColor = Color3.fromRGB(255,255,255);
-    BgColor = Color3.fromRGB(26,26,26); 
-}) 
+if game.Workspace:FindFirstChild("warserver") then
+    local roundR = c:Label("Round: "..game.Workspace.warserver.round.Value,{
+        TextSize = 25; 
+        TextColor = Color3.fromRGB(255,255,255);
+        BgColor = Color3.fromRGB(26,26,26); 
+    }) 
+end
 
 
 local d = w:CreateFolder("Quests Maker")
@@ -122,7 +124,7 @@ spawn(function()
                                     local getmission = v:FindFirstChild("HumanoidRootPart")
                                     local clienttalk = v:FindFirstChild("CLIENTTALK")
                                     repeat wait()
-                                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position)
+                                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
                                         clienttalk:FireServer()
                                         clienttalk:FireServer("accept")
                                     until mission.Visible
@@ -211,7 +213,7 @@ spawn(function()
             for i,v in pairs(workspace.npc:GetChildren()) do
                 if v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
                     wait(.5)
-			--repeat wait()
+			        --repeat wait()
                         pcall(function()
                             toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
                             if (player.Character.HumanoidRootPart.Position-v.HumanoidRootPart.Position).Magnitude > 5 then
@@ -234,7 +236,9 @@ spawn(function()
 end)
 spawn(function()
     while wait() do
-        SCROLLFARM()
-        roundR:Refresh("Round: "..game.Workspace.warserver.round.Value)
+        if war then
+            SCROLLFARM()
+            roundR:Refresh("Round: "..game.Workspace.warserver.round.Value)
+        end
     end
 end)
