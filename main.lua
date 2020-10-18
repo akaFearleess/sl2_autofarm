@@ -122,7 +122,7 @@ spawn(function()
                                     local getmission = v:FindFirstChild("HumanoidRootPart")
                                     local clienttalk = v:FindFirstChild("CLIENTTALK")
                                     repeat wait()
-                                        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position=getmission.Position+Vector3.new(0,-10,0)
+                                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position)
                                         clienttalk:FireServer()
                                         clienttalk:FireServer("accept")
                                     until mission.Visible
@@ -137,8 +137,7 @@ spawn(function()
                         repeat wait()
                             pcall(function()
                                 repeat wait()
-                                    player.Character.HumanoidRootPart.Position=v.HumanoidRootPart.Position
-                                --toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
+                                toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
                                     if (player.Character.HumanoidRootPart.Position-v.HumanoidRootPart.Position).Magnitude > 50 then
                                         v.Humanoid.Health = 0
                                     end
