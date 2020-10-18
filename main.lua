@@ -235,8 +235,15 @@ end)
 spawn(function()
     while wait() do
         if war then
-            SCROLLFARM()
             roundR:Refresh("Round: "..game.Workspace.warserver.round.Value)
         end
     end
 end)
+spawn(function()
+    while wait() do
+        if war then
+            SCROLLFARM()
+        end
+    end
+end)
+
