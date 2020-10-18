@@ -171,7 +171,7 @@ local function SCROLLFARM()
 end
 spawn(function()
     while wait() do
-        if scrollfarm or warscroll then
+        if scrollfarm then
             SCROLLFARM()
         end
     end
@@ -227,6 +227,7 @@ spawn(function()
                 for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
                     if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 then
 						repeat wait()
+							player.Character:BreakJoints()
 						until v.round.Value == 0
                     end
                 end
