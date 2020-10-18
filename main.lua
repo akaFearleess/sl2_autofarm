@@ -97,7 +97,7 @@ d:Button("Punches",function()
     end
 end)
 game:GetService('RunService').Stepped:connect(function()
-	if autofarm or war then
+	if autofarm then
 	    pcall(function()
     	    game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
         end)
