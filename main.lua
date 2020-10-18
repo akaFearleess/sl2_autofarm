@@ -61,7 +61,7 @@ b:Toggle("AutoRank",function()
 end)
 local c = w:CreateFolder("War Farm")
 local war 
-c:Toggle("War Mode",function(bool)
+c:Toggle("WarMode + Snipe",function(bool)
     war = bool
 end)
 local reset
