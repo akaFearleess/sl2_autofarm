@@ -225,7 +225,7 @@ spawn(function()
             end
             if reset then
                 for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
-                    if v.Name == "warserver" and v:FindFirstChild("round").Value > 21 then
+                    if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 then
 						repeat wait()
 						until v.round.Value == 0
                     end
