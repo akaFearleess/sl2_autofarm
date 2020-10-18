@@ -93,7 +93,7 @@ d:Button("Punches",function()
     end
 end)
 local e = w:CreateFolder("Misc")
-e:Label("made by reav#2966 | ver 1.5",{
+e:Label("made by reav#2966 | ver 1.6",{
     TextSize = 16;
     TextColor = Color3.fromRGB(255,255,255); 
     BgColor = Color3.fromRGB(69,69,69);
