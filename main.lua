@@ -62,7 +62,7 @@ c:Toggle("War Mode",function(bool)
     war = bool
 end)
 local reset
-c:Toggle("Reset after round 20",function(bool)
+c:Toggle("Reset after round 21",function(bool)
     reset = bool
 end)
 --Suggested by Moddi#2715
@@ -72,10 +72,6 @@ local roundR = c:Label("Round: "..game.Workspace.warserver.round.Value,{
     BgColor = Color3.fromRGB(26,26,26); 
 }) 
 
---local warscroll
---c:Toggle("Scroll Sniper",function(bool)
---    warscroll = bool
---end)
 
 local d = w:CreateFolder("Quests Maker")
 d:Button("Rushs",function()
@@ -213,7 +209,6 @@ end)
 spawn(function()
     while wait() do
         if war then
-            roundR:Refresh("Round: "..game.Workspace.warserver.round.Value)
             for i,v in pairs(workspace.npc:GetChildren()) do
                 if v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
                     wait(.5)
@@ -229,12 +224,18 @@ spawn(function()
             end
             if reset then
                 for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
-                    if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 then
+                    if v.Name == "warserver" and v:FindFirstChild("round").Value > 21 then
 						repeat wait()
 						until v.round.Value == 0
                     end
                 end
             end
         end
+    end
+end)
+spawn(function()
+    while wait() do
+        SCROLLFARM()
+        roundR:Refresh("Round: "..game.Workspace.warserver.round.Value)
     end
 end)
