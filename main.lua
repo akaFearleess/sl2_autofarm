@@ -14,9 +14,6 @@ repeat wait() until game:IsLoaded()
 if workspace:FindFirstChild("CCoff") then
     game:GetService("Workspace").CCoff:Destroy()
 end
-hookfunction(getrenv().print, function()
-	return wait(math.huge)
-end)
 --antiafk
 local VirtualUser=game:service'VirtualUser'
 	game:service'Players'.LocalPlayer.Idled:connect(function()
@@ -149,12 +146,12 @@ end)
 local function SCROLLFARM()
     for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
         if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 then
-		    warn("SCROLL SPAWNED")
+		    print("SCROLL SPAWNED")
             pcall(function()
                 toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
             end)
             fireclickdetector(v.sh.ClickDetector)
-	    	warn("SCOLL TAKEN")
+	    	print("SCOLL TAKEN")
         end
     end
 end
