@@ -106,7 +106,7 @@ d:Button("Punches",function()
     end
 end)
 game:GetService('RunService').Stepped:connect(function()
-	if autofarm then
+	if autofarm or war then
 	    pcall(function()
     	    game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
         end)
@@ -153,13 +153,6 @@ spawn(function()
                 end
             end
         end
-    end
-end)
-game:GetService('RunService').Stepped:connect(function()
-    if autofarm or war then
-        pcall(function()
-            game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-        end)
     end
 end)
 local function SCROLLFARM()
