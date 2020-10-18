@@ -212,23 +212,17 @@ spawn(function()
         if war then
             for i,v in pairs(workspace.npc:GetChildren()) do
                 if v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
-                    wait(.5)
-			        --repeat wait()
-                        pcall(function()
-                            toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
-                            if (player.Character.HumanoidRootPart.Position-v.HumanoidRootPart.Position).Magnitude > 5 then
-                                v.Humanoid.Health = 0
-                            end
-                        end)
-                   	--until not v.Humanoid.Health == 0 or not war or not v
+                    wait(.1)
+                    pcall(function()
+			v.Humanoid.Health = 0
+                    end)
                 end
             end
             if reset then
                 for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
                     if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 then
-						repeat wait()
-							player.Character:BreakJoints()
-						until v.round.Value == 0
+			repeat wait()
+			until v.round.Value == 0
                     end
                 end
             end
