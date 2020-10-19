@@ -1,3 +1,4 @@
+_G.speed = 750
 --[[
 GAME LINK https://www.roblox.com/games/4616652839/TEN-TAILS-Shinobi-Life-2
 v3rm: https://v3rmillion.net/showthread.php?tid=1063031
@@ -52,10 +53,10 @@ local jinfarm
 b:Toggle("Jin Farm",function(bool)
     jinfarm = bool
 end)
---local rankup
---b:Toggle("AutoRank",function()
---    rankup = bool
---end)
+local rankup
+b:Toggle("AutoRank",function()
+    rankup = bool
+end)
 local c = w:CreateFolder("War Farm")
 local war 
 c:Toggle("WarMode + Snipe",function(bool)
@@ -237,7 +238,7 @@ end)
 spawn(function()
     while wait() do
         if rankup then
-            player.Character.startevent:FireServer("rankup")
+            player.startevent:FireServer("rankup")
         end
     end
 end)
