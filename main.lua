@@ -85,12 +85,6 @@ local refreshC = c:Label("10TAILS COUNTER",{
     TextColor = Color3.fromRGB(205, 221, 221); 
     BgColor = Color3.fromRGB(5, 16, 20);
 }) 
-local Scounter = 0
-local Slabel = c:Label("SCROLL DROP COUNTER",{
-    TextSize = 24;
-    TextColor = Color3.fromRGB(205, 221, 221); 
-    BgColor = Color3.fromRGB(5, 16, 20);
-}) 
 
 local d = w:CreateFolder("Quests Maker")
 
@@ -217,14 +211,12 @@ spawn(function()
 end)
 local function SCROLLFARM()
     for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
-        if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 then
-		    print("SCROLL SPAWNED")
-		    Scounter = Scounter + 1
+        if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 1000 then
+		print("SCROLL SPAWNED")
             pcall(function()
                 toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
             end)
             fireclickdetector(v.sh.ClickDetector)
-	    	print("SCOLL TAKEN")
         end
     end
 end
@@ -241,12 +233,10 @@ local function JINFARM()
             repeat wait()
                 pcall(function()
                 	wait(.5)
-			        toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
+			toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
                 end)
-                if (player.Character.Head.Position-v.HumanoidRootPart.Position).Magnitude < 50 then 
-                    v.Humanoid.Health = 0
-                end
-            until v.Humanoid.Health == 0 or not v
+                v.Humanoid.Health = 0
+           until v.Humanoid.Health == 0 or not v
         end
     end
 end
@@ -260,7 +250,7 @@ end)
 spawn(function()
     while wait() do
         if rankup then
-            player.startevent:FireServer("rankup")
+            game.Players.LocalPlayer.startevent:FireServer("rankup")
         end
     end
 end)
