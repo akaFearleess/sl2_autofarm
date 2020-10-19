@@ -73,6 +73,7 @@ local refresh = c:Label("ROUND COUNTER",{
 }) 
 
 local d = w:CreateFolder("Quests Maker")
+
 d:Button("Rushs",function()
     for i = 1,300 do
         game.Players.LocalPlayer.Character.combat.update:FireServer("rushw")
@@ -103,6 +104,9 @@ d:Button("TP TrainLog",function()
     toTarget(player.Character.HumanoidRootPart.Position,workspace.npc.logtraining:FindFirstChild("HumanoidRootPart").Position,CFrame.new(game:GetService("Workspace").npc.logtraining:FindFirstChild("HumanoidRootPart").Position))
 end)
 local e = w:CreateFolder("Misc")
+e:Box("Teleport to PS","string",function(tpps)
+    game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
+end)
 e:Label("made by reav#2966 | ver 1.7",{
     TextSize = 17;
     TextColor = Color3.fromRGB(205, 221, 221); 
@@ -216,8 +220,6 @@ local function JINFARM()
             repeat wait()
                 pcall(function()
                 	wait(.5)
-                	toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.Head.Position,CFrame.new(v.Head.Position))
-			        wait(.5)
 			        toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
                 end)
                 if (player.Character.Head.Position-v.HumanoidRootPart.Position).Magnitude < 50 then 
