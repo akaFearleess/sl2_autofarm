@@ -211,7 +211,7 @@ spawn(function()
 end)
 local function SCROLLFARM()
     for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
-        if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 1000 then
+        if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 then
 		print("SCROLL SPAWNED")
             pcall(function()
                 toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
