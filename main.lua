@@ -233,7 +233,7 @@ local function JINFARM()
             repeat wait()
                 pcall(function()
                 	wait(.5)
-			toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
+			        toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
                 end)
                 v.Humanoid.Health = 0
            until v.Humanoid.Health == 0 or not v
@@ -258,7 +258,6 @@ end)
 spawn(function()
     while wait() do
         if war then
-            Slabel:Refresh("Scroll Found: " .. Scounter)
             refresh:Refresh("War Completed: " .. count)
             refreshC:Refresh("Round: " .. workspace.warserver.round.Value)
             for i,v in pairs(workspace.npc:GetChildren()) do
