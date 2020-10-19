@@ -36,7 +36,15 @@ end
 local mouse = game.Players.LocalPlayer:GetMouse()
 --loading wally ui revamped By Aika
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
-
+_G.ButtonColor = Color3.fromRGB(5, 16, 20);
+_G.ButtonTextColor = Color3.fromRGB(205, 221, 221);
+_G.PointerColor = Color3.fromRGB(255, 255, 255);
+_G.SecondaryColor = Color3.fromRGB(0, 102, 255);
+_G.TertiaryColor = Color3.fromRGB(5, 16, 20);
+_G.ToggleColor = Color3.fromRGB(0, 255, 255);
+_G.MainTextColor = Color3.fromRGB(255, 255, 255);
+_G.MainColor = Color3.fromRGB(5, 16, 20);
+ 
 local w = library:CreateWindow("Shinobi Life 2")
 local b = w:CreateFolder("AutoFarm")
 
