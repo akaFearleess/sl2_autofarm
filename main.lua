@@ -177,6 +177,7 @@ spawn(function()
                         repeat wait()
                             pcall(function()
                                 toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
+                                wait(.25)
                                 v.Humanoid.Health = 0
                             end)
                         until v.Humanoid.Health == 0 or mission.Visible == false or not v or not autofarm
@@ -249,7 +250,7 @@ spawn(function()
                 elseif v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and v:FindFirstChild("megaboss") then
                     pcall(function()
                         toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
-                        wait(5)
+                        wait(3)
                         v.Humanoid.Health = 0
                     end)
                 end
