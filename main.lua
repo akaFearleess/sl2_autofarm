@@ -1,4 +1,3 @@
-_G.speed = 750
 --[[
 GAME LINK https://www.roblox.com/games/4616652839/TEN-TAILS-Shinobi-Life-2
 v3rm: https://v3rmillion.net/showthread.php?tid=1063031
@@ -191,12 +190,12 @@ end)
 local function SCROLLFARM()
     for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
         if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 then
-		    warn("SCROLL SPAWNED")
+		    print("SCROLL SPAWNED")
             pcall(function()
                 toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
             end)
             fireclickdetector(v.sh.ClickDetector)
-	    	warn("SCOLL TAKEN")
+	    	print("SCOLL TAKEN")
         end
     end
 end
