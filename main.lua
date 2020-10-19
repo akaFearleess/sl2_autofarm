@@ -71,6 +71,18 @@ local refresh = c:Label("ROUND COUNTER",{
     TextColor = Color3.fromRGB(205, 221, 221); 
     BgColor = Color3.fromRGB(5, 16, 20);
 }) 
+local count = 0
+local refreshC = c:Label("10TAILS COUNTER",{
+    TextSize = 24;
+    TextColor = Color3.fromRGB(205, 221, 221); 
+    BgColor = Color3.fromRGB(5, 16, 20);
+}) 
+local Scounter = 0
+local Slabel = c:Label("SCROLL DROP COUNTER",{
+    TextSize = 24;
+    TextColor = Color3.fromRGB(205, 221, 221); 
+    BgColor = Color3.fromRGB(5, 16, 20);
+}) 
 
 local d = w:CreateFolder("Quests Maker")
 
@@ -107,7 +119,7 @@ local e = w:CreateFolder("Misc")
 e:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-e:Label("made by reav#2966 | ver 1.7",{
+e:Label("made by reav#2966 | ver 2",{
     TextSize = 17;
     TextColor = Color3.fromRGB(205, 221, 221); 
     BgColor = Color3.fromRGB(5, 16, 20);
@@ -199,6 +211,7 @@ local function SCROLLFARM()
     for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
         if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 then
 		    print("SCROLL SPAWNED")
+		    Scounter = Scounter + 1
             pcall(function()
                 toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
             end)
@@ -243,12 +256,15 @@ spawn(function()
         end
     end
 end)
+
 spawn(function()
     while wait() do
         if war then
-            refresh:Refresh("Round: " .. workspace.warserver.round.Value)
+            Slabel:Refresh("Scroll Found: " .. Scounter)
+            refresh:Refresh("War Completed: " .. count)
+            refreshC:Refresh("Round: " .. workspace.warserver.round.Value)
             for i,v in pairs(workspace.npc:GetChildren()) do
-                if v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and not v:FindFirstChild("megaboss") then
+                if workspace.warserver:FindFirstChild("zetsu").Value > 0 and v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and not v:FindFirstChild("megaboss") then
                     wait(.1)
                     pcall(function()
 		            	v.Humanoid.Health = 0
@@ -266,6 +282,7 @@ spawn(function()
                     if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 then
             			repeat wait()
             			until v.round.Value == 0
+            			count = count + 1
                     end
                 end
             end
