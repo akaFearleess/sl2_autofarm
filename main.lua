@@ -231,7 +231,7 @@ local function SCROLLFARM()
 end
 spawn(function()
     while wait() do
-        if scrollfarm or war then
+        if scrollfarm or war or war2 then
             SCROLLFARM()
         end
     end
