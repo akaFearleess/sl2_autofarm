@@ -158,7 +158,7 @@ end)
 
 spawn(function()
     while wait() do
-        if autofarm then
+        if autofarm or war2 then
             if not mission.Visible then
                 for i,v in pairs(workspace.missiongivers:GetChildren()) do
                     if v.Name == "" and v:FindFirstChild("Head") then
