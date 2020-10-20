@@ -130,7 +130,7 @@ local e = w:CreateFolder("Misc")
 e:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-e:Label("made by reav#2966 | ver 2.1",{
+e:Label("made by reav#2966 | ver 2.2",{
     TextSize = 17;
     TextColor = Color3.fromRGB(205, 221, 221); 
     BgColor = Color3.fromRGB(5, 16, 20);
@@ -221,7 +221,10 @@ end)
 local function SCROLLFARM()
     for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
         if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 then
-		print("SCROLL SPAWNED")
+		wait(.5)
+		print("SCROLL SPAWNED, trying to reset char to pickup the scroll ? mhhmhmh")
+		game.Players.LocalPlayer.Character:BreakJoints()
+		wait(.5)
             pcall(function()
                 toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
             end)
