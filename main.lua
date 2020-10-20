@@ -149,7 +149,7 @@ e:Label("https://discord.gg/aDRStgw",{
     
 }) 
 game:GetService('RunService').Stepped:connect(function()
-	if autofarm then
+	if autofarm or war2 then
 	    pcall(function()
     	    game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
         end)
@@ -158,7 +158,7 @@ end)
 
 spawn(function()
     while wait() do
-        if autofarm or war2 then
+        if autofarm then
             if not mission.Visible then
                 for i,v in pairs(workspace.missiongivers:GetChildren()) do
                     if v.Name == "" and v:FindFirstChild("Head") then
