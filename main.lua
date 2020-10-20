@@ -16,7 +16,7 @@ end
 --antiafk
 local VirtualUser=game:service'VirtualUser'
 	game:service'Players'.LocalPlayer.Idled:connect(function()
-	warn("anti-afk")
+	print("reav")
 	VirtualUser:CaptureController()
 	VirtualUser:ClickButton2(Vector2.new())
 end)
@@ -65,9 +65,18 @@ b:Toggle("AutoRank",function()
     rankup = bool
 end)
 local c = w:CreateFolder("War Farm")
+c:Label("Snipe is built-in",{
+    TextSize = 24;
+    TextColor = Color3.fromRGB(205, 221, 221); 
+    BgColor = Color3.fromRGB(5, 16, 20);
+}) 
 local war 
-c:Toggle("WarMode + Snipe",function(bool)
+c:Toggle("WarMode No Tween",function(bool)
     war = bool
+end)
+local war2
+c:Toggle("WarMode Tween (multple players)",function(bool)
+    war2 = bool
 end)
 local reset
 c:Toggle("Reset after round 21",function(bool)
@@ -269,7 +278,39 @@ spawn(function()
                 elseif v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and v:FindFirstChild("megaboss") then
                     pcall(function()
                         toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
-                        wait(3)
+                        wait(2)
+                        v.Humanoid.Health = 0
+                    end)
+                end
+            end
+            if reset then
+                for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
+                    if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 then
+            			repeat wait()
+            			until v.round.Value == 0
+            			count = count + 1
+                    end
+                end
+            end
+        end
+    end
+end)
+spawn(function()
+    while wait() do
+        if war2 then
+            refresh:Refresh("War Completed: " .. count)
+            refreshC:Refresh("Round: " .. workspace.warserver.round.Value)
+            for i,v in pairs(workspace.npc:GetChildren()) do
+                if workspace.warserver:FindFirstChild("zetsu").Value > 0 and v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and not v:FindFirstChild("megaboss") then
+                    pcall(function()
+                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
+		            	wait(.2)
+		            	v.Humanoid.Health = 0
+                    end)
+                elseif v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and v:FindFirstChild("megaboss") then
+                    pcall(function()
+                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
+                        wait(2)
                         v.Humanoid.Health = 0
                     end)
                 end
