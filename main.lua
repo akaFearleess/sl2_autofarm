@@ -271,7 +271,7 @@ spawn(function()
             refresh:Refresh("War Completed: " .. count)
             refreshC:Refresh("Round: " .. workspace.warserver.round.Value)
             for i,v in pairs(workspace.npc:GetChildren()) do
-                if workspace.warserver:FindFirstChild("zetsu").Value > 0 and v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and not v:FindFirstChild("megaboss") and not game.Workspace.warserver:FindFirstChild("round").Value > 20 then
+                if workspace.warserver:FindFirstChild("zetsu").Value > 0 and v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and not v:FindFirstChild("megaboss") then
                     wait(.1)
                     pcall(function()
 		            	v.Humanoid.Health = 0
