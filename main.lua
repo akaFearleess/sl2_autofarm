@@ -221,11 +221,12 @@ end)
 local function SCROLLFARM()
     for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
         if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 2000 then
+            local scrollA = v.sh:FindFirstChild("invoke")
             print("SCROLL SPAWNED")
             pcall(function()
                 toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
 			end)
-            fireclickdetector(v.sh.ClickDetector)
+            scrollA:FireServer(game.Players.LocalPlayer)
         end
     end
 end
