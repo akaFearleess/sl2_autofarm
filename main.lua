@@ -220,12 +220,11 @@ spawn(function()
 end)
 local function SCROLLFARM()
     for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
-        if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 then
-		print("SCROLL SPAWNED")
+        if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 2000 then
+            print("SCROLL SPAWNED")
             pcall(function()
                 toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
-            end)
-		game.Players.LocalPlayer.Character.combat.update:FireServer("mouse1",false)
+			end)
             fireclickdetector(v.sh.ClickDetector)
         end
     end
@@ -238,15 +237,15 @@ spawn(function()
     end
 end)
 local function JINFARM()
-    for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
-        if v.ClassName == "Model" and string.find(v.Name, "npc1") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid").Health < 0 then
+    for i,v in pairs(game:GetService("Workspace").npc:GetChildren()) do
+        if v.Name == "npc1" then
             repeat wait()
                 pcall(function()
                 	wait(.5)
 			        toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
                 end)
                 v.Humanoid.Health = 0
-           until v.Humanoid.Health == 0 or not v
+           until not v
         end
     end
 end
@@ -268,8 +267,10 @@ end)
 spawn(function()
     while wait() do
         if war then
-            refresh:Refresh("War Completed: " .. count)
-            refreshC:Refresh("Round: " .. workspace.warserver.round.Value)
+            pcall(function()
+                refresh:Refresh("War Completed: " .. count)
+                refreshC:Refresh("Round: " .. workspace.warserver.round.Value)
+            end)
             for i,v in pairs(workspace.npc:GetChildren()) do
                 if workspace.warserver:FindFirstChild("zetsu").Value > 0 and v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and not v:FindFirstChild("megaboss") then
                     wait(.1)
