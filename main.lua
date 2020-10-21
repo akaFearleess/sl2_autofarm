@@ -226,6 +226,7 @@ local function SCROLLFARM()
             pcall(function()
                 toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
 			end)
+		fireclickdetector(v.sh.ClickDetector)
             scrollA:FireServer(game.Players.LocalPlayer)
         end
     end
