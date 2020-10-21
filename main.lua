@@ -175,7 +175,7 @@ spawn(function()
                                         clienttalk:FireServer()
                                         clienttalk:FireServer("accept")
                                     end)
-                                until player.currentmission.Value == "mission" or not autofarm or v.Head.givemission.Enabled == false    
+                                until v.Head.givemission.Enabled == false or not autofarm  
                             else
                                 wait()
                             end
@@ -190,7 +190,7 @@ spawn(function()
                                         clienttalk:FireServer()
                                         clienttalk:FireServer("accept")
                                     end)
-                                until player.currentmission.Value == "mission" or not autofarm or v.Head.givemission.Enabled == false
+                                until v.Head.givemission.Enabled == false  or not autofarm
                             else
                                 wait()
                             end
