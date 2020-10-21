@@ -60,9 +60,9 @@ local jinfarm
 b:Toggle("Jin Farm",function(bool)
     jinfarm = bool
 end)
-local rankup
-b:Toggle("AutoRank",function()
-    rankup = bool
+local RANKUP
+b:Toggle("AutoRank",function(bool)
+    RANKUP = bool
 end)
 local c = w:CreateFolder("War Farm")
 c:Label("Snipe is built-in",{
@@ -130,7 +130,7 @@ local e = w:CreateFolder("Misc")
 e:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-e:Label("made by reav#2966 | ver 2.3",{
+e:Label("made by reav#2966 | ver 2.4",{
     TextSize = 17;
     TextColor = Color3.fromRGB(205, 221, 221); 
     BgColor = Color3.fromRGB(5, 16, 20);
@@ -226,7 +226,6 @@ local function SCROLLFARM()
             pcall(function()
                 toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
 			end)
-		fireclickdetector(v.sh.ClickDetector)
             scrollA:FireServer(game.Players.LocalPlayer)
         end
     end
@@ -260,8 +259,10 @@ spawn(function()
 end)
 spawn(function()
     while wait() do
-        if rankup then
-            game.Players.LocalPlayer.startevent:FireServer("rankup")
+        if RANKUP and player.statz.lvl:FindFirstChild("lvl").Value == 1000 then
+            repeat wait()
+                game.Players.LocalPlayer.startevent:FireServer("rankup")
+            until player.statz.lvl:FindFirstChild("lvl").Value == 1 or not RANKUP
         end
     end
 end)
