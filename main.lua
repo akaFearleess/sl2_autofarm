@@ -222,10 +222,10 @@ local function SCROLLFARM()
     for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
         if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 then
 		print("SCROLL SPAWNED")
-		wait(.5)
             pcall(function()
                 toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
             end)
+		game.Players.LocalPlayer.Character.combat.update:FireServer("mouse1",false)
             fireclickdetector(v.sh.ClickDetector)
         end
     end
