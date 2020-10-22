@@ -54,7 +54,7 @@ b:Toggle("Autofarm",function(bool)
 end)
 
 b:Slider("Tween Speed",{
-    min = 500; 
+    min = 100; 
     max = 800;
     precise = false;
 },function(speed)
@@ -87,7 +87,7 @@ c:Toggle("WarMode Tween (multple players)",function(bool)
     war2 = bool
 end)
 c:Slider("Tween Speed",{
-    min = 500; 
+    min = 100; 
     max = 800;
     precise = false;
 },function(speed)
