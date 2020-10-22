@@ -268,10 +268,10 @@ local function JINFARM()
         if v.Name == "npc1" then
             repeat wait()
                 pcall(function()
+			toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
                 	wait(.5)
-			        toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
-                end)
-                v.Humanoid.Health = 0
+			v.Humanoid.Health = 0
+		end)
            until not v
         end
     end
@@ -279,9 +279,7 @@ end
 spawn(function()
     while wait() do
         if jinfarm then
-            repeat wait()
-                JINFARM()
-            until not jinfarm
+        	JINFARM()
         end
     end
 end)
