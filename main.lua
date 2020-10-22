@@ -53,12 +53,13 @@ b:Toggle("Autofarm",function(bool)
     autofarm = bool
 end)
 
+local speedA = 500
 b:Slider("Tween Speed",{
-    min = 100; 
+    min = 250; 
     max = 800;
     precise = false;
-},function(speed)
-_G.speed = speed
+},function(speedA)
+_G.speed = speedA
 end)
 local scrollfarm
 b:Toggle("Scroll Sniper",function(bool)
@@ -86,12 +87,13 @@ local war2
 c:Toggle("WarMode Tween (multple players)",function(bool)
     war2 = bool
 end)
+local speedB = 500
 c:Slider("Tween Speed",{
-    min = 100; 
+    min = 250; 
     max = 800;
     precise = false;
-},function(speed)
-_G.speed = speed
+},function(speedB)
+_G.speed = speedB
 end)
 local reset
 c:Toggle("Reset after round 21",function(bool)
@@ -317,6 +319,8 @@ spawn(function()
             if reset then
                 for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
                     if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 then
+            			wait(5)
+            			player.Character:BreakJoints()
             			repeat wait()
             			until v.round.Value == 0
             			count = count + 1
@@ -351,6 +355,8 @@ spawn(function()
             if reset then
                 for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
                     if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 then
+            			wait(5)
+            			player.Character:BreakJoints()
             			repeat wait()
             			until v.round.Value == 0
             			count = count + 1
