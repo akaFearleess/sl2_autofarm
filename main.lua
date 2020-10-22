@@ -65,7 +65,7 @@ b:Toggle("Scroll Sniper",function(bool)
     scrollfarm = bool
 end)
 local jinfarm
-b:Toggle("Jin Farm",function(bool)
+b:Toggle("JinFarm (instakill)",function(bool)
     jinfarm = bool
 end)
 local RANKUP
@@ -254,8 +254,10 @@ end
 spawn(function()
     while wait() do
         if scrollfarm or war or war2 then
-            SCROLLFARM()
-            SCROLLFARM1()
+            repeat wait()
+                SCROLLFARM()
+                SCROLLFARM1()
+            until not scrollfarm or not war or not war2
         end
     end
 end)
@@ -275,7 +277,9 @@ end
 spawn(function()
     while wait() do
         if jinfarm then
-            JINFARM()
+            repeat wait()
+                JINFARM()
+            until not jinfarm
         end
     end
 end)
