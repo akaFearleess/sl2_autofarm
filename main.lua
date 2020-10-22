@@ -170,7 +170,7 @@ spawn(function()
                                 local clienttalk = v:FindFirstChild("CLIENTTALK")
                                 repeat wait()
                                     pcall(function()
-                                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
+                                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
                                         wait(.2)
                                         clienttalk:FireServer()
                                         clienttalk:FireServer("accept")
@@ -181,16 +181,16 @@ spawn(function()
                             end
                         elseif lvl >= 700 then
                             if player.currentmission.Value == nil and v.Head.givemission.Enabled == true and typ.Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" then
+                                local getmission = v:FindFirstChild("HumanoidRootPart")
+                                local clienttalk = v:FindFirstChild("CLIENTTALK")
                                 repeat wait()
-                                    pcall(function()                                
-                                        local getmission = v:FindFirstChild("HumanoidRootPart")
-                                        local clienttalk = v:FindFirstChild("CLIENTTALK")
-                                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
+                                    pcall(function()
+                                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
                                         wait(.2)
                                         clienttalk:FireServer()
                                         clienttalk:FireServer("accept")
                                     end)
-                                until v.Head.givemission.Enabled == false  or not autofarm
+                                until v.Head.givemission.Enabled == false or not autofarm  
                             else
                                 wait()
                             end
@@ -202,7 +202,7 @@ spawn(function()
                     if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
                         repeat wait()
                             pcall(function()
-                                toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
+                                toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
                                 wait(.25)
                                 v.Humanoid.Health = 0
                             end)
@@ -278,7 +278,7 @@ spawn(function()
                 elseif v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and v:FindFirstChild("megaboss") then
                     pcall(function()
                         toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
-                        wait(2)
+                        wait(10)
                         v.Humanoid.Health = 0
                     end)
                 end
@@ -308,9 +308,9 @@ spawn(function()
 		            	v.Humanoid.Health = 0
                     end)
                 elseif v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and v:FindFirstChild("megaboss") then
-                    pcall(function()
+                    wait(10)
+					pcall(function()
                         toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
-                        wait(1)
                         v.Humanoid.Health = 0
                     end)
                 else
