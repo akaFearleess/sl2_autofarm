@@ -265,11 +265,11 @@ local function JINFARM()
         if v.Name == "npc1" then
             repeat wait()
                 pcall(function()
-			toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
+			        toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
                 	wait(.5)
-			v.Humanoid.Health = 0
-		end)
-           until not v
+		        	v.Humanoid.Health = 0
+	        	end)
+            until v.Humanoid.Health == 0
         end
     end
 end
@@ -314,7 +314,7 @@ spawn(function()
             if reset then
                 for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
                     if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 then
-            			wait(25)
+            			wait(5)
             			player.Character:BreakJoints()
             			repeat wait()
             			until v.round.Value == 0
@@ -341,7 +341,7 @@ spawn(function()
                 elseif v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and v:FindFirstChild("megaboss") then
                     wait(6)
 					pcall(function()
-                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
+                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-25,0)))
                         v.Humanoid.Health = 0
                     end)
                 else
@@ -351,7 +351,7 @@ spawn(function()
             if reset then
                 for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
                     if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 then
-            			wait(25)
+            			wait(5)
             			player.Character:BreakJoints()
             			repeat wait()
             			until v.round.Value == 0
