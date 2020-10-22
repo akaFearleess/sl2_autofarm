@@ -4,7 +4,6 @@ v3rm: https://v3rmillion.net/showthread.php?tid=1063031
 Discord: reav#2966
 Discord Server: https://discord.gg/aDRStgw
 Usage:
-_G.speed = 750
 loadstring(game:HttpGet("https://raw.githubusercontent.com/reavscripts/sl2_autofarm/main/main.lua", true))()
 ]]
 
@@ -44,6 +43,7 @@ _G.TertiaryColor = Color3.fromRGB(5, 16, 20);
 _G.ToggleColor = Color3.fromRGB(0, 255, 255);
 _G.MainTextColor = Color3.fromRGB(255, 255, 255);
 _G.MainColor = Color3.fromRGB(5, 16, 20);
+_G.SliderColor = Color3.fromRGB(0, 102, 255);
  
 local w = library:CreateWindow("Shinobi Life 2")
 local b = w:CreateFolder("AutoFarm")
@@ -51,6 +51,14 @@ local b = w:CreateFolder("AutoFarm")
 local autofarm
 b:Toggle("Autofarm",function(bool)
     autofarm = bool
+end)
+
+b:Slider("Tween Speed",{
+    min = 500; 
+    max = 800;
+    precise = false;
+},function(speed)
+_G.speed = speed
 end)
 local scrollfarm
 b:Toggle("Scroll Sniper",function(bool)
@@ -77,6 +85,13 @@ end)
 local war2
 c:Toggle("WarMode Tween (multple players)",function(bool)
     war2 = bool
+end)
+c:Slider("Tween Speed",{
+    min = 500; 
+    max = 800;
+    precise = false;
+},function(speed)
+_G.speed = speed
 end)
 local reset
 c:Toggle("Reset after round 21",function(bool)
@@ -130,7 +145,7 @@ local e = w:CreateFolder("Misc")
 e:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-e:Label("made by reav#2966 | ver 2.4",{
+e:Label("made by reav#2966 | ver 2.5",{
     TextSize = 17;
     TextColor = Color3.fromRGB(205, 221, 221); 
     BgColor = Color3.fromRGB(5, 16, 20);
@@ -239,8 +254,8 @@ end
 spawn(function()
     while wait() do
         if scrollfarm or war or war2 then
-        	SCROLLFARM()
-		SCROLLFARM1()
+            SCROLLFARM()
+            SCROLLFARM1()
         end
     end
 end)
@@ -285,12 +300,12 @@ spawn(function()
                 if workspace.warserver:FindFirstChild("zetsu").Value > 0 and v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and not v:FindFirstChild("megaboss") then
                     wait(.1)
                     pcall(function()
-		            	v.Humanoid.Health = 0
+	            	    v.Humanoid.Health = 0
                     end)
                 elseif v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and v:FindFirstChild("megaboss") then
-                    pcall(function()
+                    wait(10)
+					pcall(function()
                         toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
-                        wait(10)
                         v.Humanoid.Health = 0
                     end)
                 end
@@ -315,9 +330,9 @@ spawn(function()
             for i,v in pairs(workspace.npc:GetChildren()) do
                 if workspace.warserver:FindFirstChild("zetsu").Value > 0 and v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and not v:FindFirstChild("megaboss") then
                     pcall(function()
-                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
+                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
 		            	wait(.2)
-		            	v.Humanoid.Health = 0
+		                v.Humanoid.Health = 0
                     end)
                 elseif v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and v:FindFirstChild("megaboss") then
                     wait(10)
