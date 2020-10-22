@@ -314,7 +314,7 @@ spawn(function()
             if reset then
                 for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
                     if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 then
-            			wait(5)
+            			wait(25)
             			player.Character:BreakJoints()
             			repeat wait()
             			until v.round.Value == 0
@@ -351,7 +351,7 @@ spawn(function()
             if reset then
                 for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
                     if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 then
-            			wait(5)
+            			wait(25)
             			player.Character:BreakJoints()
             			repeat wait()
             			until v.round.Value == 0
