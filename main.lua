@@ -52,14 +52,14 @@ local autofarm
 b:Toggle("Autofarm",function(bool)
     autofarm = bool
 end)
-
-local speedA = 500
+_G.speed = 500
+local speed
 b:Slider("Tween Speed",{
     min = 250; 
     max = 800;
     precise = false;
-},function(speedA)
-_G.speed = speedA
+},function(speed)
+_G.speed = speed
 end)
 local scrollfarm
 b:Toggle("Scroll Sniper",function(bool)
@@ -87,13 +87,13 @@ local war2
 c:Toggle("WarMode Tween (multple players)",function(bool)
     war2 = bool
 end)
-local speedB = 500
+
 c:Slider("Tween Speed",{
     min = 250; 
     max = 800;
     precise = false;
-},function(speedB)
-_G.speed = speedB
+},function(speed)
+_G.speed = speed
 end)
 local reset
 c:Toggle("Reset after round 21",function(bool)
