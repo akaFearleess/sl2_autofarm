@@ -184,12 +184,12 @@ spawn(function()
                                 local clienttalk = v:FindFirstChild("CLIENTTALK")
                                 repeat wait()
                                     pcall(function()
-                                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
-                                        wait(.2)
+                                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
+                                        wait(.3)
                                         clienttalk:FireServer()
                                         clienttalk:FireServer("accept")
                                     end)
-                                until v.Head.givemission.Enabled == false or not autofarm  
+                                until v.Head.givemission.Enabled == false or not autofarm  or v.Humanoid.Health == 0 
                             else
                                 wait()
                             end
@@ -199,12 +199,12 @@ spawn(function()
                                 local clienttalk = v:FindFirstChild("CLIENTTALK")
                                 repeat wait()
                                     pcall(function()
-                                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
-                                        wait(.2)
+                                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
+                                        wait(.3)
                                         clienttalk:FireServer()
                                         clienttalk:FireServer("accept")
                                     end)
-                                until v.Head.givemission.Enabled == false or not autofarm  
+                                until v.Head.givemission.Enabled == false or not autofarm or v.Humanoid.Health == 0 
                             else
                                 wait()
                             end
