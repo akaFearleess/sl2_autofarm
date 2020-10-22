@@ -204,7 +204,7 @@ spawn(function()
                                         clienttalk:FireServer()
                                         clienttalk:FireServer("accept")
                                     end)
-                                until v.Head.givemission.Enabled == false or not autofarm or player.currentmission.Value == nil
+                                until v.Head.givemission.Enabled == false or not autofarm
                             else
                                 wait()
                             end
@@ -220,7 +220,7 @@ spawn(function()
                                 wait(.25)
                                 v.Humanoid.Health = 0
                             end)
-                        until v.Humanoid.Health == 0 not v or not autofarm
+                        until v.Humanoid.Health == 0 or not v or not autofarm
                     end
                 end
             end
