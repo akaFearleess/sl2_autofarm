@@ -153,18 +153,15 @@ e:Label("made by reav#2966 | ver 2.5",{
     BgColor = Color3.fromRGB(5, 16, 20);
     
 }) 
-e:Label("Discord: ",{
-    TextSize = 24;
-    TextColor = Color3.fromRGB(205, 221, 221); 
-    BgColor = Color3.fromRGB(5, 16, 20);
-    
-}) 
 e:Label("https://discord.gg/aDRStgw",{
     TextSize = 17;
     TextColor = Color3.fromRGB(205, 221, 221); 
     BgColor = Color3.fromRGB(5, 16, 20);
     
 }) 
+e:Button("Copy Discord Link",function()
+    setclipboard("https://discord.gg/aDRStgw")
+end)
 game:GetService('RunService').Stepped:connect(function()
 	if autofarm or war2 then
 	    pcall(function()
@@ -336,9 +333,10 @@ spawn(function()
             for i,v in pairs(workspace.npc:GetChildren()) do
                 if workspace.warserver:FindFirstChild("zetsu").Value > 0 and v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and not v:FindFirstChild("megaboss") then
                     pcall(function()
+                        repeat wait()
                         toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
-		            	wait(.2)
 		                v.Humanoid.Health = 0
+		                until v.Humanoid.Health == 0
                     end)
                 elseif v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and v:FindFirstChild("megaboss") then
                     wait(6)
