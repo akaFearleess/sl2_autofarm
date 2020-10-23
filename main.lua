@@ -185,10 +185,10 @@ spawn(function()
                                 pcall(function()
                                     repeat wait()
                                         toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
-                                        wait(.3)
+                                        wait(.2)
                                         clienttalk:FireServer()
                                         clienttalk:FireServer("accept")
-                                    until v.Head.givemission.Enabled == false or not autofarm
+                                    until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                                 end)
                             else
                                 wait()
@@ -200,11 +200,11 @@ spawn(function()
                                 repeat wait()
                                     pcall(function()
                                         toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
-                                        wait(.3)
                                         clienttalk:FireServer()
+                                        wait(.2)
                                         clienttalk:FireServer("accept")
                                     end)
-                                until v.Head.givemission.Enabled == false or not autofarm
+                                until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                             else
                                 wait()
                             end
@@ -221,6 +221,8 @@ spawn(function()
                                 v.Humanoid.Health = 0
                             end)
                         until v.Humanoid.Health == 0 or not v or not autofarm
+                    else
+                        wait()
                     end
                 end
             end
