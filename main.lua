@@ -179,7 +179,7 @@ spawn(function()
                         local typ = TALK:FindFirstChild("typ")
                         local lvl = player.statz.lvl.lvl.Value
                         if lvl <= 699 then
-                            if player.currentmission.Value == nil and v.Head.givemission.Enabled == true and typ.Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" then
+                            if player.currentmission.Value == nil  and typ.Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" then
                                 local getmission = v:FindFirstChild("HumanoidRootPart")
                                 local clienttalk = v:FindFirstChild("CLIENTTALK")
                                 pcall(function()
@@ -194,7 +194,7 @@ spawn(function()
                                 wait()
                             end
                         elseif lvl >= 700 then
-                            if player.currentmission.Value == nil and v.Head.givemission.Enabled == true and typ.Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" then
+                            if player.currentmission.Value == nil and  typ.Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" then
                                 local getmission = v:FindFirstChild("HumanoidRootPart")
                                 local clienttalk = v:FindFirstChild("CLIENTTALK")
                                 repeat wait()
@@ -375,6 +375,16 @@ spawn(function()
             			count = count + 1
                     end
                 end
+            end
+        end
+    end
+end)
+spawn(function()
+    while wait() do
+        for i,v in pairs(game:GetService("Players")["im_scripter"].PlayerGui.Main.ingame.Missionstory:GetChildren()) do
+            if v.Name == "title" and string.find(v.Name.Text, "Cleaning") then
+                game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!cancel","All")
+                print("Discarding wrong quest")
             end
         end
     end
