@@ -229,6 +229,18 @@ spawn(function()
         end
     end
 end)
+spawn(function()
+    while wait() do
+        if autofarm then
+            for i,v in pairs(player.PlayerGui.Main.ingame.Missionstory.bg:GetChildren()) do
+                if v.Name == "title" and string.find(v.Text, "Cleaning") or string.find(v.Text, "Gardening") or string.find(v.Text, "Lost") or string.find(v.Text, "Delivery")  then
+                    game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!cancel","All")
+                    print("Wrong quest discarded.")
+                end
+            end
+        end
+    end
+end)
 local function SCROLLFARM()
     for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
         if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 2000 then
