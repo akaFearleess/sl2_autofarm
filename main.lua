@@ -183,7 +183,7 @@ local function npc()
 end
 local function mission()
     for i,v in pairs(workspace.missiongivers:GetChildren()) do
-        if v.Name == "" and v:FindFirstChild("Head") and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "defeat"  then
+        if v.Name == "" and v:FindFirstChild("Head") and v.Head:WaitForChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "defeat"  then
             local lvl = player.statz.lvl.lvl.Value
             if lvl <= 699 then
                 if v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" then
