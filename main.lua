@@ -187,7 +187,7 @@ local function mission()
             local TALK = v:FindFirstChild("Talk")
             local lvl = player.statz.lvl.lvl.Value
             if lvl <= 699 then
-                if player.currentmission.Value == nil  and TALK:FindFirstChild("typ").Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" then
+                if player.currentmission.Value == nil  and TALK:WaitForChild("typ").Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" then
                     local getmission = v:FindFirstChild("HumanoidRootPart")
                     local clienttalk = v:FindFirstChild("CLIENTTALK")
                     pcall(function()
