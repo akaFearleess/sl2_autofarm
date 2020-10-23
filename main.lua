@@ -179,7 +179,7 @@ spawn(function()
                         local typ = TALK:FindFirstChild("typ")
                         local lvl = player.statz.lvl.lvl.Value
                         if lvl <= 699 then
-                            if player.currentmission.Value == nil  and typ.Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" then
+                            if not mission.Visible and player.currentmission.Value == nil  and typ.Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" then
                                 local getmission = v:FindFirstChild("HumanoidRootPart")
                                 local clienttalk = v:FindFirstChild("CLIENTTALK")
                                 pcall(function()
@@ -188,13 +188,13 @@ spawn(function()
                                         wait(.2)
                                         clienttalk:FireServer()
                                         clienttalk:FireServer("accept")
-                                    until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
+                                    until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm or mission.Visible
                                 end)
                             else
                                 wait()
                             end
                         elseif lvl >= 700 then
-                            if player.currentmission.Value == nil and  typ.Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" then
+                            if not mission.Visible and player.currentmission.Value == nil and  typ.Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" then
                                 local getmission = v:FindFirstChild("HumanoidRootPart")
                                 local clienttalk = v:FindFirstChild("CLIENTTALK")
                                 repeat wait()
@@ -204,7 +204,7 @@ spawn(function()
                                         wait(.2)
                                         clienttalk:FireServer("accept")
                                     end)
-                                until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
+                                until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm or mission.Visible
                             else
                                 wait()
                             end
@@ -381,10 +381,12 @@ spawn(function()
 end)
 spawn(function()
     while wait() do
-        for i,v in pairs(game:GetService("Players")["im_scripter"].PlayerGui.Main.ingame.Missionstory:GetChildren()) do
-            if v.Name == "title" and string.find(v.Name.Text, "Cleaning") then
-                game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!cancel","All")
-                print("Discarding wrong quest")
+        if autofarm then
+            for i,v in pairs(player.PlayerGui.Main.ingame.Missionstory:GetChildren()) do
+                if v.Name == "title" and string.find(v.Name.Text, "Cleaning") then
+                    game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!cancel","All")
+                    print("Discarding wrong quest")
+                end
             end
         end
     end
