@@ -379,15 +379,3 @@ spawn(function()
         end
     end
 end)
-spawn(function()
-    while wait() do
-        if autofarm then
-            for i,v in pairs(player.PlayerGui.Main.ingame.Missionstory:GetChildren()) do
-                if v.Name == "title" and string.find(v.Name.Text, "Cleaning") then
-                    game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!cancel","All")
-                    print("Discarding wrong quest")
-                end
-            end
-        end
-    end
-end)
