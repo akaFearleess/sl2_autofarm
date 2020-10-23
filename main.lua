@@ -252,12 +252,26 @@ local function SCROLLFARM1()
         end
     end
 end
+local function SCROLLFARM2()
+    for i,v in pairs(game.workspace:GetChildren()) do
+        if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 2000 then
+            local scrollA = v.sh:FindFirstChild("invoke")
+            print("SCROLL SPAWNED2")
+            pcall(function()
+                toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
+                scrollA:FireServer(game.Players.LocalPlayer)
+                fireclickdetector(v.sh.ClickDetector)
+            end)
+        end
+    end
+end
 spawn(function()
     while wait() do
         if scrollfarm or war or war2 then
             repeat wait()
                 SCROLLFARM()
                 SCROLLFARM1()
+                SCROLLFARM2()
             until not scrollfarm or not war or not war2
         end
     end
