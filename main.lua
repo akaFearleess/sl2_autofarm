@@ -147,7 +147,7 @@ local e = w:CreateFolder("Misc")
 e:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-e:Label("made by reav#2966 | ver 2.6",{
+e:Label("made by reav#2966 | ver 2.5",{
     TextSize = 17;
     TextColor = Color3.fromRGB(205, 221, 221); 
     BgColor = Color3.fromRGB(5, 16, 20);
@@ -172,7 +172,7 @@ end)
 spawn(function()
     while wait() do
         if autofarm then
-            if not mission.Visible then
+            if not mission.Visible or player.currentmission.Value == nil then
                 for i,v in pairs(workspace.missiongivers:GetChildren()) do
                     if v.Name == "" and v:FindFirstChild("Head") then
                         local TALK = v:FindFirstChild("Talk")
@@ -190,8 +190,6 @@ spawn(function()
                                         clienttalk:FireServer("accept")
                                     until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                                 end)
-                            else
-                                wait()
                             end
                         elseif lvl >= 700 then
                             if player.currentmission.Value == nil and  typ.Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" then
