@@ -182,14 +182,14 @@ spawn(function()
                             if player.currentmission.Value == nil and v.Head.givemission.Enabled == true and typ.Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" then
                                 local getmission = v:FindFirstChild("HumanoidRootPart")
                                 local clienttalk = v:FindFirstChild("CLIENTTALK")
-                                repeat wait()
-                                    pcall(function()
+                                pcall(function()
+                                    repeat wait()
                                         toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
                                         wait(.3)
                                         clienttalk:FireServer()
                                         clienttalk:FireServer("accept")
-                                    end)
-                                until v.Head.givemission.Enabled == false or not autofarm
+                                    until v.Head.givemission.Enabled == false or not autofarm
+                                end)
                             else
                                 wait()
                             end
