@@ -185,13 +185,11 @@ spawn(function()
                                 pcall(function()
                                     repeat wait()
                                         toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
-                                        wait(.2)
                                         clienttalk:FireServer()
+                                        wait(.5)
                                         clienttalk:FireServer("accept")
                                     until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm or mission.Visible
                                 end)
-                            else
-                                wait()
                             end
                         elseif lvl >= 700 then
                             if not mission.Visible and player.currentmission.Value == nil and  typ.Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" then
@@ -201,12 +199,10 @@ spawn(function()
                                     pcall(function()
                                         toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
                                         clienttalk:FireServer()
-                                        wait(.2)
+                                        wait(.5)
                                         clienttalk:FireServer("accept")
                                     end)
                                 until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm or mission.Visible
-                            else
-                                wait()
                             end
                         end
                     end
@@ -217,12 +213,10 @@ spawn(function()
                         repeat wait()
                             pcall(function()
                                 toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
-                                wait(.25)
+                                wait(.2)
                                 v.Humanoid.Health = 0
                             end)
                         until v.Humanoid.Health == 0 or not v or not autofarm
-                    else
-                        wait()
                     end
                 end
             end
@@ -374,7 +368,7 @@ spawn(function()
     while wait() do
         if autofarm then
             pcall(function()
-                for i,v in pairs(player.PlayerGui.Main.ingame.Missionstory.bg:GetChildren()) do
+                for i,v in pairs(player.PlayerGui.Main.ingame.Missionstory:GetChildren()) do
                     if v.Name == "title" and string.find(v.Text, "Cleaning") or string.find(v.Text, "Gardening") or string.find(v.Text, "Lost") or string.find(v.Text, "Delivery")  then
                         game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!cancel","All")
                         print("Wrong quest discarded.")
