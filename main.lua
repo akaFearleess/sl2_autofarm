@@ -210,15 +210,23 @@ spawn(function()
                         end
                     end
                 end
-            else
+            end
+        end
+    end
+end)
+spawn(function()
+    while wait() do
+        if autofarm then
+            if mission.Visible or player.currentmission.Value == "mission" then
                 for i,v in pairs(workspace.npc:GetChildren()) do
                     if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
-                        repeat wait()
-                            pcall(function()
+                        pcall(function()    
+                            repeat wait()
                                 toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
+                                wait(.2)
                                 v.Humanoid.Health = 0
-                            end)
-                        until v.Humanoid.Health == 0 or not v or not autofarm
+                            until v.Humanoid.Health == 0 or not v or not autofarm
+                        end)
                     end
                 end
             end
