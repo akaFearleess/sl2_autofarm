@@ -232,31 +232,21 @@ end)
 local function SCROLLFARM()
     for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
         if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 2000 then
+            local scrollA = v.sh:FindFirstChild("invoke")
             print("SCROLL SPAWNED")
             pcall(function()
                 toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
 			end)
+            scrollA:FireServer(game.Players.LocalPlayer)
             fireclickdetector(v.sh.ClickDetector)
         end
     end
 end
 local function SCROLLFARM1()
-    for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
-        if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 2000 then
-            local scrollA = v.sh:FindFirstChild("invoke")
-            print("SCROLL SPAWNED1")
-            pcall(function()
-                toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
-			end)
-            scrollA:FireServer(game.Players.LocalPlayer)
-        end
-    end
-end
-local function SCROLLFARM2()
     for i,v in pairs(game.workspace:GetChildren()) do
         if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 2000 then
             local scrollA = v.sh:FindFirstChild("invoke")
-            print("SCROLL SPAWNED2")
+            print("SCROLL SPAWNED in workspace")
             pcall(function()
                 toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
                 scrollA:FireServer(game.Players.LocalPlayer)
@@ -271,7 +261,6 @@ spawn(function()
             repeat wait()
                 SCROLLFARM()
                 SCROLLFARM1()
-                SCROLLFARM2()
             until not scrollfarm or not war or not war2
         end
     end
@@ -282,10 +271,12 @@ local function JINFARM()
             repeat wait()
                 pcall(function()
 			        toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
-                	wait(.5)
+                	wait(.1)
 		        	v.Humanoid.Health = 0
+		        	toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-25,0)))
+	        	    wait(.1)
 	        	end)
-            until v.Humanoid.Health == 0
+            until v.Humanoid.Health == 0 or not jinfarm
         end
     end
 end
