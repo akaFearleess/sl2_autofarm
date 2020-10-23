@@ -183,10 +183,10 @@ local function npc()
 end
 local function mission()
     for i,v in pairs(workspace.missiongivers:GetChildren()) do
-        if v.Name == "" and v:FindFirstChild("Head") and player.currentmission.Value == "nil" and v.Head:WaitForChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "defeat"  then
+        if v.Name == "" and v:FindFirstChild("Head") and player.currentmission.Value == nil and v.Head:WaitForChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "defeat"  then
             local lvl = player.statz.lvl.lvl.Value
             if lvl <= 699 then
-                if player.currentmission.Value == "nil" and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" then
+                if player.currentmission.Value == nil and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" then
                     local clienttalk = v:FindFirstChild("CLIENTTALK")
                     --pcall(function()
                         repeat wait()
@@ -198,7 +198,7 @@ local function mission()
                     --end)
                 end
             elseif lvl >= 700 then
-                if player.currentmission.Value == "nil" and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" then
+                if player.currentmission.Value == nil and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" then
                     local clienttalk = v:FindFirstChild("CLIENTTALK")
                     --pcall(function()
                         repeat wait()
