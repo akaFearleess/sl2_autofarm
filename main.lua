@@ -147,7 +147,7 @@ local e = w:CreateFolder("Misc")
 e:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-e:Label("made by reav#2966 | ver 2.5",{
+e:Label("made by reav#2966 | ver 2.6",{
     TextSize = 17;
     TextColor = Color3.fromRGB(205, 221, 221); 
     BgColor = Color3.fromRGB(5, 16, 20);
@@ -178,7 +178,7 @@ spawn(function()
                         local TALK = v:FindFirstChild("Talk")
                         local lvl = player.statz.lvl.lvl.Value
                         if lvl <= 699 then
-                            if player.currentmission.Value == nil  and v:FindFirstChild("Talk"):FindFirstChild("typ").Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" then
+                            if player.currentmission.Value == nil  and TALK:FindFirstChild("typ").Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" then
                                 local getmission = v:FindFirstChild("HumanoidRootPart")
                                 local clienttalk = v:FindFirstChild("CLIENTTALK")
                                 pcall(function()
