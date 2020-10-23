@@ -195,7 +195,9 @@ local function mission()
                         repeat wait()
                             toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
                             clienttalk:FireServer()
+                            wait(.4)
                             clienttalk:FireServer("accept")
+                            wait(.2)
                         until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                     end)
                 end
@@ -207,7 +209,9 @@ local function mission()
                         repeat wait()
                             toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
                             clienttalk:FireServer()
+                            wait(.4)
                             clienttalk:FireServer("accept")
+                            wait(.2)
                         until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                     end)
                 end
