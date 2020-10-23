@@ -189,6 +189,8 @@ spawn(function()
                                         clienttalk:FireServer("accept")
                                     until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                                 end)
+                            else
+                                wait()
                             end
                         elseif lvl >= 700 then
                             if player.currentmission.Value == nil and v.Talk.typ.Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" then
@@ -202,6 +204,8 @@ spawn(function()
                                         clienttalk:FireServer("accept")
                                     until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                                 end)
+                            else
+                                wait()
                             end
                         end
                     end
