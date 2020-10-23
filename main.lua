@@ -175,7 +175,6 @@ local function npc()
             pcall(function()    
                 repeat wait()
                     toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
-                    wait(.2)
                     v.Humanoid.Health = 0
                 until v.Humanoid.Health == 0 or not autofarm
             end)
@@ -197,7 +196,6 @@ local function mission()
                             clienttalk:FireServer()
                             wait(.4)
                             clienttalk:FireServer("accept")
-                            wait(.2)
                         until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                     end)
                 end
@@ -211,7 +209,6 @@ local function mission()
                             clienttalk:FireServer()
                             wait(.4)
                             clienttalk:FireServer("accept")
-                            wait(.2)
                         until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                     end)
                 end
