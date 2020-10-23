@@ -335,6 +335,7 @@ spawn(function()
                     pcall(function()
                         repeat wait()
                         toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
+		                wait(.3)
 		                v.Humanoid.Health = 0
 		                until v.Humanoid.Health == 0
                     end)
