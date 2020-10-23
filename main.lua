@@ -184,7 +184,7 @@ spawn(function()
                                 local clienttalk = v:FindFirstChild("CLIENTTALK")
                                 pcall(function()
                                     repeat wait()
-                                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
+                                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
                                         clienttalk:FireServer()
                                         wait(.5)
                                         clienttalk:FireServer("accept")
@@ -197,7 +197,7 @@ spawn(function()
                                 local clienttalk = v:FindFirstChild("CLIENTTALK")
                                 repeat wait()
                                     pcall(function()
-                                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
+                                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
                                         clienttalk:FireServer()
                                         wait(.5)
                                         clienttalk:FireServer("accept")
@@ -368,10 +368,10 @@ spawn(function()
     while wait() do
         if autofarm then
             pcall(function()
-                for i,v in pairs(player.PlayerGui.Main.ingame.Missionstory:GetChildren()) do
-                    if v.Name == "title" and string.find(v.Text, "Cleaning") or string.find(v.Text, "Gardening") or string.find(v.Text, "Lost") or string.find(v.Text, "Delivery")  then
+                for i,v in pairs(player.PlayerGui.Main.ingame.Missionstory.bg:GetChildren()) do
+                    if v.Name == "name" and string.find(v.Text, "Clean") or string.find(v.Text, "Gardening") or string.find(v.Text, "Lost") or string.find(v.Text, "Delivery") then
                         game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!cancel","All")
-                        print("Wrong quest discarded.")
+                        --print("Wrong quest discarded.")
                     end
                 end
             end)
