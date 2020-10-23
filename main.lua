@@ -179,7 +179,7 @@ spawn(function()
                         local typ = TALK:FindFirstChild("typ")
                         local lvl = player.statz.lvl.lvl.Value
                         if lvl <= 699 then
-                            if not mission.Visible and player.currentmission.Value == nil  and typ.Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" then
+                            if player.currentmission.Value == nil  and typ.Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" then
                                 local getmission = v:FindFirstChild("HumanoidRootPart")
                                 local clienttalk = v:FindFirstChild("CLIENTTALK")
                                 pcall(function()
@@ -188,21 +188,23 @@ spawn(function()
                                         clienttalk:FireServer()
                                         wait(.5)
                                         clienttalk:FireServer("accept")
-                                    until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm or mission.Visible
+                                    until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                                 end)
+                            else
+                                wait()
                             end
                         elseif lvl >= 700 then
-                            if not mission.Visible and player.currentmission.Value == nil and  typ.Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" then
+                            if player.currentmission.Value == nil and  typ.Value == "defeat" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" then
                                 local getmission = v:FindFirstChild("HumanoidRootPart")
                                 local clienttalk = v:FindFirstChild("CLIENTTALK")
-                                repeat wait()
-                                    pcall(function()
+                                pcall(function()
+                                    repeat wait()
                                         toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
                                         clienttalk:FireServer()
                                         wait(.5)
                                         clienttalk:FireServer("accept")
-                                    end)
-                                until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm or mission.Visible
+                                    until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
+                                end)
                             end
                         end
                     end
@@ -361,20 +363,6 @@ spawn(function()
                     end
                 end
             end
-        end
-    end
-end)
-spawn(function()
-    while wait() do
-        if autofarm then
-            pcall(function()
-                for i,v in pairs(player.PlayerGui.Main.ingame.Missionstory.bg:GetChildren()) do
-                    if v.Name == "name" and string.find(v.Text, "Clean") or string.find(v.Text, "Gardening") or string.find(v.Text, "Lost") or string.find(v.Text, "Delivery") then
-                        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!cancel","All")
-                        --print("Wrong quest discarded.")
-                    end
-                end
-            end)
         end
     end
 end)
