@@ -151,7 +151,7 @@ local e = w:CreateFolder("Misc")
 e:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-e:Label("made by reav#2966 | ver 2.7.4.3",{
+e:Label("made by reav#2966 | ver 2.7.4.4",{
     TextSize = 15;
     TextColor = Color3.fromRGB(205, 221, 221); 
     BgColor = Color3.fromRGB(5, 16, 20);
@@ -188,29 +188,29 @@ local function mission()
             local TALK = v:WaitForChild("Talk")
             local lvl = player.statz.lvl.lvl.Value
             if lvl <= 699 and TALK ~= nil then
-                if player.currentmission.Value == nil and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" and TALK and TALK:FindFirstChild("typ").Value == "defeat" or TALK.typ.Value == "halloweenevent" then
-                    local clienttalk = v:FindFirstChild("CLIENTTALK")
-                    pcall(function()
+                pcall(function()
+                    if player.currentmission.Value == nil and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" and TALK and TALK:FindFirstChild("typ").Value == "defeat" or TALK.typ.Value == "halloweenevent" then
+                        local clienttalk = v:FindFirstChild("CLIENTTALK")
                         repeat wait()
                             toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
                             clienttalk:FireServer()
                             wait(.5)
                             clienttalk:FireServer("accept")
                         until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
-                    end)
-                end
+                    end
+                end)
             elseif lvl >= 700 and TALK ~= nil then
-                if player.currentmission.Value == nil and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" and TALK and TALK:FindFirstChild("typ").Value == "defeat" or TALK.typ.Value == "halloweenevent" then
-                    local clienttalk = v:FindFirstChild("CLIENTTALK")
-                    pcall(function()
+                pcall(function()
+                    if player.currentmission.Value == nil and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" and TALK and TALK:FindFirstChild("typ").Value == "defeat" or TALK.typ.Value == "halloweenevent" then
+                        local clienttalk = v:FindFirstChild("CLIENTTALK")
                         repeat wait()
                             toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
                             clienttalk:FireServer()
                             wait(.5)
                             clienttalk:FireServer("accept")
                         until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
-                    end)
-                end
+                    end
+                end)
             end
         end
     end
