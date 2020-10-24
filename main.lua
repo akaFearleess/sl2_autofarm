@@ -183,10 +183,10 @@ local function missionlow()
             repeat wait()
                 toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
                 clienttalk:FireServer()
-                wait(.5)
+                wait(.3)
                 clienttalk:FireServer("accept")
-                wait(.5)
-            until player.currentmission.Value ~= nil or not autofarm or not v.Head.givemission.color.Visible
+                wait(.3)
+            until not v.Head.givemission.Enabled or not v.Head.givemission.color.Visible or not autofarm
         end 
     end
 end
@@ -198,10 +198,10 @@ local function missionhigh()
             repeat wait()
                 toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
                 clienttalk:FireServer()
-                wait(.5)
+                wait(.3)
                 clienttalk:FireServer("accept")
-                wait(.5)
-            until player.currentmission.Value ~= nil or not autofarm or not v.Head.givemission.color.Visible
+                wait(.3)
+            until not v.Head.givemission.Enabled or not v.Head.givemission.color.Visible or not autofarm
         end
     end
 end
