@@ -97,10 +97,6 @@ local reset
 c:Toggle("Reset after round 21",function(bool)
     reset = bool
 end)
-local notify
-c:Toggle("Notify 10 tails spawn",function(bool)
-    notify = bool
-end)
 --Suggested by Moddi#2715
 local refresh = c:Label("ROUND COUNTER",{
     TextSize = 24;
