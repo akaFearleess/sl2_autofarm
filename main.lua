@@ -175,55 +175,48 @@ if not workspace:FindFirstChild("warmode") then
     end
 end
 
-local function missionlow()
-    for i,v in pairs(workspace.missiongivers:GetChildren()) do
-        if v.Name == "" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" and v.Talk:FindFirstChild("typ").Value == "defeat" or v.Talk.typ.Value == "halloweenevent" then
-            repeat wait()
-                toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
-                v.CLIENTTALK:FireServer()
-                wait(.3)
-                v.CLIENTTALK:FireServer("accept")
-                wait(.3)
-            until not v.Head.givemission.Enabled or not v.Head.givemission.color.Visible or not autofarm
-        end 
-    end
-end
-local function missionhigh()
-    for i,v in pairs(workspace.missiongivers:GetChildren()) do
-        if v.Name == "" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" and v.Talk:FindFirstChild("typ").Value == "defeat" or v.Talk.typ.Value == "halloweenevent" then
-            repeat wait()
-                toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
-                v.CLIENTTALK:FireServer()
-                wait(.3)
-                v.CLIENTTALK:FireServer("accept")
-                wait(.3)
-            until not v.Head.givemission.Enabled or not v.Head.givemission.color.Visible or not autofarm
-        end
-    end
-end
-local function npc()
-    for i,v in pairs(workspace.npc:GetChildren()) do
-        if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
-            pcall(function()    
-                repeat wait()
-                    wait(.3)
-                    toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
-                    v.Humanoid.Health = 0
-                until v.Humanoid.Health == 0 or player.currentmission.Value == nil or not autofarm
-            end)
-        end
-    end
-end
 spawn(function()
     while wait() do
         if autofarm then
             local lvl = player.statz.lvl.lvl.Value
-            if player.currentmission.Value == nil and lvl <= 699 then
-                missionlow()
-            elseif player.currentmission.Value == nil and lvl >= 700 then
-                missionhigh()
-            elseif player.currentmission.Value ~= nil then
-                npc()
+            if player.currentmission.Value == nil then
+                if lvl <= 699 then
+                    for i,v in pairs(workspace.missiongivers:GetChildren()) do
+                        if v.Name == "" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v.Head:FindFirstChild("givemission").Enabled and v:FindFirstChild("Head") and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" and v.Talk:FindFirstChild("typ").Value == "defeat" or v.Talk.typ.Value == "halloweenevent" then
+                            repeat wait()
+                                toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
+                                v.CLIENTTALK:FireServer()
+                                wait(.3)
+                                v.CLIENTTALK:FireServer("accept")
+                                wait(.3)
+                            until not v.Head.givemission.Enabled or not v.Head.givemission.color.Visible or not autofarm or player.currentmission.Value == "mission"
+                        end
+                    end
+                else
+                    for i,v in pairs(workspace.missiongivers:GetChildren()) do
+                        if v.Name == "" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v:FindFirstChild("Head") and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" and v.Talk:FindFirstChild("typ").Value == "defeat" or v.Talk.typ.Value == "halloweenevent" then
+                            repeat wait()
+                                toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
+                                v.CLIENTTALK:FireServer()
+                                wait(.3)
+                                v.CLIENTTALK:FireServer("accept")
+                                wait(.3)
+                            until not v.Head.givemission.Enabled or not v.Head.givemission.color.Visible or not autofarm or player.currentmission.Value == "mission"
+                        end
+                    end
+                end
+            else
+                for i,v in pairs(workspace.npc:GetChildren()) do
+                    if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
+                        --pcall(function()    
+                            repeat wait()
+                                wait(.3)
+                                toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
+                                v.Humanoid.Health = 0
+                            until v.Humanoid.Health == 0 or player.currentmission.Value == nil or not autofarm
+                        --end)
+                    end
+                end
             end
         end
     end
