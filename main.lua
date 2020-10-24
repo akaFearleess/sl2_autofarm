@@ -189,7 +189,7 @@ spawn(function()
                                 wait(.3)
                                 v.CLIENTTALK:FireServer("accept")
                                 wait(.3)
-                            until not v.Head.givemission.Enabled or not v.Head.givemission.color.Visible or not autofarm or player.currentmission.Value == "mission"
+                            until player.currentmission.Value == "mission" or not autofarm
                         end
                     end
                 else
@@ -201,7 +201,7 @@ spawn(function()
                                 wait(.3)
                                 v.CLIENTTALK:FireServer("accept")
                                 wait(.3)
-                            until not v.Head.givemission.Enabled or not v.Head.givemission.color.Visible or not autofarm or player.currentmission.Value == "mission"
+                            until player.currentmission.Value == "mission" or not autofarm
                         end
                     end
                 end
