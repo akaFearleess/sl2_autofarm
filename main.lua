@@ -200,17 +200,15 @@ local function mission()
                     end
                 end)
             elseif lvl >= 700 and TALK ~= nil then
-                pcall(function()
-                    if player.currentmission.Value == nil and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" and TALK and TALK:FindFirstChild("typ").Value == "defeat" or TALK.typ.Value == "halloweenevent" then
-                        local clienttalk = v:FindFirstChild("CLIENTTALK")
-                        repeat wait()
-                            toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
-                            clienttalk:FireServer()
-                            wait(.5)
-                            clienttalk:FireServer("accept")
-                        until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
-                    end
-                end)
+                if player.currentmission.Value == nil and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" and TALK and TALK:FindFirstChild("typ").Value == "defeat" or TALK.typ.Value == "halloweenevent" then
+                    local clienttalk = v:FindFirstChild("CLIENTTALK")
+                    repeat wait()
+                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
+                        clienttalk:FireServer()
+                        wait(.5)
+                        clienttalk:FireServer("accept")
+                    until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
+                end
             end
         end
     end
