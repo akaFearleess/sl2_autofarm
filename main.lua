@@ -46,116 +46,112 @@ _G.MainColor = Color3.fromRGB(5, 16, 20);
 _G.SliderColor = Color3.fromRGB(0, 102, 255);
  
 local w = library:CreateWindow("Shinobi Life 2")
-if not workspace:FindFirstChild("warmode") then
-    local b = w:CreateFolder("AutoFarm")
+local b = w:CreateFolder("AutoFarm")
 
-    local autofarm
-    b:Toggle("Autofarm",function(bool)
-        autofarm = bool
-    end)
-    _G.speed = 500
-    local speed
-    b:Slider("Tween Speed",{
-        min = 250; 
-        max = 800;
-        precise = false;
-    },function(speed)
-    _G.speed = speed
-    end)
-    local scrollfarm
-    b:Toggle("Scroll Sniper",function(bool)
-        scrollfarm = bool
-    end)
-    local jinfarm
-    b:Toggle("JinFarm (instakill)",function(bool)
-        jinfarm = bool
-    end)
-    local RANKUP
-    b:Toggle("AutoRank",function(bool)
-        RANKUP = bool
-    end)
-end
-if workspace:FindFirstChild("warmode") then
-    local c = w:CreateFolder("War Farm")
-    c:Label("Snipe is built-in",{
-        TextSize = 24;
-        TextColor = Color3.fromRGB(205, 221, 221); 
-        BgColor = Color3.fromRGB(5, 16, 20);
-    }) 
-    local war 
-    c:Toggle("WarMode No Tween",function(bool)
-        war = bool
-    end)
-    local war2
-    c:Toggle("WarMode Tween (multple players)",function(bool)
-        war2 = bool
-    end)
-    
-    c:Slider("Tween Speed",{
-        min = 250; 
-        max = 800;
-        precise = false;
-    },function(speed)
-    _G.speed = speed
-    end)
-    local reset
-    c:Toggle("Reset after round 21",function(bool)
-        reset = bool
-    end)
-    local notify
-    c:Toggle("Notify 10 tails spawn",function(bool)
-        notify = bool
-    end)
-    --Suggested by Moddi#2715
-    local refresh = c:Label("ROUND COUNTER",{
-        TextSize = 24;
-        TextColor = Color3.fromRGB(205, 221, 221); 
-        BgColor = Color3.fromRGB(5, 16, 20);
-    }) 
-    local count = 0
-    local refreshC = c:Label("10TAILS COUNTER",{
-        TextSize = 24;
-        TextColor = Color3.fromRGB(205, 221, 221); 
-        BgColor = Color3.fromRGB(5, 16, 20);
-    }) 
-end
-if not workspace:FindFirstChild("warmode") then
-    local d = w:CreateFolder("Quests Maker")
-    d:Button("Rushs",function()
-        for i = 1,300 do
-            game.Players.LocalPlayer.Character.combat.update:FireServer("rushw")
-            wait(.25)
-        end
-    end)
-    d:Button("Jumps",function()
-        for v = 1,300 do
-            game.Players.LocalPlayer.Character.combat.update:FireServer("takemovement2")
-            wait(.25)
-        end
-    end)
-    d:Button("Chakra Charges",function()
-        for i = 1,500 do
-            game.Players.LocalPlayer.Character.combat.update:FireServer("key","c")
-            wait(.1)
-            game.Players.LocalPlayer.Character.combat.update:FireServer("key","cend")
-            wait(.5)
-        end
-    end)
-    d:Button("Punches",function()
-        for i = 1,999 do
-            game.Players.LocalPlayer.Character.combat.update:FireServer("mouse1",true)
-            wait(.3)
-        end
-    end)
-    d:Button("TP TrainLog",function()
-        toTarget(player.Character.HumanoidRootPart.Position,workspace.npc.logtraining:FindFirstChild("HumanoidRootPart").Position,CFrame.new(game:GetService("Workspace").npc.logtraining:FindFirstChild("HumanoidRootPart").Position))
-    end)
-end
+local autofarm
+b:Toggle("Autofarm",function(bool)
+    autofarm = bool
+end)
+_G.speed = 500
+local speed
+b:Slider("Tween Speed",{
+    min = 250; 
+    max = 800;
+    precise = false;
+},function(speed)
+_G.speed = speed
+end)
+local scrollfarm
+b:Toggle("Scroll Sniper",function(bool)
+    scrollfarm = bool
+end)
+local jinfarm
+b:Toggle("JinFarm (instakill)",function(bool)
+    jinfarm = bool
+end)
+local RANKUP
+b:Toggle("AutoRank",function(bool)
+    RANKUP = bool
+end)
+local c = w:CreateFolder("War Farm")
+c:Label("Snipe is built-in",{
+    TextSize = 24;
+    TextColor = Color3.fromRGB(205, 221, 221); 
+    BgColor = Color3.fromRGB(5, 16, 20);
+}) 
+local war 
+c:Toggle("WarMode No Tween",function(bool)
+    war = bool
+end)
+local war2
+c:Toggle("WarMode Tween (multple players)",function(bool)
+    war2 = bool
+end)
+
+c:Slider("Tween Speed",{
+    min = 250; 
+    max = 800;
+    precise = false;
+},function(speed)
+_G.speed = speed
+end)
+local reset
+c:Toggle("Reset after round 21",function(bool)
+    reset = bool
+end)
+local notify
+c:Toggle("Notify 10 tails spawn",function(bool)
+    notify = bool
+end)
+--Suggested by Moddi#2715
+local refresh = c:Label("ROUND COUNTER",{
+    TextSize = 24;
+    TextColor = Color3.fromRGB(205, 221, 221); 
+    BgColor = Color3.fromRGB(5, 16, 20);
+}) 
+local count = 0
+local refreshC = c:Label("10TAILS COUNTER",{
+    TextSize = 24;
+    TextColor = Color3.fromRGB(205, 221, 221); 
+    BgColor = Color3.fromRGB(5, 16, 20);
+}) 
+
+local d = w:CreateFolder("Quests Maker")
+
+d:Button("Rushs",function()
+    for i = 1,300 do
+        game.Players.LocalPlayer.Character.combat.update:FireServer("rushw")
+        wait(.25)
+    end
+end)
+d:Button("Jumps",function()
+    for v = 1,300 do
+        game.Players.LocalPlayer.Character.combat.update:FireServer("takemovement2")
+        wait(.25)
+    end
+end)
+d:Button("Chakra Charges",function()
+    for i = 1,500 do
+        game.Players.LocalPlayer.Character.combat.update:FireServer("key","c")
+        wait(.1)
+        game.Players.LocalPlayer.Character.combat.update:FireServer("key","cend")
+        wait(.5)
+    end
+end)
+d:Button("Punches",function()
+    for i = 1,999 do
+        game.Players.LocalPlayer.Character.combat.update:FireServer("mouse1",true)
+        wait(.3)
+    end
+end)
+d:Button("TP TrainLog",function()
+    toTarget(player.Character.HumanoidRootPart.Position,workspace.npc.logtraining:FindFirstChild("HumanoidRootPart").Position,CFrame.new(game:GetService("Workspace").npc.logtraining:FindFirstChild("HumanoidRootPart").Position))
+end)
 local e = w:CreateFolder("Misc")
 e:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-e:Label("made by reav#2966 | ver 2.8",{
+e:Label("made by reav#2966 | ver 2.7.4.4",{
     TextSize = 15;
     TextColor = Color3.fromRGB(205, 221, 221); 
     BgColor = Color3.fromRGB(5, 16, 20);
