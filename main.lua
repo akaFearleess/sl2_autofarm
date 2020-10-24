@@ -151,7 +151,7 @@ local e = w:CreateFolder("Misc")
 e:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-e:Label("made by reav#2966 | ver 2.7.4.1",{
+e:Label("made by reav#2966 | ver 2.7.4.2",{
     TextSize = 15;
     TextColor = Color3.fromRGB(205, 221, 221); 
     BgColor = Color3.fromRGB(5, 16, 20);
@@ -194,6 +194,7 @@ local function mission()
                         repeat wait()
                             toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
                             clienttalk:FireServer()
+                            wait(.5)
                             clienttalk:FireServer("accept")
                         until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                     end)
@@ -205,7 +206,7 @@ local function mission()
                         repeat wait()
                             toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
                             clienttalk:FireServer()
-                            wait(.2)
+                            wait(.5)
                             clienttalk:FireServer("accept")
                         until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                     end)
@@ -217,15 +218,12 @@ end
 local function npc()
     for i,v in pairs(workspace.npc:GetChildren()) do
         if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
-            pcall(function()    
+            --pcall(function()    
                 repeat wait()
                     toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
-                    if (player.Character.HumanoidRootPart.Position-v.HumanoidRootPart.Position).Magnitude > 50 then
-                        v.Humanoid.Health = 0
-                        wait(.2)
-                    end
+                    v.Humanoid.Health = 0
                 until v.Humanoid.Health == 0 or not autofarm
-            end)
+            --end)
         end
     end
 end
