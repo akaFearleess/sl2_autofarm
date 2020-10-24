@@ -220,7 +220,6 @@ local function npc()
                 repeat wait()
                     wait(1)
                     toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
-                    wait(.2)
                     v.Humanoid.Health = 0
                 until v.Humanoid.Health == 0 or not autofarm
             end)
