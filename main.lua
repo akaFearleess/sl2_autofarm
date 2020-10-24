@@ -187,10 +187,8 @@ spawn(function()
                                 repeat wait()
                                     toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
                                     v.CLIENTTALK:FireServer()
-                                    wait(.3)
                                     v.CLIENTTALK:FireServer("accept")
-                                    wait(.3)
-                                until not autofarm or z.Visible
+                                until not autofarm or z.Visible or not v.Head:FindFirstChild("givemission").Enabled
                             end
                         end
                     else
@@ -199,11 +197,9 @@ spawn(function()
                                 repeat wait()
                                     toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
                                     v.CLIENTTALK:FireServer()
-                                    wait(.3)
                                     v.CLIENTTALK:FireServer("accept")
-                                    wait(.3)
-                                until not autofarm or z.Visible
-                            end
+                                until not autofarm or z.Visible or not v.Head:FindFirstChild("givemission").Enabled
+                            end 
                         end
                     end
                 else
@@ -211,7 +207,6 @@ spawn(function()
                         if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
                             --pcall(function()    
                                 repeat wait()
-                                    wait(.3)
                                     toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
                                     v.Humanoid.Health = 0
                                 until v.Humanoid.Health == 0 or not z.Visible or not autofarm
