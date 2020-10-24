@@ -99,6 +99,28 @@ local reset
 c:Toggle("Reset after round 21",function(bool)
     reset = bool
 end)
+local notify
+c:Toggle("Notify 10 tails spawn",function(bool)
+    notify = bool
+end)
+--Suggested by amai sakura#0564
+local function discord(msg)
+    local response = syn.request(
+    {
+        Url = 'https://discord.com/api/webhooks/769390712059592705/o8d2v8s_uT1vJV6_yB73OvdwDcuMNPvFi6JfzZ2-nQl4YbE9O9DPPIuM8sLun_QS81TO',
+        Method = 'POST',
+        Headers = {
+            ['Content-Type'] = 'application/json'
+        },
+        Body = game:GetService('HttpService'):JSONEncode({content = msg})
+    }
+);
+end
+local discord_id
+c:Box("Discord ID","string",function(dID)
+    discord_id = dID
+    discord("<@"..discord_id.."> ".."10Tails Spawned")
+end)
 --Suggested by Moddi#2715
 local refresh = c:Label("ROUND COUNTER",{
     TextSize = 24;
@@ -147,7 +169,7 @@ local e = w:CreateFolder("Misc")
 e:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-e:Label("made by reav#2966 | ver 2.7.2",{
+e:Label("made by reav#2966 | ver 2.7.3",{
     TextSize = 17;
     TextColor = Color3.fromRGB(205, 221, 221); 
     BgColor = Color3.fromRGB(5, 16, 20);
@@ -337,6 +359,7 @@ spawn(function()
         end
     end
 end)
+
 spawn(function()
     while wait() do
         if war2 then
@@ -352,7 +375,10 @@ spawn(function()
 		                until v.Humanoid.Health == 0
                     end)
                 elseif v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and v:FindFirstChild("megaboss") then
-                    wait(6)
+                    if notify then 
+                        discord("<@" .. discord_id .. "> " .. " 10Tails spawned") 
+                    end
+                    wait(8)
 					pcall(function()
                         toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-25,0)))
                         v.Humanoid.Health = 0
