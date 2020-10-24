@@ -152,7 +152,7 @@ e:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
 e:Label("made by reav#2966 | ver 2.7.4",{
-    TextSize = 16;
+    TextSize = 15;
     TextColor = Color3.fromRGB(205, 221, 221); 
     BgColor = Color3.fromRGB(5, 16, 20);
     
