@@ -192,6 +192,8 @@ spawn(function()
                                         v.CLIENTTALK:FireServer("accept")
                                     until not autofarm or z.Visible or not v.Head:FindFirstChild("givemission").Enabled
                                 end)
+                            else
+                                wait()
                             end
                         end
                     else
@@ -205,7 +207,9 @@ spawn(function()
                                         v.CLIENTTALK:FireServer("accept")
                                     until not autofarm or z.Visible or not v.Head:FindFirstChild("givemission").Enabled
                                 end)
-                            end 
+                            else
+                                wait()
+                            end
                         end
                     end
                 else
