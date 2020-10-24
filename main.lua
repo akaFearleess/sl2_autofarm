@@ -36,14 +36,14 @@ local mouse = game.Players.LocalPlayer:GetMouse()
 --loading wally ui revamped By Aika
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 _G.ButtonColor = Color3.fromRGB(5, 16, 20);
-_G.ButtonTextColor = Color3.fromRGB(205, 221, 221);
-_G.PointerColor = Color3.fromRGB(255, 255, 255);
+_G.ButtonTextColor = Color3.fromRGB(247, 95, 28);
+_G.PointerColor = Color3.fromRGB(247, 95, 28);
 _G.SecondaryColor = Color3.fromRGB(0, 102, 255);
 _G.TertiaryColor = Color3.fromRGB(5, 16, 20);
-_G.ToggleColor = Color3.fromRGB(0, 255, 255);
+_G.ToggleColor = Color3.fromRGB(247, 95, 28);
 _G.MainTextColor = Color3.fromRGB(255, 255, 255);
-_G.MainColor = Color3.fromRGB(5, 16, 20);
-_G.SliderColor = Color3.fromRGB(0, 102, 255);
+_G.MainColor = Color3.fromRGB(247, 95, 28);
+_G.SliderColor = Color3.fromRGB(247, 95, 28);
 _G.speed = 500
 local w = library:CreateWindow("Shinobi Life 2")
 local b = w:CreateFolder("AutoFarm")
@@ -74,8 +74,8 @@ end)
 local c = w:CreateFolder("War Farm")
 c:Label("Snipe is built-in",{
     TextSize = 24;
-    TextColor = Color3.fromRGB(205, 221, 221); 
-    BgColor = Color3.fromRGB(5, 16, 20);
+    TextColor = Color3.fromRGB(255,255,255); 
+    BgColor = Color3.fromRGB(247, 95, 28);
 }) 
 local war 
 c:Toggle("WarMode No Tween",function(bool)
@@ -100,14 +100,14 @@ end)
 --Suggested by Moddi#2715
 local refresh = c:Label("ROUND COUNTER",{
     TextSize = 24;
-    TextColor = Color3.fromRGB(205, 221, 221); 
-    BgColor = Color3.fromRGB(5, 16, 20);
+    TextColor = Color3.fromRGB(255,255,255); 
+    BgColor = Color3.fromRGB(247, 95, 28);
 }) 
 local count = 0
 local refreshC = c:Label("10TAILS COUNTER",{
     TextSize = 24;
-    TextColor = Color3.fromRGB(205, 221, 221); 
-    BgColor = Color3.fromRGB(5, 16, 20);
+    TextColor = Color3.fromRGB(255,255,255); 
+    BgColor = Color3.fromRGB(247, 95, 28);
 }) 
 local d = w:CreateFolder("Quests Maker")
 d:Button("Rushs",function()
@@ -145,14 +145,14 @@ e:Box("Teleport to PS","string",function(tpps)
 end)
 e:Label("made by reav#2966 | ver 2.8",{
     TextSize = 15;
-    TextColor = Color3.fromRGB(205, 221, 221); 
-    BgColor = Color3.fromRGB(5, 16, 20);
+    TextColor = Color3.fromRGB(255,255,255); 
+    BgColor = Color3.fromRGB(247, 95, 28);
     
 }) 
 e:Label("https://discord.gg/aDRStgw",{
     TextSize = 17;
-    TextColor = Color3.fromRGB(205, 221, 221); 
-    BgColor = Color3.fromRGB(5, 16, 20);
+    TextColor = Color3.fromRGB(255,255,255); 
+    BgColor = Color3.fromRGB(247, 95, 28);
     
 }) 
 e:Button("Copy Discord Link",function()
@@ -177,14 +177,12 @@ end
 
 local function missionlow()
     for i,v in pairs(workspace.missiongivers:GetChildren()) do
-        local TALK = v:WaitForChild("Talk")
-        local clienttalk = v:FindFirstChild("CLIENTTALK")
-        if v.Name == "" and player.currentmission.Value == nil and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" and TALK and TALK:FindFirstChild("typ").Value == "defeat" or TALK.typ.Value == "halloweenevent" then
+        if v.Name == "" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" and v.Talk:FindFirstChild("typ").Value == "defeat" or v.Talk.typ.Value == "halloweenevent" then
             repeat wait()
                 toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
-                clienttalk:FireServer()
+                v.CLIENTTALK:FireServer()
                 wait(.3)
-                clienttalk:FireServer("accept")
+                v.CLIENTTALK:FireServer("accept")
                 wait(.3)
             until not v.Head.givemission.Enabled or not v.Head.givemission.color.Visible or not autofarm
         end 
@@ -192,14 +190,12 @@ local function missionlow()
 end
 local function missionhigh()
     for i,v in pairs(workspace.missiongivers:GetChildren()) do
-        local TALK = v:WaitForChild("Talk")
-        local clienttalk = v:FindFirstChild("CLIENTTALK")
-        if v.Name == "" and player.currentmission.Value == nil and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" and TALK and TALK:FindFirstChild("typ").Value == "defeat" or TALK.typ.Value == "halloweenevent" then
+        if v.Name == "" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" and v.Talk:FindFirstChild("typ").Value == "defeat" or v.Talk.typ.Value == "halloweenevent" then
             repeat wait()
                 toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
-                clienttalk:FireServer()
+                v.CLIENTTALK:FireServer()
                 wait(.3)
-                clienttalk:FireServer("accept")
+                v.CLIENTTALK:FireServer("accept")
                 wait(.3)
             until not v.Head.givemission.Enabled or not v.Head.givemission.color.Visible or not autofarm
         end
