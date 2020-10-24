@@ -186,7 +186,7 @@ local function missionlow()
                 wait(.5)
                 clienttalk:FireServer("accept")
                 wait(.5)
-            until not v.Head.givemission.color.Visible or player.currentmission.Value ~= nil or not autofarm
+            until player.currentmission.Value ~= nil or not autofarm or not v.Head.givemission.color.Visible
         end 
     end
 end
@@ -201,7 +201,7 @@ local function missionhigh()
                 wait(.5)
                 clienttalk:FireServer("accept")
                 wait(.5)
-            until not v.Head.givemission.color.Visible or player.currentmission.Value ~= nil or not autofarm
+            until player.currentmission.Value ~= nil or not autofarm or not v.Head.givemission.color.Visible
         end
     end
 end
