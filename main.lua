@@ -189,7 +189,7 @@ spawn(function()
                                 wait(.3)
                                 v.CLIENTTALK:FireServer("accept")
                                 wait(.3)
-                            until player.currentmission.Value == "mission" or not autofarm
+                            until player.currentmission.Value == "mission" or not autofarm or not v.Head:FindFirstChild("givemission").Enabled or not v.Head.givemission:FindFirstChild("color").Visible
                         end
                     end
                 else
@@ -201,7 +201,7 @@ spawn(function()
                                 wait(.3)
                                 v.CLIENTTALK:FireServer("accept")
                                 wait(.3)
-                            until player.currentmission.Value == "mission" or not autofarm
+                            until player.currentmission.Value == "mission" or not autofarm or not v.Head:FindFirstChild("givemission").Enabled or not v.Head.givemission:FindFirstChild("color").Visible
                         end
                     end
                 end
