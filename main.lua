@@ -143,7 +143,7 @@ local e = w:CreateFolder("Misc")
 e:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-e:Label("made by reav#2966 | ver 2.8",{
+e:Label("made by reav#2966 | ver 2.9",{
     TextSize = 15;
     TextColor = Color3.fromRGB(255,255,255); 
     BgColor = Color3.fromRGB(247, 95, 28);
@@ -210,6 +210,10 @@ spawn(function()
                     end
                 else
                     for i,v in pairs(workspace.npc:GetChildren()) do
+                        local mobname = string.split(mission.bg.name.Text,"Defeat ")[1]
+                        if(string.find(mobname,"(s)")) then
+                            mobname = string.gsub(mobname,"(s)","")
+                        end
                         if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
                             pcall(function()    
                                 repeat wait()
