@@ -181,7 +181,7 @@ spawn(function()
             local lvl = player.statz.lvl.lvl.Value
             for u,z in pairs(player.PlayerGui.Main.ingame:GetChildren()) do
                 if z.Name == "Missionstory" and z.Visible == false then
-                    if lvl <= 700 then
+                    if lvl < 700 then
                         for i,v in pairs(workspace.missiongivers:GetChildren()) do
                             if v.Name == "" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v.Head:FindFirstChild("givemission").Enabled and v:FindFirstChild("Head") and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" and v.Talk:FindFirstChild("typ").Value == "defeat" or v.Talk.typ.Value == "halloweenevent" then
                                     repeat wait()
