@@ -51,6 +51,10 @@ local autofarm
 b:Toggle("AutoFarm",function(bool)
     autofarm = bool
 end)
+local candy
+b:Toggle("Candy Quests",function(bool)
+    candy = bool
+end)
 local speed
 b:Slider("Tween Speed",{
     min = 250; 
@@ -165,22 +169,17 @@ game:GetService('RunService').Stepped:connect(function()
         end)
     end
 end)
-
 spawn(function()
     while wait() do
         if autofarm then
             if workspace.missiongivers:FindFirstChild("walls") then
                 workspace.missiongivers:FindFirstChild("walls"):Destroy()
             end
-            local spins = player.statz.spins.Value
 			for u,z in pairs(player.PlayerGui.Main.ingame:GetChildren()) do
 				if z.Name == "Missionstory" and z.Visible == false then
 					local lvl = player.statz.lvl.lvl.Value
 					if lvl < 700 then
 						for i,v in pairs(workspace.missiongivers:GetChildren()) do
-						    if v.Name == "walls" then
-						        v:Destroy()
-						    end
 							if v.ClassName == "Model" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled and v:FindFirstChild("Head") and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" and v.Talk:FindFirstChild("typ").Value == "defeat" then
 								repeat wait()
 									toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
@@ -224,6 +223,30 @@ spawn(function()
     end
 end)
 
+spawn(function()
+    while wait() do
+        if candy then
+            local spins = player.statz.spins.Value
+            if spins < 500 then
+                for u,z in pairs(player.PlayerGui.Main.ingame:GetChildren()) do
+				    if z.Name == "Missionstory" and z.Visible == false then
+				        for i,v in pairs(workspace.missiongivers:GetChildren()) do
+				            if v.ClassName == "Model" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "halloweenevent" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5710748193" and v.Head.givemission.color.Visible then
+				                repeat wait()
+									toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
+									v.CLIENTTALK:FireServer()
+									v.CLIENTTALK:FireServer("accept")
+				                until not candy or z.Visible or v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled == false
+				            end
+				        end
+				    end
+                end
+            else
+                print("max spins reached 500")
+            end
+        end
+    end
+end)
 local function SCROLLFARM()
     for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
         if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 2000 then
