@@ -186,7 +186,9 @@ spawn(function()
 								v.CLIENTTALK:FireServer("accept")
 								wait(1)
 							until not autofarm or v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled == false
-						end
+						else
+						    wait()
+					    end
 					end
 				else
 			    	for i,v in pairs(workspace.missiongivers:GetChildren()) do
@@ -196,7 +198,9 @@ spawn(function()
 								v.CLIENTTALK:FireServer()
 								v.CLIENTTALK:FireServer("accept")
 							until not autofarm or mission.Visible or v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled == false
-						end
+						else
+						    wait()
+					    end
 			    	end
                 end
 			else
