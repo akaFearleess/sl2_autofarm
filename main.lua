@@ -185,8 +185,6 @@ spawn(function()
 								v.CLIENTTALK:FireServer()
 								v.CLIENTTALK:FireServer("accept")
 							until not autofarm or v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled == false
-					    else
-					        wait(1)
 					    end
 					end
 				else
@@ -197,12 +195,10 @@ spawn(function()
 								v.CLIENTTALK:FireServer()
 								v.CLIENTTALK:FireServer("accept")
 							until not autofarm or mission.Visible or v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled == false
-                        else
-					        wait(1)
 					    end
 			    	end
                 end
-			else
+			elseif mission.Visible then
 				for i,v in pairs(workspace.npc:GetChildren()) do
 					local mobname = string.split(mission.bg.name.Text,"Defeat ")[1]
 					if(string.find(mobname,"(s)")) then
@@ -216,9 +212,9 @@ spawn(function()
 								v.Humanoid.Health = 0
 							until v.Humanoid.Health == 0 or mission.Visible == false or not autofarm
 						end)
-					end
+				    end
 				end
-			end
+            end
         end
     end
 end)
