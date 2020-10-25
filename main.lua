@@ -143,7 +143,7 @@ local e = w:CreateFolder("Misc")
 e:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-e:Label("made by reav#2966 | ver 2.9",{
+e:Label("made by reav#2966 | ver 2.9.1",{
     TextSize = 15;
     TextColor = Color3.fromRGB(255,255,255); 
     BgColor = Color3.fromRGB(247, 95, 28);
@@ -222,6 +222,8 @@ spawn(function()
                                     v.Humanoid.Health = 0
                                 until v.Humanoid.Health == 0 or not z.Visible or not autofarm
                             end)
+                        else
+                            wait()
                         end
                     end
                 end
