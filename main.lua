@@ -143,7 +143,7 @@ local e = w:CreateFolder("Misc")
 e:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-e:Label("made by reav#2966 | ver 3",{
+e:Label("made by reav#2966 | ver 3.1",{
     TextSize = 15;
     TextColor = Color3.fromRGB(255,255,255); 
     BgColor = Color3.fromRGB(247, 95, 28);
@@ -165,15 +165,6 @@ game:GetService('RunService').Stepped:connect(function()
         end)
     end
 end)
-
-if not workspace:FindFirstChild("warmode") then
-    if workspace.missiongivers:FindFirstChild("walls") then
-        workspace.missiongivers:FindFirstChild("walls"):Destroy()
-    end
-    if workspace.missiongivers:FindFirstChild("NOMOVE") then
-        workspace.missiongivers:FindFirstChild("NOMOVE"):Destroy()
-    end
-end
 
 spawn(function()
     while wait() do
