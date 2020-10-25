@@ -197,6 +197,7 @@ spawn(function()
 								toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
 								v.CLIENTTALK:FireServer()
 								v.CLIENTTALK:FireServer("accept")
+								wait(1)
 							until not autofarm or mission.Visible or v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled == false
 						else
 						    wait()
