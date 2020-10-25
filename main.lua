@@ -186,7 +186,7 @@ spawn(function()
 								v.CLIENTTALK:FireServer("accept")
 							until not autofarm or v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled == false
 					    else
-					        repeat wait() until v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled
+					        wait(3)
 					    end
 					end
 				else
@@ -198,7 +198,7 @@ spawn(function()
 								v.CLIENTTALK:FireServer("accept")
 							until not autofarm or mission.Visible or v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled == false
                         else
-					        repeat wait() until v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled
+					        wait(3)
 					    end
 			    	end
                 end
@@ -250,7 +250,7 @@ spawn(function()
 end)
 local function SCROLLFARM()
     for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
-        if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y < -1000 then
+        if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 2000 then
             local scrollA = v.sh:FindFirstChild("invoke")
             print("SCROLL SPAWNED")
             pcall(function()
@@ -263,7 +263,7 @@ local function SCROLLFARM()
 end
 local function SCROLLFARM1()
     for i,v in pairs(game.workspace:GetChildren()) do
-        if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y < -1000 then
+        if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 2000 then
             local scrollA = v.sh:FindFirstChild("invoke")
             print("SCROLL SPAWNED in workspace")
             pcall(function()
