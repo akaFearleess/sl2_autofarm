@@ -48,12 +48,12 @@ _G.speed = 500
 local w = library:CreateWindow("Shinobi Life 2")
 local b = w:CreateFolder("AutoFarm")
 local autofarm
-b:Toggle("AutoFarm no candys",function(bool)
+b:Toggle("AutoFarm",function(bool)
     autofarm = bool
 end)
-local candy
-b:Toggle("Get candys",function(bool)
-    candy = bool
+local candies
+b:Toggle("Get candies",function(bool)
+    candies = bool
 end)
 local speed
 b:Slider("Tween Speed",{
@@ -224,13 +224,13 @@ end)
 
 spawn(function()
     while wait() do
-        if candy then
+        if candies then
             local spins = player.statz.spins.Value
             local lvl = player.statz.lvl.lvl.Value
-            if spins < 500 and candy then
+            if spins < 500 then
 			    for i,v in pairs(workspace.missiongivers:GetChildren()) do
 				    if lvl < 550 then
-				        while candy and mission.Visible == false and v.ClassName == "Model" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "halloweenevent" and v.Head.givemission.color.Image == candy and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled and not string.find(v.Talk.talk1.Value, "You need LVL" ) do
+				        while candies and mission.Visible == false and v.ClassName == "Model" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "halloweenevent" and v.Head.givemission.color.Image == candy and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled and not string.find(v.Talk.talk1.Value, "You need LVL" ) do
     				        pcall(function()
         				        wait()
         				        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
@@ -239,7 +239,7 @@ spawn(function()
     			            end)
     				    end
                     else
-                        while candy and mission.Visible == false and v.ClassName == "Model" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "halloweenevent" and v.Head.givemission.color.Image == candy and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled do
+                        while candies and mission.Visible == false and v.ClassName == "Model" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "halloweenevent" and v.Head.givemission.color.Image == candy and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled do
     				        pcall(function()
         				        wait()
         				        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
