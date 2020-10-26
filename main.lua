@@ -240,7 +240,7 @@ spawn(function()
     			            end)
     				    end
                     else
-                        while candy and mission.Visible == false and v.ClassName == "Model" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "halloweenevent" and v.Head.givemission.color.Image == candy and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled and not string.find(v.Talk.talk1.Value, "You need LVL" ) do
+                        while candy and mission.Visible == false and v.ClassName == "Model" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "halloweenevent" and v.Head.givemission.color.Image == candy and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled do
     				        pcall(function()
         				        wait()
         				        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
