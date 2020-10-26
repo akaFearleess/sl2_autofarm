@@ -48,11 +48,11 @@ _G.speed = 500
 local w = library:CreateWindow("Shinobi Life 2")
 local b = w:CreateFolder("AutoFarm")
 local autofarm
-b:Toggle("AutoFarm",function(bool)
+b:Toggle("AutoFarm no candys",function(bool)
     autofarm = bool
 end)
 local candy
-b:Toggle("Get candies",function(bool)
+b:Toggle("Get candys",function(bool)
     candy = bool
 end)
 local speed
@@ -212,7 +212,6 @@ spawn(function()
 					while autofarm and v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid").Health > 0 and v.Head.CFrame.Y > -1000 do
 						wait()
 						pcall(function()    
-							wait(.3)
 							toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
 						    v.Humanoid.Health = 0
 						end)
