@@ -185,6 +185,8 @@ spawn(function()
 								v.CLIENTTALK:FireServer()
 								v.CLIENTTALK:FireServer("accept")
 							until not autofarm or v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled == false
+					    else
+					        wait()
 					    end
 					end
 				else
@@ -195,6 +197,8 @@ spawn(function()
 								v.CLIENTTALK:FireServer()
 								v.CLIENTTALK:FireServer("accept")
 							until not autofarm or mission.Visible or v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled == false
+					    else
+					        wait()
 					    end
 			    	end
                 end
@@ -212,6 +216,8 @@ spawn(function()
 								v.Humanoid.Health = 0
 							until v.Humanoid.Health == 0 or mission.Visible == false or not autofarm
 						end)
+				    else
+				        wait()
 				    end
 				end
             end
