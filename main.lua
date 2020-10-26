@@ -147,7 +147,7 @@ local e = w:CreateFolder("Misc")
 e:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-e:Label("made by reav#2966 | ver 3.1",{
+e:Label("made by reav#2966 | ver 3.2",{
     TextSize = 15;
     TextColor = Color3.fromRGB(255,255,255); 
     BgColor = Color3.fromRGB(247, 95, 28);
@@ -183,19 +183,23 @@ spawn(function()
                 if lvl < 700 then
 					for i,v in pairs(workspace.missiongivers:GetChildren()) do
 						while autofarm and mission.Visible == false and v.ClassName == "Model" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled and v:FindFirstChild("Head") and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == green and v.Talk:FindFirstChild("typ").Value == "defeat" do
-							wait()
-							toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
-							v.CLIENTTALK:FireServer()
-							v.CLIENTTALK:FireServer("accept")
+							pcall(function()
+    							wait()
+	    						toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
+		    					v.CLIENTTALK:FireServer()
+			    				v.CLIENTTALK:FireServer("accept")
+				            end)
 					    end
 					end
 				else
 			    	for i,v in pairs(workspace.missiongivers:GetChildren()) do
 						while autofarm and mission.Visible == false and v.ClassName == "Model" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled and v:FindFirstChild("Head") and v.Head.givemission:FindFirstChild("color").Visible and v.Head.givemission.color.Image == green or v.Head.givemission.color.Image == red and v.Talk:FindFirstChild("typ").Value == "defeat" do
-							wait()
-							toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
-							v.CLIENTTALK:FireServer()
-							v.CLIENTTALK:FireServer("accept")
+							pcall(function()
+    							wait()
+	    						toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
+		    					v.CLIENTTALK:FireServer()
+			    				v.CLIENTTALK:FireServer("accept")
+				            end)
 					    end
 			    	end
                 end
@@ -224,20 +228,28 @@ spawn(function()
         if candy then
             local spins = player.statz.spins.Value
             local lvl = player.statz.lvl.lvl.Value
-            if spins < 500 and lvl > 550 then
-                for u,z in pairs(player.PlayerGui.Main.ingame:GetChildren()) do
-				    if z.Name == "Missionstory" and not mission.Visible then
-				        for i,v in pairs(workspace.missiongivers:GetChildren()) do
-				            if not mission.Visible and v.ClassName == "Model" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "halloweenevent" and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5710748193" and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled then
-				                repeat wait()
-									toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
-									v.CLIENTTALK:FireServer()
-									v.CLIENTTALK:FireServer("accept")
-				                until not candy or mission.Visible or v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled == false
-				            end
-				        end
+            if spins < 500 then
+			    for i,v in pairs(workspace.missiongivers:GetChildren()) do
+				    if lvl < 550 then
+				        while candy and mission.Visible == false and v.ClassName == "Model" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "halloweenevent" and v.Head.givemission.color.Image == candy and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled and not string.find(v.Talk.talk1.Value, "You need LVL" ) do
+    				        pcall(function()
+        				        wait()
+        				        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
+    	    					v.CLIENTTALK:FireServer()
+    		    				v.CLIENTTALK:FireServer("accept")
+    			            end)
+    				    end
+                    else
+                        while candy and mission.Visible == false and v.ClassName == "Model" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "halloweenevent" and v.Head.givemission.color.Image == candy and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled and not string.find(v.Talk.talk1.Value, "You need LVL" ) do
+    				        pcall(function()
+        				        wait()
+        				        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
+        						v.CLIENTTALK:FireServer()
+        						v.CLIENTTALK:FireServer("accept")
+    						end)
+                        end
 				    end
-                end
+				end
             else
                 print("max spins reached 500")
             end
