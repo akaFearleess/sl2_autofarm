@@ -24,7 +24,7 @@ local player = game.Players.LocalPlayer
 local mission = player.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory")
 function toTarget(pos, targetPos, targetCFrame)
     local tween_s = game:service"TweenService"
-    local info = TweenInfo.new((targetPos - pos).Magnitude/_G.speed, Enum.EasingStyle.Linear)
+    local info = TweenInfo.new((targetPos - pos).Magnitude/getgenv().speed, Enum.EasingStyle.Linear)
     local tween, err = pcall(function()
         local tween = tween_s:Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = targetCFrame * CFrame.fromAxisAngle(Vector3.new(1,0,0), math.rad(90))})
         tween:Play()
@@ -44,7 +44,7 @@ _G.ToggleColor = Color3.fromRGB(247, 95, 28);
 _G.MainTextColor = Color3.fromRGB(255, 255, 255);
 _G.MainColor = Color3.fromRGB(247, 95, 28);
 _G.SliderColor = Color3.fromRGB(247, 95, 28);
-_G.speed = 500
+getgenv().speed = 500
 local w = library:CreateWindow("Shinobi Life 2")
 local b = w:CreateFolder("AutoFarm")
 local autofarm
@@ -61,7 +61,7 @@ b:Slider("Tween Speed",{
     max = 800;
     precise = false;
     },function(speed)
-    _G.speed = speed
+    getgenv().speed = speed
 end)
 local scrollfarm
 b:Toggle("Scroll Sniper",function(bool)
@@ -95,7 +95,7 @@ c:Slider("Tween Speed",{
     max = 800;
     precise = false;
     },function(speed)
-    _G.speed = speed
+    getgenv().speed = speed
 end)
 local reset
 c:Toggle("Reset after round 21",function(bool)
@@ -209,7 +209,7 @@ spawn(function()
 					if(string.find(mobname,"(s)")) then
 						mobname = string.gsub(mobname,"(s)","")
 					end
-					while autofarm and v.ClassName == "Model" and v:FindFirstChild("npctype") and mobname and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid").Health > 0 and v.Head.CFrame.Y > -1000 do
+					while autofarm and v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid").Health > 0 and v.Head.CFrame.Y > -1000 do
 						pcall(function()    
 							toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
 						    wait(.2)
