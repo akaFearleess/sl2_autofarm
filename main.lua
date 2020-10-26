@@ -292,9 +292,11 @@ local function JINFARM()
             repeat wait()
                 pcall(function()
 			        toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
+                	player.Character.combat.update:FireServer("mouse1", truee)
                 	wait(.1)
 		        	v.Humanoid.Health = 0
 		        	toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-25,0)))
+	        	    player.Character.combat.update:FireServer("mouse1", truee)
 	        	    wait(.1)
 	        	end)
             until v.Humanoid.Health == 0 or not jinfarm
