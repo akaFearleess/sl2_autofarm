@@ -147,7 +147,7 @@ local e = w:CreateFolder("Misc")
 e:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-e:Label("made by reav#2966 | ver 3.2",{
+e:Label("made by reav#2966 | ver 3.2.1",{
     TextSize = 15;
     TextColor = Color3.fromRGB(255,255,255); 
     BgColor = Color3.fromRGB(247, 95, 28);
@@ -213,6 +213,7 @@ spawn(function()
 						wait()
 						pcall(function()    
 							toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
+						    wait(.2)
 						    v.Humanoid.Health = 0
 						end)
 				    end
