@@ -48,11 +48,11 @@ _G.speed = 500
 local w = library:CreateWindow("Shinobi Life 2")
 local b = w:CreateFolder("AutoFarm")
 local autofarm
-b:Toggle("AutoFarm no candys",function(bool)
+b:Toggle("AutoFarm",function(bool)
     autofarm = bool
 end)
 local candy
-b:Toggle("Only Candys",function(bool)
+b:Toggle("Get candies",function(bool)
     candy = bool
 end)
 local speed
