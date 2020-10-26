@@ -227,7 +227,7 @@ spawn(function()
         if candy then
             local spins = player.statz.spins.Value
             local lvl = player.statz.lvl.lvl.Value
-            if spins < 500 then
+            if spins < 500 and candy then
 			    for i,v in pairs(workspace.missiongivers:GetChildren()) do
 				    if lvl < 550 then
 				        while candy and mission.Visible == false and v.ClassName == "Model" and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and v.Talk:FindFirstChild("typ").Value == "halloweenevent" and v.Head.givemission.color.Image == candy and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled and not string.find(v.Talk.talk1.Value, "You need LVL" ) do
