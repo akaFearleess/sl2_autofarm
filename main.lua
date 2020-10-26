@@ -147,7 +147,7 @@ local e = w:CreateFolder("Misc")
 e:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-e:Label("made by reav#2966 | ver 3.2.1",{
+e:Label("made by reav#2966 | ver 3.2.2",{
     TextSize = 15;
     TextColor = Color3.fromRGB(255,255,255); 
     BgColor = Color3.fromRGB(247, 95, 28);
@@ -209,8 +209,7 @@ spawn(function()
 					if(string.find(mobname,"(s)")) then
 						mobname = string.gsub(mobname,"(s)","")
 					end
-					while autofarm and v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid").Health > 0 and v.Head.CFrame.Y > -1000 do
-						wait()
+					while autofarm and v.ClassName == "Model" and v:FindFirstChild("npctype") and mobname and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid").Health > 0 and v.Head.CFrame.Y > -1000 do
 						pcall(function()    
 							toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
 						    wait(.2)
