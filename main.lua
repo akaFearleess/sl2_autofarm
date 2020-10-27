@@ -299,13 +299,13 @@ spawn(function()
                     pcall(function()
                         local mobname = string.split(mission.bg.name.Text,"Defeat ")[2]
                         c = mobname:gsub("%(s(%)","")
+                        if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and string.find(v.npctype.Value,c) and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
+                            repeat wait()
+                                toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
+                                v.Humanoid.Health = 0
+                            until v.Humanoid.Health == 0 or not autofarm
+                        end
                     end)
-                    if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and string.find(v.npctype.Value,c) and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
-                        repeat wait()
-                            toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
-                            v.Humanoid.Health = 0
-                        until v.Humanoid.Health == 0 or not autofarm
-                    end
                 end
             end
         end
