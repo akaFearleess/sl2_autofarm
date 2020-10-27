@@ -235,7 +235,7 @@ local f = w:CreateFolder("Misc")
 f:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-f:Label("made by reav#2966 | ver 3.5.1",{
+f:Label("made by reav#2966 | ver 3.5.∞",{
     TextSize = 15;
     TextColor = Color3.fromRGB(255,255,255); 
     BgColor = Color3.fromRGB(247, 95, 28);
@@ -273,10 +273,10 @@ spawn(function()
                             if player.currentmission.Value == nil  and v.Talk:FindFirstChild("typ").Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == green then
                                 local getmission = v:FindFirstChild("HumanoidRootPart")
                                 local clienttalk = v:FindFirstChild("CLIENTTALK")
-                                repeat wait()
+                                repeat wait(.2)
                                     toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
                                     clienttalk:FireServer()
-                                    wait(1)
+                                    wait(.5)
                                     clienttalk:FireServer("accept")
                                 until mission.Visible or v:FindFirstChild("Head").givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                             end
@@ -284,10 +284,10 @@ spawn(function()
                             if player.currentmission.Value == nil and TALK.typ.Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == green or v.Head.givemission.color.Image == red then
                                 local getmission = v:FindFirstChild("HumanoidRootPart")
                                 local clienttalk = v:FindFirstChild("CLIENTTALK")
-                                repeat wait()
+                                repeat wait(.2)
                                     toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
                                     clienttalk:FireServer()
-                                    wait(1)
+                                    wait(.5)
                                     clienttalk:FireServer("accept")
                                 until mission.Visible or v:FindFirstChild("Head").givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                             end
@@ -300,7 +300,7 @@ spawn(function()
                         local mobname = string.split(mission.bg.name.Text,"Defeat ")[2]
                         c = mobname:gsub("%(s(%)","")
                         if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and string.find(v.npctype.Value,c) and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
-                            repeat wait()
+                            repeat wait(.3)
                                 toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
                                 v.Humanoid.Health = 0
                             until v.Humanoid.Health == 0 or not autofarm
