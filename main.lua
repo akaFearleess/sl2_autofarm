@@ -267,33 +267,31 @@ spawn(function()
             if  player.currentmission.Value == nil then
                 for i,v in pairs(workspace.missiongivers:GetChildren()) do
                     if v.Name == "" and v:FindFirstChild("Head") and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible  then
-                        pcall(function()
-                            local TALK = v:FindFirstChild("Talk")
-                            local lvl = player.statz.lvl.lvl.Value
-                            if lvl <= 699 then
-                                if player.currentmission.Value == nil  and v.Talk:FindFirstChild("typ").Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == green then
-                                    local getmission = v:FindFirstChild("HumanoidRootPart")
-                                    local clienttalk = v:FindFirstChild("CLIENTTALK")
-                                    repeat wait()
-                                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
-                                        clienttalk:FireServer()
-                                        wait(.4)
-                                        clienttalk:FireServer("accept")
-                                    until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
-                                end
-                            elseif lvl >= 700 then
-                                if player.currentmission.Value == nil and TALK.typ.Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == green or v.Head.givemission.color.Image == red then
-                                    local getmission = v:FindFirstChild("HumanoidRootPart")
-                                    local clienttalk = v:FindFirstChild("CLIENTTALK")
-                                    repeat wait()
-                                        toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
-                                        clienttalk:FireServer()
-                                        wait(.4)
-                                        clienttalk:FireServer("accept")
-                                    until v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
-                                end
+                        local TALK = v:FindFirstChild("Talk")
+                        local lvl = player.statz.lvl.lvl.Value
+                        if lvl <= 699 then
+                            if player.currentmission.Value == nil  and v.Talk:FindFirstChild("typ").Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == green then
+                                local getmission = v:FindFirstChild("HumanoidRootPart")
+                                local clienttalk = v:FindFirstChild("CLIENTTALK")
+                                repeat wait()
+                                    toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
+                                    clienttalk:FireServer()
+                                    wait(.5)
+                                    clienttalk:FireServer("accept")
+                                until mission.Visible or v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                             end
-                        end)
+                        elseif lvl >= 700 then
+                            if player.currentmission.Value == nil and TALK.typ.Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == green or v.Head.givemission.color.Image == red then
+                                local getmission = v:FindFirstChild("HumanoidRootPart")
+                                local clienttalk = v:FindFirstChild("CLIENTTALK")
+                                repeat wait()
+                                    toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-10,0)))
+                                    clienttalk:FireServer()
+                                    wait(.5)
+                                    clienttalk:FireServer("accept")
+                                until mission.Visible or v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
+                            end
+                        end
                     end
                 end
             else
@@ -301,13 +299,13 @@ spawn(function()
                     pcall(function()
                         local mobname = string.split(mission.bg.name.Text,"Defeat ")[2]
                         c = mobname:gsub("%(s(%)","")
-                        if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and string.find(v.npctype.Value,c) and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
-                            repeat wait()
-                                toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
-                                v.Humanoid.Health = 0
-                            until v.Humanoid.Health == 0 or not autofarm
-                        end
                     end)
+                    if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and string.find(v.npctype.Value,c) and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
+                        repeat wait()
+                            toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
+                            v.Humanoid.Health = 0
+                        until v.Humanoid.Health == 0 or not autofarm
+                    end
                 end
             end
         end
