@@ -270,7 +270,7 @@ spawn(function()
                         local TALK = v:FindFirstChild("Talk")
                         local lvl = player.statz.lvl.lvl.Value
                         if lvl <= 699 then
-                            if player.currentmission.Value == nil and v.Talk:FindFirstChild("typ").Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == green then
+                            if player.currentmission.Value == nil and v:FindFirstChild("Talk"):FindFirstChild("typ").Value == "defeat" and v:FindFirstChild("Head").givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == green then
                                 --pcall(function()
                                     local getmission = v:FindFirstChild("HumanoidRootPart")
                                     local clienttalk = v:FindFirstChild("CLIENTTALK")
@@ -281,7 +281,7 @@ spawn(function()
                                             wait(.6)
                                             clienttalk:FireServer("accept")
                                         end
-                                    until v:FindFirstChild("Head").givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
+                                    until v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled == false or player.currentmission.Value == "mission" or not autofarm
                                 --end)
                             end
                         elseif lvl >= 700 then
