@@ -289,7 +289,7 @@ spawn(function()
                                     clienttalk:FireServer()
                                     wait(.5)
                                     clienttalk:FireServer("accept")
-                                until mission.Visible or v.Head.givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
+                                until mission.Visible or v:FindFirstChild("Head").givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                             end
                         end
                     end
