@@ -235,7 +235,7 @@ local f = w:CreateFolder("Misc")
 f:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-f:Label("made by reav#2966 | ver 3.5.∞",{
+f:Label("made by reav#2966 | ver 3.6",{
     TextSize = 15;
     TextColor = Color3.fromRGB(255,255,255); 
     BgColor = Color3.fromRGB(247, 95, 28);
@@ -266,39 +266,41 @@ spawn(function()
         if autofarm then
             if  player.currentmission.Value == nil then
                 for i,v in pairs(workspace.missiongivers:GetChildren()) do
-                    pcall(function()
-                        if v.Name == "" and v:FindFirstChild("Head") and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible  then
-                            local TALK = v:FindFirstChild("Talk")
-                            local lvl = player.statz.lvl.lvl.Value
-                            if lvl <= 699 then
-                                if player.currentmission.Value == nil  and v.Talk:FindFirstChild("typ").Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == green then
+                    if v.Name == "" and v:FindFirstChild("Head") and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible  then
+                        local TALK = v:FindFirstChild("Talk")
+                        local lvl = player.statz.lvl.lvl.Value
+                        if lvl <= 699 then
+                            if player.currentmission.Value == nil and v.Talk:FindFirstChild("typ").Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == green then
+                                pcall(function()
                                     local getmission = v:FindFirstChild("HumanoidRootPart")
                                     local clienttalk = v:FindFirstChild("CLIENTTALK")
                                     repeat wait(.3)
                                         toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
                                         if (player.Character.HumanoidRootPart.Position-v.HumanoidRootPart.Position).Magnitude < 10 then
                                             clienttalk:FireServer()
-                                            wait(.3)
+                                            wait(.6)
                                             clienttalk:FireServer("accept")
                                         end
-                                    until mission.Visible or v:FindFirstChild("Head").givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
-                                end
-                            elseif lvl >= 700 then
-                                if player.currentmission.Value == nil and TALK.typ.Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == green or v.Head.givemission.color.Image == red then
+                                    until v:FindFirstChild("Head").givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
+                                end)
+                            end
+                        elseif lvl >= 700 then
+                            if player.currentmission.Value == nil and TALK.typ.Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == green or v.Head.givemission.color.Image == red then
+                                pcall(function()
                                     local getmission = v:FindFirstChild("HumanoidRootPart")
                                     local clienttalk = v:FindFirstChild("CLIENTTALK")
                                     repeat wait(.3)
                                         toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
                                         if (player.Character.HumanoidRootPart.Position-v.HumanoidRootPart.Position).Magnitude < 10 then
                                             clienttalk:FireServer()
-                                            wait(.3)
+                                            wait(.6)
                                             clienttalk:FireServer("accept")
                                         end
-                                    until mission.Visible or v:FindFirstChild("Head").givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
-                                end
+                                    until v:FindFirstChild("Head").givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
+                                end)
                             end
                         end
-                    end)
+                    end
                 end
             else
                 for i,v in pairs(workspace.npc:GetChildren()) do
@@ -308,7 +310,9 @@ spawn(function()
                         if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and string.find(v.npctype.Value,c) and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
                             repeat wait(.3)
                                 toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
-                                v.Humanoid.Health = 0
+                                if (player.Character.HumanoidRootPart.Position-v.HumanoidRootPart.Position).Magnitude < 10 then
+                                    v.Humanoid.Health = 0
+                                end
                             until v.Humanoid.Health == 0 or not autofarm
                         end
                     end)
@@ -325,12 +329,14 @@ spawn(function()
             if spins < 500 then
     		    for i,v in pairs(workspace.missiongivers:GetChildren()) do
     		        pcall(function()
-        		        if mission.Visible == false and v.ClassName == "Model" and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and string.find(v.Talk.talk1.Value, "TRICK") and v.Talk:FindFirstChild("typ").Value == "halloweenevent" and v.Head.givemission.color.Image == candy then
+        		        if mission.Visible == false and v.ClassName == "Model" and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and string.find(v.Talk.talk1.Value, "TRICK") and not string.find(v.Talk.talk1.Value, "You need LVL") and v.Talk:FindFirstChild("typ").Value == "halloweenevent" and v.Head.givemission.color.Image == candy then
             				repeat wait()
                 			    toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
-        	        			v.CLIENTTALK:FireServer()
-        	        			wait(.2)
-        		        		v.CLIENTTALK:FireServer("accept")
+        	        			if (player.Character.HumanoidRootPart.Position-v.HumanoidRootPart.Position).Magnitude < 10 then
+            	        			v.CLIENTTALK:FireServer()
+            	        			wait(.6)
+            		        		v.CLIENTTALK:FireServer("accept")
+        		                end
         		    	    until v:FindFirstChild("Head").givemission.Enabled == false or not candies
         		        end
                     end)
@@ -348,9 +354,11 @@ local function SCROLLFARM()
             print("SCROLL SPAWNED")
             pcall(function()
                 toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
-			end)
-            scrollA:FireServer(game.Players.LocalPlayer)
-            fireclickdetector(v.sh.ClickDetector)
+			    if (player.Character.HumanoidRootPart.Position-v.sh.Position).Magnitude < 10 then
+                    scrollA:FireServer(game.Players.LocalPlayer)
+                    fireclickdetector(v.sh.ClickDetector)
+                end
+            end)
         end
     end
 end
@@ -361,8 +369,10 @@ local function SCROLLFARM1()
             print("SCROLL SPAWNED in workspace")
             pcall(function()
                 toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
-                scrollA:FireServer(game.Players.LocalPlayer)
-                fireclickdetector(v.sh.ClickDetector)
+			    if (player.Character.HumanoidRootPart.Position-v.sh.Position).Magnitude < 10 then
+                    scrollA:FireServer(game.Players.LocalPlayer)
+                    fireclickdetector(v.sh.ClickDetector)
+                end
             end)
         end
     end
@@ -383,12 +393,14 @@ local function JINFARM()
             repeat wait()
                 pcall(function()
 			        toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
-                	player.Character.combat.update:FireServer("mouse1", truee)
-                	wait(.1)
-		        	v.Humanoid.Health = 0
-		        	toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-25,0)))
-	        	    player.Character.combat.update:FireServer("mouse1", truee)
-	        	    wait(.1)
+            	    if (player.Character.HumanoidRootPart.Position-v.HumanoidRootPart.Position).Magnitude < 10 then
+                    	player.Character.combat.update:FireServer("mouse1", truee)
+                    	wait(.1)
+		            	v.Humanoid.Health = 0
+		            	toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-25,0)))
+	        	        player.Character.combat.update:FireServer("mouse1", truee)
+	        	        wait(.1)
+	        	    end
 	        	end)
             until v.Humanoid.Health == 0 or not jinfarm
         end
@@ -436,9 +448,11 @@ spawn(function()
                 for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
                     if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 then
             			wait(5)
-            			player.Character:BreakJoints()
-            			repeat wait()
-            			until v.round.Value == 0
+            			pcall(function()
+                			player.Character:BreakJoints()
+                			repeat wait()
+                			until v.round.Value == 0
+                        end)
             			count = count + 1
                     end
                 end
