@@ -271,7 +271,7 @@ spawn(function()
                         local lvl = player.statz.lvl.lvl.Value
                         if lvl <= 699 then
                             if player.currentmission.Value == nil and v.Talk:FindFirstChild("typ").Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == green then
-                                pcall(function()
+                                --pcall(function()
                                     local getmission = v:FindFirstChild("HumanoidRootPart")
                                     local clienttalk = v:FindFirstChild("CLIENTTALK")
                                     repeat wait(.3)
@@ -282,11 +282,11 @@ spawn(function()
                                             clienttalk:FireServer("accept")
                                         end
                                     until v:FindFirstChild("Head").givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
-                                end)
+                                --end)
                             end
                         elseif lvl >= 700 then
                             if player.currentmission.Value == nil and TALK.typ.Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == green or v.Head.givemission.color.Image == red then
-                                pcall(function()
+                                --pcall(function()
                                     local getmission = v:FindFirstChild("HumanoidRootPart")
                                     local clienttalk = v:FindFirstChild("CLIENTTALK")
                                     repeat wait(.3)
@@ -297,7 +297,7 @@ spawn(function()
                                             clienttalk:FireServer("accept")
                                         end
                                     until v:FindFirstChild("Head").givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
-                                end)
+                                --end)
                             end
                         end
                     end
