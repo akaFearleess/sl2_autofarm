@@ -266,11 +266,11 @@ spawn(function()
         if autofarm then
             if  player.currentmission.Value == nil then
                 for i,v in pairs(workspace.missiongivers:GetChildren()) do
-                    if v.Name == "" and v:FindFirstChild("Head") and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible  then
-                        local TALK = v:FindFirstChild("Talk")
-                        local lvl = player.statz.lvl.lvl.Value
-                        if lvl <= 699 then
-                            pcall(function()
+                    pcall(function()
+                        if v.Name == "" and v:FindFirstChild("Head") and v.Head:FindFirstChild("givemission").Enabled and v.Head.givemission:FindFirstChild("color").Visible  then
+                            local TALK = v:FindFirstChild("Talk")
+                            local lvl = player.statz.lvl.lvl.Value
+                            if lvl <= 699 then
                                 if player.currentmission.Value == nil  and v.Talk:FindFirstChild("typ").Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == green then
                                     local getmission = v:FindFirstChild("HumanoidRootPart")
                                     local clienttalk = v:FindFirstChild("CLIENTTALK")
@@ -283,9 +283,7 @@ spawn(function()
                                         end
                                     until mission.Visible or v:FindFirstChild("Head").givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                                 end
-                            end)
-                        elseif lvl >= 700 then
-                            pcall(function()
+                            elseif lvl >= 700 then
                                 if player.currentmission.Value == nil and TALK.typ.Value == "defeat" and v.Head.givemission.Enabled and v.Head.givemission.color.Visible and v.Head.givemission.color.Image == green or v.Head.givemission.color.Image == red then
                                     local getmission = v:FindFirstChild("HumanoidRootPart")
                                     local clienttalk = v:FindFirstChild("CLIENTTALK")
@@ -298,9 +296,9 @@ spawn(function()
                                         end
                                     until mission.Visible or v:FindFirstChild("Head").givemission.Enabled == false or player.currentmission.Value == "mission" or not autofarm
                                 end
-                            end)
+                            end
                         end
-                    end
+                    end)
                 end
             else
                 for i,v in pairs(workspace.npc:GetChildren()) do
