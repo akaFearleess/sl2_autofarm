@@ -279,8 +279,8 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
     local g = w:CreateFolder("InfiniteMode")
     local when = 100000
     g:Slider("When charge chakra",{
-        min = 25000; 
-        max = 300000; 
+        min = 50000; 
+        max = 200000; 
         precise = false;
     },function(z)
         when = z
@@ -300,6 +300,9 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
         end
         spawn(function() 
             while wait() do
+                if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed == 0 then
+                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
+                end
                 chakracheck()
                 if tonumber(cha) < tonumber(when) then
                     game.Players.LocalPlayer.Character.combat.update:FireServer("key","c")
@@ -531,7 +534,6 @@ if game.PlaceId == menuplace then
 		local des = game.Players.LocalPlayer.statz.spins
 		spawn(function()
 			while wait(.3) do
-				SPINSC:Refresh("Your current spins: " .. game.Players.LocalPlayer.statz.spins.Value)
 				spins = game.Players.LocalPlayer.statz.spins.Value
 				if spins > 0 then
 					kgvalue = kgslot.Value
@@ -544,8 +546,7 @@ if game.PlaceId == menuplace then
 						print("You have got: " .. kgvalue)
 					end
 				else
-					des:Destroy()
-							
+					game.Players.LocalPlayer.statz.spins:Destroy()
 					wait(.5)
 					game.Players.LocalPlayer.startevent:FireServer("rpgteleport", game.PlaceId)
 				end
