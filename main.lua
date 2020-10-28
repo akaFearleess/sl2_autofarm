@@ -493,11 +493,6 @@ if game.PlaceId == menuplace then
 		TextColor = Color3.fromRGB(255,255,255); 
 		BgColor = Color3.fromRGB(247, 95, 28);
 	}) 
-	local SPINSC = e:Label("SPINS COUNTER",{
-		TextSize = 24;
-		TextColor = Color3.fromRGB(255,255,255); 
-		BgColor = Color3.fromRGB(247, 95, 28);
-	}) 
 	local b
 	local kgslot
 	local kgvalue
@@ -533,33 +528,41 @@ if game.PlaceId == menuplace then
 		print("Selected: " .. KG5)
 		a5 = KG5
 	end)
-	e:Button("SPIN KG",function()
+	e:Label("Select the amount of spin you want to do 1-79",{
+		TextSize = 16;
+		TextColor = Color3.fromRGB(255,255,255); 
+		BgColor = Color3.fromRGB(247, 95, 28);
+	}) 
+	local spinz = 19
+	e:Slider("How Many spins",{
+        min = 1; 
+        max = 79; 
+        precise = false;
+    },function(x)
+        spinz = x
+    end)    
+	e:Button("Start Spin KG",function()
 		local spins = game.Players.LocalPlayer.statz.spins.Value
 		local des = game.Players.LocalPlayer.statz.spins
 		spawn(function()
-			while wait(.3) do
-				spins = game.Players.LocalPlayer.statz.spins.Value
-				if spins > 0 then
-					kgvalue = kgslot.Value
-					if kgvalue ~= a1 and kgvalue ~= a2 and kgvalue ~= a3 and kgvalue ~= a4 and kgvalue ~= a5 then
-						kgvalue = kgslot.Value
-						game.Players.LocalPlayer.startevent:FireServer("spin", b)
-						kgvalue = kgslot.Value
-						print("Rolled: " .. kgvalue)
-					else
-						print("You have got: " .. kgvalue)
-					end
-				else
-					game.Players.LocalPlayer.statz.spins:Destroy()
-					wait(.5)
-					game.Players.LocalPlayer.startevent:FireServer("rpgteleport", game.PlaceId)
-				end
-			end
+            for i=1,spinz do
+    	        wait(.4)
+    		    spins = game.Players.LocalPlayer.statz.spins.Value
+    			kgvalue = kgslot.Value
+    			if kgvalue ~= a1 and kgvalue ~= a2 and kgvalue ~= a3 and kgvalue ~= a4 and kgvalue ~= a5 then
+    			    kgvalue = kgslot.Value
+    			    game.Players.LocalPlayer.startevent:FireServer("spin", b)
+    			    kgvalue = kgslot.Value
+    			    print("Rolled: " .. kgvalue)
+    			else
+    			    print("You have got: " .. kgvalue)
+            	end
+            end
+		    wait(.1)
+			player.statz.spins:Destroy()
+			wait(1)
+		    player.startevent:FireServer("rpgteleport", game.PlaceId)
 		end)
-	end)
-	e:Button("Manual Reset",function()
-		game.Players.LocalPlayer.statz.spins:Destroy()
-		game.Players.LocalPlayer.startevent:FireServer("rpgteleport", game.PlaceId)
 	end)
 end
 
@@ -567,7 +570,7 @@ local f = w:CreateFolder("Misc")
 f:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-f:Label("made by reav#2966 | ver 3.6",{
+f:Label("made by reav#2966 | ver 3.7",{
     TextSize = 15;
     TextColor = Color3.fromRGB(255,255,255); 
     BgColor = Color3.fromRGB(247, 95, 28);
