@@ -474,7 +474,100 @@ if warplace then
 		end
 	end)
 end
-------------------------------------
+if game.PlaceId == menuplace then
+	--main menu
+	local e = w:CreateFolder("ResetSpins")
+	local kgs = {}
+	for i,v in pairs(game:GetService("ReplicatedStorage").alljutsu:GetChildren()) do
+		if v:FindFirstChild("KG") then
+			table.insert(kgs, v.Name)
+		end
+	end
+	e:Label("Select the KG slot you want to change",{
+		TextSize = 16;
+		TextColor = Color3.fromRGB(255,255,255); 
+		BgColor = Color3.fromRGB(247, 95, 28);
+	}) 
+	e:Label("Choose your kgs and press SPIN KG",{
+		TextSize = 16;
+		TextColor = Color3.fromRGB(255,255,255); 
+		BgColor = Color3.fromRGB(247, 95, 28);
+	}) 
+	local b
+	local kgslot
+	local kgvalue
+	e:Dropdown("KG SLOT",{"kg1", "kg2", "kg3", "kg4"},true,function(kgS)
+		b = kgS
+		kgslot = game.Players.LocalPlayer.statz.main:FindFirstChild(b)
+		kgvalue = kgslot.Value
+		print(kgslot)
+		print(kgvalue)
+	end)
+	local a1
+	e:Dropdown("WHAT DO YOU WANT",kgs,true,function(KG1)
+		print("Selected: " .. KG1)
+		a1 = KG1
+	end)
+	local a2
+	e:Dropdown("WHAT DO YOU WANT",kgs,true,function(KG2)
+		print("Selected: " .. KG2)
+		a2 = KG2
+	end)
+	local a3
+	e:Dropdown("WHAT DO YOU WANT",kgs,true,function(KG3)
+		print("Selected: " .. KG3)
+		a3 = KG3
+	end)
+	local a4
+	e:Dropdown("WHAT DO YOU WANT",kgs,true,function(KG4)
+		print("Selected: " .. KG4)
+		a4 = KG4
+	end)
+	local a5
+	e:Dropdown("WHAT DO YOU WANT",kgs,true,function(KG5)
+		print("Selected: " .. KG5)
+		a5 = KG5
+	end)
+	e:Label("Select the amount of spin you want to do 1-79",{
+		TextSize = 16;
+		TextColor = Color3.fromRGB(255,255,255); 
+		BgColor = Color3.fromRGB(247, 95, 28);
+	}) 
+	local spinz = 19
+	e:Slider("How Many spins",{
+        min = 1; 
+        max = 79; 
+        precise = false;
+    },function(x)
+        spinz = x
+    end)    
+	e:Button("Start Spin KG",function()
+		local spins = game.Players.LocalPlayer.statz.spins.Value
+		local des = game.Players.LocalPlayer.statz.spins
+		spawn(function()
+            if kgvalue ~= a1 and kgvalue ~= a2 and kgvalue ~= a3 and kgvalue ~= a4 and kgvalue ~= a5 then
+                for i=1,spinz do
+        	        wait(.4)
+        		    spins = game.Players.LocalPlayer.statz.spins.Value
+        			kgvalue = kgslot.Value
+        			if kgvalue ~= a1 and kgvalue ~= a2 and kgvalue ~= a3 and kgvalue ~= a4 and kgvalue ~= a5 then
+        			    kgvalue = kgslot.Value
+        			    game.Players.LocalPlayer.startevent:FireServer("spin", b)
+        			    kgvalue = kgslot.Value
+        			    print("Rolled: " .. kgvalue)
+        			else
+        			    print("You have got: " .. kgvalue)
+                	end
+                end
+            else
+    		    wait(.1)
+    			player.statz.spins:Destroy()
+    			wait(1)
+    		    player.startevent:FireServer("rpgteleport", game.PlaceId)
+    		end
+		end)
+	end)
+end
 
 local f = w:CreateFolder("Misc")
 f:Box("Teleport to PS","string",function(tpps)
