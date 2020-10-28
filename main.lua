@@ -304,6 +304,10 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
                     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
                 end
                 chakracheck()
+            end
+        end)
+        spawn(function() 
+            while wait() do
                 if tonumber(cha) < tonumber(when) then
                     game.Players.LocalPlayer.Character.combat.update:FireServer("key","c")
                 else
