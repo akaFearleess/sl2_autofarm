@@ -274,6 +274,8 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
 			end
 		end
 	end)
+end
+if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or game.PlaceId == akatsukiplace or game.PlaceId == forestplace then
     local g = w:CreateFolder("InfiniteMode")
     local when = 100000
     g:Slider("When charge chakra",{
