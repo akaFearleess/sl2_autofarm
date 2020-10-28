@@ -23,6 +23,10 @@ end)
 local player = game.Players.LocalPlayer
 local mission = player.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory")
 local menuplace = 4616652839
+local forestplace = 5447073001
+local rainplace = 5084678830
+local trainingplace = 5431071837
+local akatsukiplace = 5431069982
 local villageplace = game:GetService("Workspace"):FindFirstChild("rank")
 local warplace = game:GetService("Workspace"):FindFirstChild("warmode")
 function toTarget(pos, targetPos, targetCFrame)
@@ -49,7 +53,7 @@ _G.MainColor = Color3.fromRGB(247, 95, 28);
 _G.SliderColor = Color3.fromRGB(247, 95, 28);
 getgenv().speed = 500
 local w = library:CreateWindow("Shinobi Life 2")
-if villageplace then
+if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or game.PlaceId == akatsukiplace or game.PlaceId == forestplace then
 	--AUTOFARM
 	local b = w:CreateFolder("AutoFarm")
 	local autofarm
