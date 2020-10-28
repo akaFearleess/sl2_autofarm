@@ -47,7 +47,7 @@ _G.ToggleColor = Color3.fromRGB(247, 95, 28);
 _G.MainTextColor = Color3.fromRGB(255, 255, 255);
 _G.MainColor = Color3.fromRGB(247, 95, 28);
 _G.SliderColor = Color3.fromRGB(247, 95, 28);
-getgenv().speed = 700
+getgenv().speed = 1000
 local w = library:CreateWindow("Shinobi Life 2")
 if villageplace then
 	--AUTOFARM
@@ -62,8 +62,8 @@ if villageplace then
 	end)
 	local speed
 	b:Slider("Tween Speed",{
-		min = 1; 
-		max = 1200;
+		min = 500; 
+		max = 3000;
 		precise = false;
 		},function(speed)
 		getgenv().speed = speed
@@ -185,7 +185,7 @@ if villageplace then
 				if spins < 500 then
 					for i,v in pairs(workspace.missiongivers:GetChildren()) do
 						pcall(function()
-							if mission.Visible == false and v.ClassName == "Model" and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and string.find(v.Talk.talk1.Value, "TRICK") and v.Talk:FindFirstChild("typ").Value == "halloweenevent" and v.Head.givemission.color.Image == candy and not v.Head.givemission.color.Image == green and not v.Head.givemission.color.Image == red then
+							if mission.Visible == false and v.ClassName == "Model" and v:FindFirstChild("Head"):FindFirstChild("givemission").Enabled and v:FindFirstChild("CLIENTTALK") and v:FindFirstChild("Talk") and string.find(v.Talk.talk1.Value, "TRICK") and not string.find(v.Talk.talk1.Value, "LVL") and v.Talk:FindFirstChild("typ").Value == "halloweenevent" and v.Head.givemission.color.Image == candy then
 								repeat wait()
 									toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
 									v.CLIENTTALK:FireServer()
