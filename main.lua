@@ -63,7 +63,7 @@ if villageplace then
 	local speed
 	b:Slider("Tween Speed",{
 		min = 500; 
-		max = 3000;
+		max = 2500;
 		precise = false;
 		},function(speed)
 		getgenv().speed = speed
