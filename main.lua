@@ -270,6 +270,39 @@ if villageplace then
 			end
 		end
 	end)
+    local g = w:CreateFolder("InfiniteMode")
+    local when = 100000
+    g:Slider("When charge chakra",{
+        min = 25000; 
+        max = 300000; 
+        precise = false;
+    },function(z)
+        when = z
+    end)    
+    g:Button("InfiniteMode",function()
+        local mode = game.Players.LocalPlayer.Character.combat.mode
+        local copy = mode:Clone()
+        copy.Parent = mode.Parent
+        mode:Destroy()
+        local chakra = string.split(game.Players.LocalPlayer.PlayerGui.Main.ingamearena.Bar.cha.Text,"CHA: ")[2]
+        c = chakra:gsub("CHA%:","")
+        local cha
+        local function chakracheck()
+            chakra = string.split(game.Players.LocalPlayer.PlayerGui.Main.ingamearena.Bar.cha.Text,"CHA: ")[2]
+            c = chakra:gsub("CHA%:","")
+            cha = c
+        end
+        spawn(function() 
+            while wait() do
+                chakracheck()
+                if tonumber(cha) < tonumber(when) then
+                    game.Players.LocalPlayer.Character.combat.update:FireServer("key","c")
+                else
+                    game.Players.LocalPlayer.Character.combat.update:FireServer("key","cend")
+                end
+            end
+        end)
+    end)
 end
 if warplace then
 	--WAR
@@ -523,7 +556,7 @@ local f = w:CreateFolder("Misc")
 f:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-f:Label("made by reav#2966 | ver 3.5.∞",{
+f:Label("made by reav#2966 | ver 3.6",{
     TextSize = 15;
     TextColor = Color3.fromRGB(255,255,255); 
     BgColor = Color3.fromRGB(247, 95, 28);
