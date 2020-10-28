@@ -47,7 +47,7 @@ _G.ToggleColor = Color3.fromRGB(247, 95, 28);
 _G.MainTextColor = Color3.fromRGB(255, 255, 255);
 _G.MainColor = Color3.fromRGB(247, 95, 28);
 _G.SliderColor = Color3.fromRGB(247, 95, 28);
-getgenv().speed = 1000
+getgenv().speed = 500
 local w = library:CreateWindow("Shinobi Life 2")
 if villageplace then
 	--AUTOFARM
