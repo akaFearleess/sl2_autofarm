@@ -39,7 +39,6 @@ function toTarget(pos, targetPos, targetCFrame)
     if not tween then return err end
 end
 
-local mouse = game.Players.LocalPlayer:GetMouse()
 --loading wally ui revamped By Aika
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 _G.ButtonColor = Color3.fromRGB(5, 16, 20);
@@ -277,9 +276,14 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
 end
 if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or game.PlaceId == akatsukiplace or game.PlaceId == forestplace then
     local g = w:CreateFolder("Infinite Mode")
+	g:Label("Enable your mode and setup when charge chakra (not max)",{
+		TextSize = 15;
+		TextColor = Color3.fromRGB(255,255,255); 
+		BgColor = Color3.fromRGB(247, 95, 28);
+	}) 
     local when = 100000
     g:Slider("When charge chakra",{
-        min = 50000; 
+        min = 30000; 
         max = 200000; 
         precise = false;
     },function(z)
@@ -316,38 +320,62 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
             end
         end)
     end)
-    local h = w:CreateFolder("Chakra")
+	g:Label("Reset character to disable",{
+		TextSize = 18;
+		TextColor = Color3.fromRGB(255,255,255); 
+		BgColor = Color3.fromRGB(247, 95, 28);
+	}) 
+end
+if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or game.PlaceId == akatsukiplace or game.PlaceId == forestplace then
+    local h = w:CreateFolder("Auto Chakra")
+	h:Label("Setup when charge chakra (also max)",{
+		TextSize = 16;
+		TextColor = Color3.fromRGB(255,255,255); 
+		BgColor = Color3.fromRGB(247, 95, 28);
+	}) 
     local infchakra
-    h:Toggle("Auto Chakra",function(bool)
-        infchakra = bool
+    h:Toggle("Charge Chakra+Move",function(bool)
+    	infchakra = bool
     end)
-    if infchakra then
-        local chakra = string.split(game.Players.LocalPlayer.PlayerGui.Main.ingamearena.Bar.cha.Text,"CHA: ")[2]
-        c = chakra:gsub("CHA%:","")
-        local cha
-        local function chakracheck()
-            chakra = string.split(game.Players.LocalPlayer.PlayerGui.Main.ingamearena.Bar.cha.Text,"CHA: ")[2]
-            c = chakra:gsub("CHA%:","")
-            cha = c
+    local when = 100000
+    h:Slider("When charge chakra",{
+        min = 30000; 
+        max = 250000; 
+        precise = false;
+    },function(z)
+        when = z
+    end)    
+    spawn(function()
+        while wait() do
+            if infchakra then
+                local chakra = string.split(game.Players.LocalPlayer.PlayerGui.Main.ingamearena.Bar.cha.Text,"CHA: ")[2]
+                c = chakra:gsub("CHA%:","")
+                local cha
+                local function chakracheck()
+                    chakra = string.split(game.Players.LocalPlayer.PlayerGui.Main.ingamearena.Bar.cha.Text,"CHA: ")[2]
+                    c = chakra:gsub("CHA%:","")
+                    cha = c
+                end
+                spawn(function() 
+                    while wait() do
+                        if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed == 0 then
+                            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
+                        end
+                        chakracheck()
+                    end
+                end)
+                spawn(function() 
+                    while wait() do
+                        if tonumber(cha) < tonumber(when) then
+                            game.Players.LocalPlayer.Character.combat.update:FireServer("key","c")
+                        else
+                            game.Players.LocalPlayer.Character.combat.update:FireServer("key","cend")
+                        end
+                    end
+                end)
+            end
         end
-        spawn(function() 
-            while wait() do
-                if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed == 0 then
-                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
-                end
-                chakracheck()
-            end
-        end)
-        spawn(function() 
-            while wait() do
-                if tonumber(cha) < tonumber(when) then
-                    game.Players.LocalPlayer.Character.combat.update:FireServer("key","c")
-                else
-                    game.Players.LocalPlayer.Character.combat.update:FireServer("key","cend")
-                end
-            end
-        end)
-    end
+    end)
 end
 if warplace then
 	--WAR
@@ -603,7 +631,7 @@ local f = w:CreateFolder("Misc")
 f:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-f:Label("made by reav#2966 | ver 3.7",{
+f:Label("made by reav#2966 | ver 3.8",{
     TextSize = 15;
     TextColor = Color3.fromRGB(255,255,255); 
     BgColor = Color3.fromRGB(247, 95, 28);
