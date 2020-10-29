@@ -398,8 +398,8 @@ if warplace then
 	end)
 
 	c:Slider("Tween Speed",{
-		min = 250; 
-		max = 800;
+		min = 500; 
+		max = 2500;
 		precise = false;
 		},function(speed)
 		getgenv().speed = speed
@@ -471,7 +471,7 @@ if warplace then
 					refreshC:Refresh("Round: " .. workspace.warserver.round.Value)
 				end)
 				for i,v in pairs(workspace.npc:GetChildren()) do
-					if workspace.warserver:FindFirstChild("zetsu").Value > 0 and v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and not v:FindFirstChild("megaboss") then
+					if workspace.warserver:FindFirstChild("zetsu").Value > 0 and string.find(workspace.warserver.text.Value, "Left") or string.find(workspace.warserver.text.Value, "DEFEAT") and v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and not v:FindFirstChild("megaboss") then
 						wait(.1)
 						pcall(function()
 							v.Humanoid.Health = 0
@@ -504,10 +504,10 @@ if warplace then
 				refresh:Refresh("War Completed: " .. count)
 				refreshC:Refresh("Round: " .. workspace.warserver.round.Value)
 				for i,v in pairs(workspace.npc:GetChildren()) do
-					if workspace.warserver:FindFirstChild("zetsu").Value > 0 and v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and not v:FindFirstChild("megaboss") then
+					if workspace.warserver:FindFirstChild("zetsu").Value > 0 and string.find(workspace.warserver.text.Value, "Left") or string.find(workspace.warserver.text.Value, "DEFEAT") and v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and not v:FindFirstChild("megaboss") then
 						pcall(function()
 							repeat wait()
-							toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
+							toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-12,0)))
 							wait(.3)
 							v.Humanoid.Health = 0
 							until v.Humanoid.Health == 0
