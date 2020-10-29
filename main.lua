@@ -55,6 +55,11 @@ local w = library:CreateWindow("Shinobi Life 2")
 if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or game.PlaceId == akatsukiplace or game.PlaceId == forestplace then
 	--AUTOFARM
 	local b = w:CreateFolder("AutoFarm")
+	b:Label("To prevent issues farm in a ps",{
+		TextSize = 16;
+		TextColor = Color3.fromRGB(255,255,255); 
+		BgColor = Color3.fromRGB(247, 95, 28);
+	}) 
 	local autofarm
 	b:Toggle("AutoFarm",function(bool)
 		autofarm = bool
@@ -167,13 +172,11 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
 				else
 					for i,v in pairs(workspace.npc:GetChildren()) do
 						pcall(function()
-							local mobname = string.split(mission.bg.name.Text,"Defeat ")[2]
-							c = mobname:gsub("%(s(%)","")
-							if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and string.find(v.npctype.Value,c) and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
+						    if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
 								repeat wait(.3)
 									toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
 									v.Humanoid.Health = 0
-								until v.Humanoid.Health == 0 or not autofarm
+								until v.Humanoid.Health == 0 or not autofarm or player.currentmission.Value == nil
 							end
 						end)
 					end
