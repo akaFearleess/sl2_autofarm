@@ -248,13 +248,12 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
 			if v.Name == "npc1" then
 				repeat wait()
 					pcall(function()
-						toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
-						player.Character.combat.update:FireServer("mouse1", truee)
-						wait(.1)
-						v.Humanoid.Health = 0
 						toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-25,0)))
-						player.Character.combat.update:FireServer("mouse1", truee)
+						player.Character.combat.update:FireServer("mouse1", true)
 						wait(.1)
+						v.Humanoid.HealthChanged:Connect(function()
+    						v.Humanoid.Health = 0
+    					end)
 					end)
 				until v.Humanoid.Health == 0 or not jinfarm
 			end
