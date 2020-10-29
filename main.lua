@@ -276,7 +276,7 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
 	end)
 end
 if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or game.PlaceId == akatsukiplace or game.PlaceId == forestplace then
-    local g = w:CreateFolder("InfiniteMode")
+    local g = w:CreateFolder("Infinite Mode")
     local when = 100000
     g:Slider("When charge chakra",{
         min = 50000; 
@@ -316,6 +316,38 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
             end
         end)
     end)
+    local h = w:CreateFolder("Chakra")
+    local infchakra
+    h:Toggle("Auto Chakra",function(bool)
+        infchakra = bool
+    end)
+    if infchakra then
+        local chakra = string.split(game.Players.LocalPlayer.PlayerGui.Main.ingamearena.Bar.cha.Text,"CHA: ")[2]
+        c = chakra:gsub("CHA%:","")
+        local cha
+        local function chakracheck()
+            chakra = string.split(game.Players.LocalPlayer.PlayerGui.Main.ingamearena.Bar.cha.Text,"CHA: ")[2]
+            c = chakra:gsub("CHA%:","")
+            cha = c
+        end
+        spawn(function() 
+            while wait() do
+                if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed == 0 then
+                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
+                end
+                chakracheck()
+            end
+        end)
+        spawn(function() 
+            while wait() do
+                if tonumber(cha) < tonumber(when) then
+                    game.Players.LocalPlayer.Character.combat.update:FireServer("key","c")
+                else
+                    game.Players.LocalPlayer.Character.combat.update:FireServer("key","cend")
+                end
+            end
+        end)
+    end
 end
 if warplace then
 	--WAR
@@ -545,28 +577,26 @@ if game.PlaceId == menuplace then
 		local spins = game.Players.LocalPlayer.statz.spins.Value
 		local des = game.Players.LocalPlayer.statz.spins
 		spawn(function()
-            if kgvalue ~= a1 and kgvalue ~= a2 and kgvalue ~= a3 and kgvalue ~= a4 and kgvalue ~= a5 then
-                for i=1,spinz do
-        	        wait(.4)
-        		    spins = game.Players.LocalPlayer.statz.spins.Value
+            for i=1,spinz do
+        	    wait(.4)
+        		spins = game.Players.LocalPlayer.statz.spins.Value
+        		kgvalue = kgslot.Value
+        		if kgvalue ~= a1 and kgvalue ~= a2 and kgvalue ~= a3 and kgvalue ~= a4 and kgvalue ~= a5 then
+        		    kgvalue = kgslot.Value
+        			game.Players.LocalPlayer.startevent:FireServer("spin", b)
         			kgvalue = kgslot.Value
-        			if kgvalue ~= a1 and kgvalue ~= a2 and kgvalue ~= a3 and kgvalue ~= a4 and kgvalue ~= a5 then
-        			    kgvalue = kgslot.Value
-        			    game.Players.LocalPlayer.startevent:FireServer("spin", b)
-        			    kgvalue = kgslot.Value
-        			    print("Rolled: " .. kgvalue)
-        			else
-        			    print("You have got: " .. kgvalue)
-                	end
+        			print("Rolled: " .. kgvalue)
+        		else
+        		    print("You have got: " .. kgvalue)
                 end
-            else
-    		    wait(.1)
-    			player.statz.spins:Destroy()
-    			wait(1)
-    		    player.startevent:FireServer("rpgteleport", game.PlaceId)
-    		end
+            end
 		end)
 	end)
+	e:Button("Reset Spins",function()
+	    player.statz.spins:Destroy()
+        wait(1)
+        player.startevent:FireServer("rpgteleport", game.PlaceId)
+    end)
 end
 
 local f = w:CreateFolder("Misc")
