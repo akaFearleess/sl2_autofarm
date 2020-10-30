@@ -546,12 +546,12 @@ if game.PlaceId == menuplace then
 		end
 	end
 	e:Label("Select the KG slot you want to change",{
-		TextSize = 16;
+		TextSize = 15;
 		TextColor = Color3.fromRGB(255,255,255); 
 		BgColor = Color3.fromRGB(247, 95, 28);
 	}) 
 	e:Label("Choose your kgs and press SPIN KG",{
-		TextSize = 16;
+		TextSize = 15;
 		TextColor = Color3.fromRGB(255,255,255); 
 		BgColor = Color3.fromRGB(247, 95, 28);
 	}) 
@@ -590,15 +590,15 @@ if game.PlaceId == menuplace then
 		print("Selected: " .. KG5)
 		a5 = KG5
 	end)
-	e:Label("Select the amount of spin you want to do 1-79",{
-		TextSize = 16;
+	e:Label("Select the amount of spin you want to do 1-500",{
+		TextSize = 15;
 		TextColor = Color3.fromRGB(255,255,255); 
 		BgColor = Color3.fromRGB(247, 95, 28);
 	}) 
-	local spinz = 19
+	local spinz = 80
 	e:Slider("How Many spins",{
         min = 1; 
-        max = 79; 
+        max = 500; 
         precise = false;
     },function(x)
         spinz = x
@@ -606,9 +606,16 @@ if game.PlaceId == menuplace then
 	e:Button("Start Spin KG",function()
 		local spins = game.Players.LocalPlayer.statz.spins.Value
 		local des = game.Players.LocalPlayer.statz.spins
+        for i,v in pairs(game:GetService("ReplicatedStorage").alljutsu:GetChildren()) do
+        	if v:FindFirstChild("KG") then
+                local a = Instance.new("StringValue")
+                a.Name = v.Name
+                a.Parent = game.Players.LocalPlayer.statz.unlocked
+        	end
+        end
 		spawn(function()
             for i=1,spinz do
-        	    wait(.1)
+        	    wait(.2)
         		spins = game.Players.LocalPlayer.statz.spins.Value
         		kgvalue = kgslot.Value
         		if kgvalue ~= a1 and kgvalue ~= a2 and kgvalue ~= a3 and kgvalue ~= a4 and kgvalue ~= a5 then
@@ -626,14 +633,19 @@ if game.PlaceId == menuplace then
 	    player.statz.spins:Destroy()
         wait(1)
         player.startevent:FireServer("rpgteleport", game.PlaceId)
-    end)
+	end)
+	e:Label("Press Reset to reset your spins",{
+		TextSize = 15;
+		TextColor = Color3.fromRGB(255,255,255); 
+		BgColor = Color3.fromRGB(247, 95, 28);
+	}) 
 end
 
 local f = w:CreateFolder("Misc")
 f:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-f:Label("made by reav#2966 | ver 3.8",{
+f:Label("made by reav#2966 | ver 3.9",{
     TextSize = 15;
     TextColor = Color3.fromRGB(255,255,255); 
     BgColor = Color3.fromRGB(247, 95, 28);
