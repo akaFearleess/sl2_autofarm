@@ -598,7 +598,7 @@ if game.PlaceId == menuplace then
 	local spinz = 19
 	e:Slider("How Many spins",{
         min = 1; 
-        max = 160; 
+        max = 79; 
         precise = false;
     },function(x)
         spinz = x
