@@ -598,7 +598,7 @@ if game.PlaceId == menuplace then
 	local spinz = 19
 	e:Slider("How Many spins",{
         min = 1; 
-        max = 79; 
+        max = 160; 
         precise = false;
     },function(x)
         spinz = x
@@ -608,7 +608,7 @@ if game.PlaceId == menuplace then
 		local des = game.Players.LocalPlayer.statz.spins
 		spawn(function()
             for i=1,spinz do
-        	    wait(.4)
+        	    wait(.1)
         		spins = game.Players.LocalPlayer.statz.spins.Value
         		kgvalue = kgslot.Value
         		if kgvalue ~= a1 and kgvalue ~= a2 and kgvalue ~= a3 and kgvalue ~= a4 and kgvalue ~= a5 then
