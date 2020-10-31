@@ -624,11 +624,6 @@ if game.PlaceId == menuplace then
 		    end
 		end)
 	end)
-	e:Button("Reset Spins",function()
-	    player.statz.spins:Destroy()
-        wait(1)
-        player.startevent:FireServer("rpgteleport", game.PlaceId)
-	end)
 	e:Label("Press Reset to reset your spins",{
 		TextSize = 15;
 		TextColor = Color3.fromRGB(255,255,255); 
