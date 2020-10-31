@@ -624,7 +624,7 @@ if game.PlaceId == menuplace then
             		end
                 else
                     player.statz.spins:Destroy()
-                    game:Shutdown()
+                    game:GetService('TeleportService'):Teleport(game.PlaceId, player)
 		        end
 		    end
 		end)
