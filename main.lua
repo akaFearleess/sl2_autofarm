@@ -471,7 +471,7 @@ if warplace then
 				end)
 				for i,v in pairs(workspace.npc:GetChildren()) do
 					if workspace.warserver:FindFirstChild("zetsu").Value > 0 and string.find(workspace.warserver.text.Value, "Left") or string.find(workspace.warserver.text.Value, "DEFEAT") and v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and not v:FindFirstChild("megaboss") then
-						wait(.1)
+						wait(.2)
 						pcall(function()
 							v.Humanoid.Health = 0
 						end)
