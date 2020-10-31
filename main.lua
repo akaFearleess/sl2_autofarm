@@ -590,7 +590,13 @@ if game.PlaceId == menuplace then
 		print("Selected: " .. KG5)
 		a5 = KG5
 	end)
+	e:Label("1 SPIN EACH 10 SEC..",{
+		TextSize = 20;
+		TextColor = Color3.fromRGB(255,255,255); 
+		BgColor = Color3.fromRGB(247, 95, 28);
+	}) 
 	e:Button("Start Spin KG",function()
+	    print("1 SPIN EACH 10SEC")
 		local spins = game.Players.LocalPlayer.statz.spins.Value
 		local des = game.Players.LocalPlayer.statz.spins
         spawn(function()
@@ -598,19 +604,19 @@ if game.PlaceId == menuplace then
             	if v:FindFirstChild("KG") then
                     local a = Instance.new("StringValue")
                     a.Name = v.Name
-                    a.Parent = game.Players.LocalPlayer.statz.unlocked
+                    a.Parent = game.Players.LocalPlayer.statz.genkailevel
             	end
             end
         end)
 		spawn(function()
 		    while wait() do
 		        if spins > 0 then
-		            wait(.2)
             		spins = game.Players.LocalPlayer.statz.spins.Value
             		kgvalue = kgslot.Value
             		if kgvalue ~= a1 and kgvalue ~= a2 and kgvalue ~= a3 and kgvalue ~= a4 and kgvalue ~= a5 then
             		    kgvalue = kgslot.Value
             			game.Players.LocalPlayer.startevent:FireServer("spin", b)
+            			wait(10)
             			kgvalue = kgslot.Value
             			print("Rolled: " .. kgvalue)
             		else
@@ -618,8 +624,7 @@ if game.PlaceId == menuplace then
             		end
                 else
                     player.statz.spins:Destroy()
-                    wait(1)
-                    player.startevent:FireServer("rpgteleport", game.PlaceId)
+                    game:Shutdown()
 		        end
 		    end
 		end)
@@ -630,7 +635,7 @@ local f = w:CreateFolder("Misc")
 f:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-f:Label("made by reav#2966 | ver 3.9",{
+f:Label("made by reav#2966 | ver 4",{
     TextSize = 15;
     TextColor = Color3.fromRGB(255,255,255); 
     BgColor = Color3.fromRGB(247, 95, 28);
