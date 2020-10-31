@@ -624,11 +624,6 @@ if game.PlaceId == menuplace then
 		    end
 		end)
 	end)
-	e:Label("Press Reset to reset your spins",{
-		TextSize = 15;
-		TextColor = Color3.fromRGB(255,255,255); 
-		BgColor = Color3.fromRGB(247, 95, 28);
-	}) 
 end
 
 local f = w:CreateFolder("Misc")
