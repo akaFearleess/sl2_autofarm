@@ -338,7 +338,7 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
     	infchakra = bool
     end)
     local when = 100000
-    h:Slider("When charge(ALSO MAX)",{
+    h:Slider("When charge(NOT MAX)",{
         min = 30000; 
         max = 250000; 
         precise = false;
@@ -346,39 +346,31 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
         when = z
     end)    
     spawn(function()
-        while infchakra do
+        while wait() do
             if infchakra then
                 local chakra = string.split(game.Players.LocalPlayer.PlayerGui.Main.ingamearena.Bar.cha.Text,"CHA: ")[2]
                 c = chakra:gsub("CHA%:","")
                 local cha
                 local function chakracheck()
-                    pcall(function()
-                        chakra = string.split(game.Players.LocalPlayer.PlayerGui.Main.ingamearena.Bar.cha.Text,"CHA: ")[2]
-                        c = chakra:gsub("CHA%:","")
-                        cha = c
-                    end)
+                    chakra = string.split(game.Players.LocalPlayer.PlayerGui.Main.ingamearena.Bar.cha.Text,"CHA: ")[2]
+                    c = chakra:gsub("CHA%:","")
+                    cha = c
                 end
                 spawn(function() 
-                    while infchakra do
-                        wait()
-                        pcall(function()
-                            if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed == 0 then
-                                game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
-                            end
-                        end)
+                    while wait() do
+                        if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed == 0 then
+                            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
+                        end
                         chakracheck()
                     end
                 end)
                 spawn(function() 
-                    while infchakra do
-                        wait()
-                        pcall(function()
-                            if tonumber(cha) < tonumber(chakra) then
-                                game.Players.LocalPlayer.Character.combat.update:FireServer("key","c")
-                            else
-                                game.Players.LocalPlayer.Character.combat.update:FireServer("key","cend")
-                            end
-                        end)
+                    while wait() do
+                        if tonumber(cha) < tonumber(when) then
+                            game.Players.LocalPlayer.Character.combat.update:FireServer("key","c")
+                        else
+                            game.Players.LocalPlayer.Character.combat.update:FireServer("key","cend")
+                        end
                     end
                 end)
             end
