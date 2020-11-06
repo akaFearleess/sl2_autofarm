@@ -173,7 +173,7 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
 					for i,v in pairs(workspace.npc:GetChildren()) do
 						pcall(function()
 						    if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
-								repeat wait(.3)
+								repeat wait(.4)
 									toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-8,0)))
 									v.Humanoid.Health = 0
 								until v.Humanoid.Health == 0 or not autofarm or player.currentmission.Value == nil
