@@ -665,12 +665,12 @@ if game.PlaceId == worldxplace then
                     end
                 else
                     for i,v in pairs(game:GetService("Workspace").sidequest.weeds[village]:GetChildren()) do
-                        if v.Name == "grass" and v:FindFirstChild("ClickDetector") then
+                        if v.Name == "grass" and v:FindFirstChild("ClickDetector") and v:FindFirstChild("taken").Value == true then
                             fireclickdetector(v.ClickDetector)
                         end
                     end
                     for i,v in pairs(game:GetService("Workspace").sidequest.dirt[village]:GetChildren()) do
-                        if v.Name == village and v:FindFirstChild("ClickDetector") then
+                        if v.Name == village and v:FindFirstChild("ClickDetector") and v:FindFirstChild("taken").Value == true then
                             fireclickdetector(v.ClickDetector)
                         end
                     end
