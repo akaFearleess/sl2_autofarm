@@ -651,14 +651,17 @@ if game.PlaceId == worldxplace then
     g:Toggle("F Rank - Side Quest",function(bool)
     	side = bool
     end)
-    
+    local nogrip
+    g:Toggle("No Grip",function(bool)
+    	nogrip = bool
+    end)
     spawn(function()
         while wait() do
             if side then
                 if player.currentmission.Value == nil then
                     for i,v in pairs(game:GetService("Workspace").sidequest.getmission:GetChildren()) do
                         if v.Name == "rankd" and v:FindFirstChild("village").Value == village and v:FindFirstChild("ClickDetector") then
-                            player.Character.HumanoidRootPart.CFrame=v.CFrame
+                            --player.Character.HumanoidRootPart.CFrame=v.CFrame
                             v.invoke:FireServer()
                             fireclickdetector(v.ClickDetector)
                         end
@@ -693,12 +696,22 @@ if game.PlaceId == worldxplace then
             end
         end
     end)
+    spawn(function()
+        while wait() do
+            if nogrip then
+                while player.Character.Humanoid.WalkSpeed == 0 do
+                    player.Character.Humanoid.WalkSpeed = 200
+                end
+            end
+        end
+    end)
 end
+
 local f = w:CreateFolder("Misc")
 f:Box("Teleport to PS","string",function(tpps)
     game.Players.LocalPlayer.startevent:FireServer("teleporttoprivate", tpps)
 end)
-f:Label("made by reav#2966 | ver 4.1",{
+f:Label("made by reav#2966 | ver 4.2",{
     TextSize = 15;
     TextColor = Color3.fromRGB(255,255,255); 
     BgColor = Color3.fromRGB(247, 95, 28);
