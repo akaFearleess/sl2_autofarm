@@ -52,7 +52,7 @@ _G.MainTextColor = Color3.fromRGB(255, 255, 255);
 _G.MainColor = Color3.fromRGB(247, 95, 28);
 _G.SliderColor = Color3.fromRGB(247, 95, 28);
 getgenv().speed = 500
-local w = library:CreateWindow("Shinobi Life 2")
+local w = library:CreateWindow("Shindo Life")
 if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or game.PlaceId == akatsukiplace or game.PlaceId == forestplace then
 	--AUTOFARM
 	local b = w:CreateFolder("AutoFarm")
@@ -594,11 +594,6 @@ if game.PlaceId == menuplace then
 		print("Selected: " .. KG5)
 		a5 = KG5
 	end)
-	e:Label("1 SPIN EACH 10 SEC..",{
-		TextSize = 20;
-		TextColor = Color3.fromRGB(255,255,255); 
-		BgColor = Color3.fromRGB(247, 95, 28);
-	}) 
 	e:Button("Start Spin KG",function()
 		kgslot.ChildAdded:Connect(function(yes)
             if yes.Name == "dontspin" then
