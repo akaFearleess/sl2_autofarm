@@ -62,11 +62,6 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
 		TextColor = Color3.fromRGB(255,255,255); 
 		BgColor = Color3.fromRGB(255, 140, 0);
 	}) 
-	local questnr = c:Label("Quests",{
-		TextSize = 24;
-		TextColor = Color3.fromRGB(255,255,255); 
-		BgColor = Color3.fromRGB(255, 140, 0);
-	}) 
 	local green
 	b:Toggle("AutoFarm (Green Quests)",function(bool)
 		green = bool
@@ -125,7 +120,6 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
 			pcall(function()
 				game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
 				daynight:Refresh("NIGHT: " .. tostring(game:GetService("Workspace").daynight.Value))
-			    questnr:Refresh("Quests: ".. getmission)
 			end)
 		end
 	end)
