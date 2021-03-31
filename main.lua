@@ -62,6 +62,11 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
 		TextColor = Color3.fromRGB(255,255,255); 
 		BgColor = Color3.fromRGB(255, 140, 0);
 	}) 
+	local questnr = c:Label("Quests",{
+		TextSize = 24;
+		TextColor = Color3.fromRGB(255,255,255); 
+		BgColor = Color3.fromRGB(255, 140, 0);
+	}) 
 	local green
 	b:Toggle("AutoFarm (Green Quests)",function(bool)
 		green = bool
@@ -120,6 +125,7 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
 			pcall(function()
 				game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
 				daynight:Refresh("NIGHT: " .. tostring(game:GetService("Workspace").daynight.Value))
+			    questnr:Refresh("Quests: ".. getmission)
 			end)
 		end
 	end)
@@ -128,7 +134,7 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
         for i,v in pairs(workspace.missiongivers:GetChildren()) do
             if v.Name == "" and v:FindFirstChild("Head") then
                 local TALK = v:FindFirstChild("Talk")
-                local mob = TALK:WaitForChild("mobname").Value
+                local mob = TALK:FindFirstChild("mobname").Value
                 if v.Head.givemission.Enabled == true and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" then
                     if TALK:FindFirstChild("mobname") then
                         local getmission = v:FindFirstChild("HumanoidRootPart")
@@ -150,7 +156,7 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
         for i,v in pairs(workspace.missiongivers:GetChildren()) do
             if v.Name == "" and v:FindFirstChild("Head") then
                 local TALK = v:FindFirstChild("Talk")
-                local mob = TALK:WaitForChild("mobname").Value
+                local mob = TALK:FindFirstChild("mobname").Value
                 if v.Head.givemission.Enabled == true and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" --[[or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799"]] then
                     if TALK:FindFirstChild("mobname") then
                         local getmission = v:FindFirstChild("HumanoidRootPart")
