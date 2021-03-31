@@ -1,5 +1,5 @@
 --[[
-GAME LINK https://www.roblox.com/games/4616652839/2x-EXP-UPD-Shindo
+GAME LINK https://www.roblox.com/games/4616652839/TEN-TAILS-Shinobi-Life-2
 v3rm: https://v3rmillion.net/showthread.php?tid=1063031
 Discord: reav#2966
 Discord Server: https://discord.gg/aDRStgw
@@ -81,8 +81,6 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
 	b:Toggle("AutoRank (on MaxLvL)",function(bool)
 		RANKUP = bool
 	end)
-
-
 	local d = w:CreateFolder("Quests Maker")
 	d:Button("Rushs",function()
 		for i = 1,300 do
@@ -201,6 +199,11 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
             end
         end
     end)
+    if red or green then
+        local amigo,brr = pcall(function()
+            game:GetService("RunService"):UnbindFromRenderStep(game.Players.LocalPlayer.Name .. "Main")
+        end)
+    end
 	local function SCROLLFARM()
 		for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
 			if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 2000 then
@@ -272,19 +275,11 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
 end
 if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or game.PlaceId == akatsukiplace or game.PlaceId == forestplace then
     local g = w:CreateFolder("Infinite Mode")
-	g:Label("Enable your mode and setup when charge chakra (not max)",{
+	g:Label("Enable ur best mode first",{
 		TextSize = 15;
 		TextColor = Color3.fromRGB(255,255,255); 
 		BgColor = Color3.fromRGB(255, 140, 0);
 	}) 
-    local when = 5000
-    g:Slider("When charge(NOT MAX)",{
-        min = 5000; 
-        max = 200000; 
-        precise = false;
-    },function(z)
-        when = z
-    end)    
     g:Button("InfiniteMode",function()
         local mode = game.Players.LocalPlayer.Character.combat.mode
         local copy = mode:Clone()
@@ -298,6 +293,8 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
             c = chakra:gsub("CH%: ","")
             cha = c
         end
+        halfchi = chakra/2
+        print("CHI will recharge at "..halfchi)
         spawn(function() 
             while wait() do
                 if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed == 0 then
@@ -308,7 +305,7 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
         end)
         spawn(function() 
             while wait() do
-                if tonumber(cha) < tonumber(when) then
+                if tonumber(cha) < halfchi then
                     game.Players.LocalPlayer.Character.combat.update:FireServer("key","c")
                 else
                     game.Players.LocalPlayer.Character.combat.update:FireServer("key","cend")
@@ -319,62 +316,6 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
     g:Button("Disable InfMode",function()
         player.Character:BreakJoints()
     end)
-end
-if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or game.PlaceId == akatsukiplace or game.PlaceId == forestplace then
-    local h = w:CreateFolder("Auto Chakra")
-	h:Label("Setup when charge chakra (also max)",{
-		TextSize = 16;
-		TextColor = Color3.fromRGB(255,255,255); 
-		BgColor = Color3.fromRGB(255, 140, 0);
-	}) 
-    local infchakra
-    h:Toggle("Charge Chi+Move",function(bool)
-    	infchakra = bool
-    end)
-    local when = 5000
-    h:Slider("When charge(NOT MAX)",{
-        min = 5000; 
-        max = 250000; 
-        precise = false;
-    },function(z)
-        when = z
-    end)    
-    spawn(function()
-        while wait() do
-            if infchakra then
-                local chakra = string.split(game.Players.LocalPlayer.PlayerGui.Main.ingamearena.Bar.cha.Text,"CHI: ")[2]
-                c = chakra:gsub("CH%:","")
-                local cha
-                local function chakracheck()
-                    chakra = string.split(game.Players.LocalPlayer.PlayerGui.Main.ingamearena.Bar.cha.Text,"CHI: ")[2]
-                    c = chakra:gsub("CH%:","")
-                    cha = c
-                end
-                spawn(function() 
-                    while wait() do
-                        if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed == 0 then
-                            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 75
-                        end
-                        chakracheck()
-                    end
-                end)
-                spawn(function() 
-                    while wait() do
-                        if tonumber(cha) < tonumber(when) then
-                            game.Players.LocalPlayer.Character.combat.update:FireServer("key","c")
-                        else
-                            game.Players.LocalPlayer.Character.combat.update:FireServer("key","cend")
-                        end
-                    end
-                end)
-            end
-        end
-    end)
-	h:Label("Dont use INFMODE and INFCHI together",{
-		TextSize = 15;
-		TextColor = Color3.fromRGB(255,255,255); 
-		BgColor = Color3.fromRGB(255, 140, 0);
-	}) 
 end
 if warplace then
 	--WAR
@@ -535,7 +476,7 @@ if warplace then
 end
 if game.PlaceId == menuplace then
 	--main menu
-	local e = w:CreateFolder("ResetSpins BYPASS 10sec")
+	local e = w:CreateFolder("Get BloodLine")
     local kgs = {}
     for i,v in pairs(game:GetService("ReplicatedStorage").alljutsu:GetChildren()) do
         if v:FindFirstChild("KG") then
@@ -588,6 +529,7 @@ if game.PlaceId == menuplace then
     	a5 = KG5
     end)
     e:Button("Start Spin",function()
+        game:GetService("StarterGui"):SetCore("DevConsoleVisible", true)
         kgslot.ChildAdded:Connect(function(yes)
             if yes.Name == "dontspin" then
                 wait(.1)
@@ -634,13 +576,106 @@ if game.PlaceId == menuplace then
     e:Button("Save BloodLine",function()
         game:Shutdown()
     end)
-    else
-    local e = w:CreateFolder("ResetSpins BYPASS 10sec")
-    e:Label("YOU MUST USE THIS IN MAIN MENU",{
+	local ee = w:CreateFolder("Get Element")
+    local elm = {}
+    for i,v in pairs(game:GetService("ReplicatedStorage").alljutsu:GetChildren()) do
+        if v:FindFirstChild("ELEMENT") then
+            table.insert(elm, v.Name)
+        end
+    end
+    ee:Label("Select the Element slot you want to change",{
+        TextSize = 15;
+        TextColor = Color3.fromRGB(255,255,255); 
+        BgColor = Color3.fromRGB(247, 95, 28);
+    }) 
+    ee:Label("Choose your Element and press SPIN",{
         TextSize = 15;
     	TextColor = Color3.fromRGB(255,255,255); 
     	BgColor = Color3.fromRGB(247, 95, 28);
     }) 
+    local b
+    local kgslot
+    local kgvalue
+    ee:Dropdown("ELEMENT SLOT",{"element1", "element2", "element3", "element4"},true,function(kgS)
+        b = kgS
+    	kgslot = game.Players.LocalPlayer.statz.main:FindFirstChild(b)
+    	kgvalue = kgslot.Value
+    	print(kgslot)
+    	print(kgvalue)
+    end)
+    local a1
+    ee:Dropdown("WHAT DO YOU WANT",elm,true,function(KG1)
+        print("Selected: " .. KG1)
+    	a1 = KG1
+    end)
+    local a2
+    ee:Dropdown("WHAT DO YOU WANT",elm,true,function(KG2)
+        print("Selected: " .. KG2)
+    	a2 = KG2
+    end)
+    local a3
+    ee:Dropdown("WHAT DO YOU WANT",elm,true,function(KG3)
+        print("Selected: " .. KG3)
+    	a3 = KG3
+    end)
+    local a4
+    ee:Dropdown("WHAT DO YOU WANT",elm,true,function(KG4)
+        print("Selected: " .. KG4)
+    	a4 = KG4
+    end)
+    local a5
+    ee:Dropdown("WHAT DO YOU WANT",elm,true,function(KG5)
+        print("Selected: " .. KG5)
+    	a5 = KG5
+    end)
+    ee:Button("Start Spin",function()
+        game:GetService("StarterGui"):SetCore("DevConsoleVisible", true)
+        kgslot.ChildAdded:Connect(function(yes)
+            if yes.Name == "dontspin" then
+                wait(.1)
+                yes:Destroy()
+            end
+        end)
+    	local spins = game.Players.LocalPlayer.statz.spins.Value
+    	local des = game.Players.LocalPlayer.statz.spins
+        spawn(function()
+            for i,v in pairs(game:GetService("ReplicatedStorage").alljutsu:GetChildren()) do
+                if v:FindFirstChild("KG") then
+                    local a = Instance.new("StringValue")
+                    a.Name = v.Name
+                    a.Parent = game.Players.LocalPlayer.statz.genkailevel
+                end
+            end
+        end)
+    	spawn(function()
+    	    while wait() do
+    		    if spins > 0 then
+                    spins = game.Players.LocalPlayer.statz.spins.Value
+                	kgvalue = kgslot.Value
+                	print("Rolled: " .. kgvalue)
+                	if kgvalue ~= a1 and kgvalue ~= a2 and kgvalue ~= a3 and kgvalue ~= a4 and kgvalue ~= a5 then
+                	    kgvalue = kgslot.Value
+                		game.Players.LocalPlayer.startevent:FireServer("spin", b)
+                		wait(.2)
+                		kgvalue = kgslot.Value
+                	else
+                	    print("You have got: " .. kgvalue)
+                	end
+                else
+                    player.statz.spins:Destroy()
+                    game:GetService('TeleportService'):Teleport(game.PlaceId, player)
+    		    end
+    		end
+    	end)
+    end)
+    ee:Label("It will reset once you have 0 spin left",{
+        TextSize = 15;
+    	TextColor = Color3.fromRGB(255,255,255); 
+    	BgColor = Color3.fromRGB(247, 95, 28);
+    }) 
+    ee:Button("Save Element",function()
+        game:Shutdown()
+    end)
 end
 if game.PlaceId == worldxplace then
 	--World X
@@ -695,19 +730,8 @@ if game.PlaceId == worldxplace then
             end
         end
     end)
-    spawn(function()
-        while wait() do
-            if nogrip then
-                while player.Character.Humanoid.WalkSpeed == 0 do
-                    player.Character.Humanoid.WalkSpeed = 200
-                end
-            end
-        end
-    end)
 end
-local amigo,brr = pcall(function()
-    game:GetService("RunService"):UnbindFromRenderStep(game.Players.LocalPlayer.Name .. "Main")
-end)
+
 local f = w:CreateFolder("Credits")
 f:Label("made by reav#2966 | Shindo Life ver 045.3",{
     TextSize = 15;
