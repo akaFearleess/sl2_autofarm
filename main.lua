@@ -52,6 +52,7 @@ _G.MainTextColor = Color3.fromRGB(255, 255, 255);
 _G.MainColor = Color3.fromRGB(255, 140, 0);
 _G.SliderColor = Color3.fromRGB(255, 140, 0);
 getgenv().speed = 999
+
 local w = library:CreateWindow("Shindo Life")
 if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or game.PlaceId == akatsukiplace or game.PlaceId == forestplace then
 	--AUTOFARM
@@ -88,6 +89,9 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
 			wait(.25)
 		end
 	end)
+	local amigo,brr = pcall(function()
+    game:GetService("RunService"):UnbindFromRenderStep(game.Players.LocalPlayer.Name .. "Main")
+    end)
 	d:Button("Jumps",function()
 		for v = 1,300 do
 			game.Players.LocalPlayer.Character.combat.update:FireServer("takemovement2")
@@ -111,7 +115,6 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
 	d:Button("TP TrainLog",function()
 		toTarget(player.Character.HumanoidRootPart.Position,workspace.npc.logtraining:FindFirstChild("HumanoidRootPart").Position,CFrame.new(game:GetService("Workspace").npc.logtraining:FindFirstChild("HumanoidRootPart").Position))
 	end)
-
 	game:GetService('RunService').Stepped:connect(function()
 		if green or red then
 			pcall(function()
@@ -199,11 +202,6 @@ if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or
             end
         end
     end)
-    if red or green then
-        local amigo,brr = pcall(function()
-            game:GetService("RunService"):UnbindFromRenderStep(game.Players.LocalPlayer.Name .. "Main")
-        end)
-    end
 	local function SCROLLFARM()
 		for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
 			if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 2000 then
