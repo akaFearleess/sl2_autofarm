@@ -5,742 +5,107 @@ Discord: reav#2966
 Discord Server: https://discord.gg/aDRStgw
 Usage:
 loadstring(game:HttpGet("https://raw.githubusercontent.com/reavscripts/sl2_autofarm/main/main.lua", true))()
+converted to hub
 ]]
-
-repeat wait() until game:IsLoaded()
---old-antitp bypass
-if workspace:FindFirstChild("CCoff") then
-    game:GetService("Workspace").CCoff:Destroy()
-end
---antiafk
-local VirtualUser=game:service'VirtualUser'
-	game:service'Players'.LocalPlayer.Idled:connect(function()
-	warn("anti-afk")
-	VirtualUser:CaptureController()
-	VirtualUser:ClickButton2(Vector2.new())
-end)
---variables
 local player = game.Players.LocalPlayer
-local mission = player.PlayerGui:WaitForChild("Main"):WaitForChild("ingame"):WaitForChild("Missionstory")
-local menuplace = 4616652839
-local forestplace = 5447073001
-local rainplace = 5084678830
-local trainingplace = 5431071837
-local akatsukiplace = 5431069982
-local worldxplace = 5943874201
-local villageplace = game:GetService("Workspace"):FindFirstChild("rank")
-local warplace = game:GetService("Workspace"):FindFirstChild("warmode")
-function toTarget(pos, targetPos, targetCFrame)
-    local tween_s = game:service"TweenService"
-    local info = TweenInfo.new((targetPos - pos).Magnitude/getgenv().speed, Enum.EasingStyle.Linear)
-    local tween, err = pcall(function()
-        local tween = tween_s:Create(game:GetService("Players").LocalPlayer.Character["HumanoidRootPart"], info, {CFrame = targetCFrame * CFrame.fromAxisAngle(Vector3.new(1,0,0), math.rad(90))})
-        tween:Play()
-    end)
-    if not tween then return err end
-end
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local TextButton = Instance.new("TextButton")
+local TextButton_2 = Instance.new("TextButton")
+local TextButton_3 = Instance.new("TextButton")
+local TextButton_4 = Instance.new("TextButton")
 
---loading wally ui revamped By Aika
-local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
-_G.ButtonTextColor = Color3.fromRGB(255, 140, 0);
-_G.ButtonColor = Color3.fromRGB(5, 16, 20);
-_G.PointerColor = Color3.fromRGB(255, 140, 0);
-_G.SecondaryColor = Color3.fromRGB(0, 102, 255);
-_G.TertiaryColor = Color3.fromRGB(5, 16, 20);
-_G.ToggleColor = Color3.fromRGB(255, 140, 0);
-_G.MainTextColor = Color3.fromRGB(255, 255, 255);
-_G.MainColor = Color3.fromRGB(255, 140, 0);
-_G.SliderColor = Color3.fromRGB(255, 140, 0);
-getgenv().speed = 999
 
-local w = library:CreateWindow("Shindo Life")
-if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or game.PlaceId == akatsukiplace or game.PlaceId == forestplace then
-	--AUTOFARM
-	local b = w:CreateFolder("AutoFarm")
-	local daynight = b:Label("NIGHT/DAY",{
-		TextSize = 24;
-		TextColor = Color3.fromRGB(255,255,255); 
-		BgColor = Color3.fromRGB(255, 140, 0);
-	}) 
-	local green
-	b:Toggle("AutoFarm (Green Quests)",function(bool)
-		green = bool
-	end)
-	local red
-	b:Toggle("AutoFarm (Red Quests)",function(bool)
-		red = bool
-	end)
-	local scrollfarm
-	b:Toggle("Scroll Finder",function(bool)
-		scrollfarm = bool
-	end)
-	local jinfarm
-	b:Toggle("Hunt For Jin",function(bool)
-		jinfarm = bool
-	end)
-	local RANKUP
-	b:Toggle("AutoRank (on MaxLvL)",function(bool)
-		RANKUP = bool
-	end)
-	local d = w:CreateFolder("Quests Maker")
-	d:Button("Rushs",function()
-		for i = 1,300 do
-			game.Players.LocalPlayer.Character.combat.update:FireServer("rushw")
-			wait(.25)
-		end
-	end)
-	local amigo,brr = pcall(function()
-    game:GetService("RunService"):UnbindFromRenderStep(game.Players.LocalPlayer.Name .. "Main")
-    end)
-	d:Button("Jumps",function()
-		for v = 1,300 do
-			game.Players.LocalPlayer.Character.combat.update:FireServer("takemovement2")
-			wait(.25)
-		end
-	end)
-	d:Button("Chi Charges",function()
-		for i = 1,500 do
-			game.Players.LocalPlayer.Character.combat.update:FireServer("key","c")
-			wait(.1)
-			game.Players.LocalPlayer.Character.combat.update:FireServer("key","cend")
-			wait(.5)
-		end
-	end)
-	d:Button("Punches",function()
-		for i = 1,999 do
-			game.Players.LocalPlayer.Character.combat.update:FireServer("mouse1",true)
-			wait(.3)
-		end
-	end)
-	d:Button("TP TrainLog",function()
-		toTarget(player.Character.HumanoidRootPart.Position,workspace.npc.logtraining:FindFirstChild("HumanoidRootPart").Position,CFrame.new(game:GetService("Workspace").npc.logtraining:FindFirstChild("HumanoidRootPart").Position))
-	end)
-	game:GetService('RunService').Stepped:connect(function()
-		if green or red then
-			pcall(function()
-				game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-				daynight:Refresh("NIGHT: " .. tostring(game:GetService("Workspace").daynight.Value))
-			end)
-		end
-	end)
-    local LEVEL = player.statz.lvl.lvl
-    local function QUESTBOSS()
-        for i,v in pairs(workspace.missiongivers:GetChildren()) do
-            if v.Name == "" and v:FindFirstChild("Head") then
-                local TALK = v:FindFirstChild("Talk")
-                local mob = TALK:FindFirstChild("mobname").Value
-                if v.Head.givemission.Enabled == true and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799" then
-                    if TALK:FindFirstChild("mobname") then
-                        local getmission = v:FindFirstChild("HumanoidRootPart")
-                        local clienttalk = v:FindFirstChild("CLIENTTALK")
-                        repeat wait()
-                            pcall(function()
-                                --toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,getmission.Position,CFrame.new(getmission.Position+Vector3.new(0,-5,0)))
-                                player.Character.HumanoidRootPart.CFrame=getmission.CFrame+Vector3.new(0,-10,0)
-                                clienttalk:FireServer()
-                                clienttalk:FireServer("accept")
-                            end)                
-                        until mission.Visible or not red
-                    end
-                end
-            end
-        end
-    end
-    local function QUEST()
-        for i,v in pairs(workspace.missiongivers:GetChildren()) do
-            if v.Name == "" and v:FindFirstChild("Head") then
-                local TALK = v:FindFirstChild("Talk")
-                local mob = TALK:FindFirstChild("mobname").Value
-                if v.Head.givemission.Enabled == true and v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241648" --[[or v.Head.givemission.color.Image == "http://www.roblox.com/asset/?id=5459241799"]] then
-                    if TALK:FindFirstChild("mobname") then
-                        local getmission = v:FindFirstChild("HumanoidRootPart")
-                        local clienttalk = v:FindFirstChild("CLIENTTALK")
-                        repeat wait()
-                            pcall(function()
-                                --toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,getmission.Position,CFrame.new(getmission.Position+Vector3.new(0,-5,0)))
-                                player.Character.HumanoidRootPart.CFrame=getmission.CFrame+Vector3.new(0,-10,0)
-                                clienttalk:FireServer()
-                                clienttalk:FireServer("accept")
-                            end)                
-                        until mission.Visible or not green
-                    end
-                end
-            end
-        end
-    end
-    local function FARM()
-        for i,v in pairs(workspace.npc:GetChildren()) do
-            local mobname = string.split(mission.bg.name.Text,"Defeat ")[1]
-            if(string.find(mobname,"(s)")) then
-                mobname = string.gsub(mobname,"(s)","")
-            end
-            if v.ClassName == "Model" and v:FindFirstChild("npctype") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 then
-                repeat wait()
-                    pcall(function()
-                        --toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-5,0)))
-                        player.Character.HumanoidRootPart.CFrame=v.HumanoidRootPart.CFrame+Vector3.new(0,-10,0)
-                        --if (player.Character.HumanoidRootPart.Position-v.HumanoidRootPart.Position).Magnitude > 8 then
-                        v.Humanoid.Health = 0
-                        --end
-                    end)
-                until v.Humanoid.Health == 0 or mission.Visible == false or game:GetService("Workspace").daynight.Value == true or not v
-            end
-        end
-    end
-    spawn(function()
-        while wait() do
-            if game:GetService("Workspace").daynight.Value == false and green or red then
-                if mission.Visible == false then
-                    if LEVEL.Value < 800 then
-                        QUEST()
-                    else
-                        QUESTBOSS()
-                    end
-                else
-                    FARM()
-                end
-            end
-        end
-    end)
-	local function SCROLLFARM()
-		for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
-			if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 2000 then
-				local scrollA = v.sh:FindFirstChild("invoke")
-				print("SCROLL SPAWNED")
-				pcall(function()
-					toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
-				    scrollA:FireServer(game.Players.LocalPlayer)
-				    fireclickdetector(v.sh.ClickDetector)
-				end)
-			end
-		end
-	end
-	local function SCROLLFARM1()
-		for i,v in pairs(game.workspace:GetChildren()) do
-			if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 2000 then
-				local scrollA = v.sh:FindFirstChild("invoke")
-				print("SCROLL SPAWNED in workspace")
-				pcall(function()
-					toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
-					scrollA:FireServer(game.Players.LocalPlayer)
-					fireclickdetector(v.sh.ClickDetector)
-				end)
-			end
-		end
-	end
-	spawn(function()
-		while wait() do
-			if scrollfarm then
-				repeat wait()
-					SCROLLFARM()
-					SCROLLFARM1()
-				until not scrollfarm or not war or not war2
-			end
-		end
-	end)
-	local function JINFARM()
-		for i,v in pairs(game:GetService("Workspace").npc:GetChildren()) do
-			if v.Name == "npc1" then
-				repeat wait()
-					pcall(function()
-						toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-25,0)))
-						player.Character.combat.update:FireServer("mouse1", true)
-						wait(.1)
-						v.Humanoid.HealthChanged:Connect(function()
-    						v.Humanoid.Health = 0
-    					end)
-					end)
-				until v.Humanoid.Health == 0 or not v or not jinfarm
-			end
-		end
-	end
-	spawn(function()
-		while wait() do
-			if jinfarm then
-				JINFARM()
-			end
-		end
-	end)
-	spawn(function()
-		while wait() do
-			if RANKUP and player.statz.lvl:FindFirstChild("lvl").Value == 1000 then
-				repeat wait()
-					game.Players.LocalPlayer.startevent:FireServer("rankup")
-				until player.statz.lvl:FindFirstChild("lvl").Value == 1 or not RANKUP
-			end
-		end
-	end)
-end
-if villageplace or game.PlaceId == trainingplace or game.PlaceId == rainplace or game.PlaceId == akatsukiplace or game.PlaceId == forestplace then
-    local g = w:CreateFolder("Infinite Mode")
-	g:Label("Enable ur best mode first",{
-		TextSize = 15;
-		TextColor = Color3.fromRGB(255,255,255); 
-		BgColor = Color3.fromRGB(255, 140, 0);
-	}) 
-    g:Button("InfiniteMode",function()
-        local mode = game.Players.LocalPlayer.Character.combat.mode
-        local copy = mode:Clone()
-        copy.Parent = mode.Parent
-        mode:Destroy()
-        local chakra = string.split(game.Players.LocalPlayer.PlayerGui.Main.ingamearena.Bar.cha.Text,"CHI: ")[2]
-        c = chakra:gsub("CH%: ","")
-        local cha
-        local function chakracheck()
-            chakra = string.split(game.Players.LocalPlayer.PlayerGui.Main.ingamearena.Bar.cha.Text,"CHI: ")[2]
-            c = chakra:gsub("CH%: ","")
-            cha = c
-        end
-        halfchi = chakra/2
-        print("CHI will recharge at "..halfchi)
-        spawn(function() 
-            while wait() do
-                if game.Players.LocalPlayer.Character.Humanoid.WalkSpeed == 0 then
-                    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
-                end
-                chakracheck()
-            end
-        end)
-        spawn(function() 
-            while wait() do
-                if tonumber(cha) < halfchi then
-                    game.Players.LocalPlayer.Character.combat.update:FireServer("key","c")
-                else
-                    game.Players.LocalPlayer.Character.combat.update:FireServer("key","cend")
-                end
-            end
-        end)
-    end)
-    g:Button("Disable InfMode",function()
-        player.Character:BreakJoints()
-    end)
-end
-if warplace then
-	--WAR
-	local c = w:CreateFolder("War Farm")
-	c:Label("Snipe is built-in",{
-		TextSize = 24;
-		TextColor = Color3.fromRGB(255,255,255); 
-		BgColor = Color3.fromRGB(255, 140, 0);
-	}) 
-	local war 
-	c:Toggle("WarMode No Tween",function(bool)
-		war = bool
-	end)
-	local war2
-	c:Toggle("WarMode Tween (multple players)",function(bool)
-		war2 = bool
-	end)
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
-	c:Slider("Tween Speed",{
-		min = 500; 
-		max = 2500;
-		precise = false;
-		},function(speed)
-		getgenv().speed = speed
-	end)
-	local reset
-	c:Toggle("Reset after round 21",function(bool)
-		reset = bool
-	end)
-	--Suggested by Moddi#2715
-	local refresh = c:Label("ROUND COUNTER",{
-		TextSize = 24;
-		TextColor = Color3.fromRGB(255,255,255); 
-		BgColor = Color3.fromRGB(255, 140, 0);
-	}) 
-	local count = 0
-	local refreshC = c:Label("10TAILS COUNTER",{
-		TextSize = 24;
-		TextColor = Color3.fromRGB(255,255,255); 
-		BgColor = Color3.fromRGB(255, 140, 0);
-	}) 
-	game:GetService('RunService').Stepped:connect(function()
-		if war or war2 then
-			pcall(function()
-				game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
-			end)
-		end
-	end)
-	local function SCROLLFARM()
-		for i,v in pairs(game.workspace.GLOBALTIME:GetChildren()) do
-			if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 2000 then
-				local scrollA = v.sh:FindFirstChild("invoke")
-				print("SCROLL SPAWNED")
-				pcall(function()
-					toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
-				end)
-				scrollA:FireServer(game.Players.LocalPlayer)
-				fireclickdetector(v.sh.ClickDetector)
-			end
-		end
-	end
-	local function SCROLLFARM1()
-		for i,v in pairs(game.workspace:GetChildren()) do
-			if v.ClassName == "Model" and v:FindFirstChild("sh") and v.sh.Position.Y > -1000 and v.sh.Position.Y < 2000 then
-				local scrollA = v.sh:FindFirstChild("invoke")
-				print("SCROLL SPAWNED in workspace")
-				pcall(function()
-					toTarget(game:GetService("Players").LocalPlayer.Character:WaitForChild("HumanoidRootPart").Position,v.sh.Position,CFrame.new(v.sh.Position))
-					scrollA:FireServer(game.Players.LocalPlayer)
-					fireclickdetector(v.sh.ClickDetector)
-				end)
-			end
-		end
-	end
-	spawn(function()
-		while wait() do
-			if war or war2 then
-				repeat wait()
-					SCROLLFARM()
-					SCROLLFARM1()
-				until not scrollfarm or not war or not war2
-			end
-		end
-	end)
-	spawn(function()
-		while wait() do
-			if war then
-				pcall(function()
-					refresh:Refresh("War Completed: " .. count)
-					refreshC:Refresh("Round: " .. workspace.warserver.round.Value)
-				end)
-				for i,v in pairs(workspace.npc:GetChildren()) do
-					if workspace.warserver:FindFirstChild("zetsu").Value > 0 and string.find(workspace.warserver.text.Value, "Left") or string.find(workspace.warserver.text.Value, "DEFEAT") and v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and not v:FindFirstChild("megaboss") then
-						wait(.2)
-						pcall(function()
-							v.Humanoid.Health = 0
-						end)
-					elseif v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and v:FindFirstChild("megaboss") then
-						wait(6)
-						pcall(function()
-							toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position))
-							v.Humanoid.Health = 0
-						end)
-					end
-				end
-				if reset then
-					for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
-						if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 then
-							wait(5)
-							player.Character:BreakJoints()
-							repeat wait()
-							until v.round.Value == 0
-							count = count + 1
-						end
-					end
-				end
-			end
-		end
-	end)
-	spawn(function()
-		while wait() do
-			if war2 then
-				refresh:Refresh("War Completed: " .. count)
-				refreshC:Refresh("Round: " .. workspace.warserver.round.Value)
-				for i,v in pairs(workspace.npc:GetChildren()) do
-					if workspace.warserver:FindFirstChild("zetsu").Value > 0 and string.find(workspace.warserver.text.Value, "Left") or string.find(workspace.warserver.text.Value, "DEFEAT") and v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and not v:FindFirstChild("megaboss") then
-						pcall(function()
-							repeat wait()
-							toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-12,0)))
-							wait(.3)
-							v.Humanoid.Health = 0
-							until v.Humanoid.Health == 0
-						end)
-					elseif v.ClassName == "Model" and v:FindFirstChild("npc") and string.find(v.Name, "npc") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v.Head.CFrame.Y > -1000 and v:FindFirstChild("megaboss") then
-						wait(8)
-						pcall(function()
-							toTarget(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position,v.HumanoidRootPart.Position,CFrame.new(v.HumanoidRootPart.Position+Vector3.new(0,-25,0)))
-							v.Humanoid.Health = 0
-						end)
-					else
-						wait()
-					end
-				end
-				if reset then
-					for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
-						if v.Name == "warserver" and v:FindFirstChild("round").Value > 20 then
-							wait(5)
-							player.Character:BreakJoints()
-							repeat wait()
-							until v.round.Value == 0
-							count = count + 1
-						end
-					end
-				end
-			end
-		end
-	end)
-end
-if game.PlaceId == menuplace then
-	--main menu
-	local e = w:CreateFolder("Get BloodLine")
-    local kgs = {}
-    for i,v in pairs(game:GetService("ReplicatedStorage").alljutsu:GetChildren()) do
-        if v:FindFirstChild("KG") then
-            table.insert(kgs, v.Name)
-        end
-    end
-    e:Label("Select the Bloodline slot you want to change",{
-        TextSize = 15;
-        TextColor = Color3.fromRGB(255,255,255); 
-        BgColor = Color3.fromRGB(247, 95, 28);
-    }) 
-    e:Label("Choose your BL and press SPIN",{
-        TextSize = 15;
-    	TextColor = Color3.fromRGB(255,255,255); 
-    	BgColor = Color3.fromRGB(247, 95, 28);
-    }) 
-    local b
-    local kgslot
-    local kgvalue
-    e:Dropdown("BLOODLINE SLOT",{"kg1", "kg2", "kg3", "kg4"},true,function(kgS)
-        b = kgS
-    	kgslot = game.Players.LocalPlayer.statz.main:FindFirstChild(b)
-    	kgvalue = kgslot.Value
-    	print(kgslot)
-    	print(kgvalue)
-    end)
-    local a1
-    e:Dropdown("WHAT DO YOU WANT",kgs,true,function(KG1)
-        print("Selected: " .. KG1)
-    	a1 = KG1
-    end)
-    local a2
-    e:Dropdown("WHAT DO YOU WANT",kgs,true,function(KG2)
-        print("Selected: " .. KG2)
-    	a2 = KG2
-    end)
-    local a3
-    e:Dropdown("WHAT DO YOU WANT",kgs,true,function(KG3)
-        print("Selected: " .. KG3)
-    	a3 = KG3
-    end)
-    local a4
-    e:Dropdown("WHAT DO YOU WANT",kgs,true,function(KG4)
-        print("Selected: " .. KG4)
-    	a4 = KG4
-    end)
-    local a5
-    e:Dropdown("WHAT DO YOU WANT",kgs,true,function(KG5)
-        print("Selected: " .. KG5)
-    	a5 = KG5
-    end)
-    e:Button("Start Spin",function()
-        game:GetService("StarterGui"):SetCore("DevConsoleVisible", true)
-        kgslot.ChildAdded:Connect(function(yes)
-            if yes.Name == "dontspin" then
-                wait(.1)
-                yes:Destroy()
-            end
-        end)
-    	local spins = game.Players.LocalPlayer.statz.spins.Value
-    	local des = game.Players.LocalPlayer.statz.spins
-        spawn(function()
-            for i,v in pairs(game:GetService("ReplicatedStorage").alljutsu:GetChildren()) do
-                if v:FindFirstChild("KG") then
-                    local a = Instance.new("StringValue")
-                    a.Name = v.Name
-                    a.Parent = game.Players.LocalPlayer.statz.genkailevel
-                end
-            end
-        end)
-    	spawn(function()
-    	    while wait() do
-    		    if spins > 0 then
-                    spins = game.Players.LocalPlayer.statz.spins.Value
-                	kgvalue = kgslot.Value
-                	print("Rolled: " .. kgvalue)
-                	if kgvalue ~= a1 and kgvalue ~= a2 and kgvalue ~= a3 and kgvalue ~= a4 and kgvalue ~= a5 then
-                	    kgvalue = kgslot.Value
-                		game.Players.LocalPlayer.startevent:FireServer("spin", b)
-                		wait(.2)
-                		kgvalue = kgslot.Value
-                	else
-                	    print("You have got: " .. kgvalue)
-                	end
-                else
-                    player.statz.spins:Destroy()
-                    game:GetService('TeleportService'):Teleport(game.PlaceId, player)
-    		    end
-    		end
-    	end)
-    end)
-    e:Label("It will reset once you have 0 spin left",{
-        TextSize = 15;
-    	TextColor = Color3.fromRGB(255,255,255); 
-    	BgColor = Color3.fromRGB(247, 95, 28);
-    }) 
-    e:Button("Save BloodLine",function()
-        game:Shutdown()
-    end)
-	local ee = w:CreateFolder("Get Element")
-    local elm = {}
-    for i,v in pairs(game:GetService("ReplicatedStorage").alljutsu:GetChildren()) do
-        if v:FindFirstChild("ELEMENT") then
-            table.insert(elm, v.Name)
-        end
-    end
-    ee:Label("Select the Element slot you want to change",{
-        TextSize = 15;
-        TextColor = Color3.fromRGB(255,255,255); 
-        BgColor = Color3.fromRGB(247, 95, 28);
-    }) 
-    ee:Label("Choose your Element and press SPIN",{
-        TextSize = 15;
-    	TextColor = Color3.fromRGB(255,255,255); 
-    	BgColor = Color3.fromRGB(247, 95, 28);
-    }) 
-    local b
-    local kgslot
-    local kgvalue
-    ee:Dropdown("ELEMENT SLOT",{"element1", "element2", "element3", "element4"},true,function(kgS)
-        b = kgS
-    	kgslot = game.Players.LocalPlayer.statz.main:FindFirstChild(b)
-    	kgvalue = kgslot.Value
-    	print(kgslot)
-    	print(kgvalue)
-    end)
-    local a1
-    ee:Dropdown("WHAT DO YOU WANT",elm,true,function(KG1)
-        print("Selected: " .. KG1)
-    	a1 = KG1
-    end)
-    local a2
-    ee:Dropdown("WHAT DO YOU WANT",elm,true,function(KG2)
-        print("Selected: " .. KG2)
-    	a2 = KG2
-    end)
-    local a3
-    ee:Dropdown("WHAT DO YOU WANT",elm,true,function(KG3)
-        print("Selected: " .. KG3)
-    	a3 = KG3
-    end)
-    local a4
-    ee:Dropdown("WHAT DO YOU WANT",elm,true,function(KG4)
-        print("Selected: " .. KG4)
-    	a4 = KG4
-    end)
-    local a5
-    ee:Dropdown("WHAT DO YOU WANT",elm,true,function(KG5)
-        print("Selected: " .. KG5)
-    	a5 = KG5
-    end)
-    ee:Button("Start Spin",function()
-        game:GetService("StarterGui"):SetCore("DevConsoleVisible", true)
-        kgslot.ChildAdded:Connect(function(yes)
-            if yes.Name == "dontspin" then
-                wait(.1)
-                yes:Destroy()
-            end
-        end)
-    	local spins = game.Players.LocalPlayer.statz.spins.Value
-    	local des = game.Players.LocalPlayer.statz.spins
-        spawn(function()
-            for i,v in pairs(game:GetService("ReplicatedStorage").alljutsu:GetChildren()) do
-                if v:FindFirstChild("KG") then
-                    local a = Instance.new("StringValue")
-                    a.Name = v.Name
-                    a.Parent = game.Players.LocalPlayer.statz.genkailevel
-                end
-            end
-        end)
-    	spawn(function()
-    	    while wait() do
-    		    if spins > 0 then
-                    spins = game.Players.LocalPlayer.statz.spins.Value
-                	kgvalue = kgslot.Value
-                	print("Rolled: " .. kgvalue)
-                	if kgvalue ~= a1 and kgvalue ~= a2 and kgvalue ~= a3 and kgvalue ~= a4 and kgvalue ~= a5 then
-                	    kgvalue = kgslot.Value
-                		game.Players.LocalPlayer.startevent:FireServer("spin", b)
-                		wait(.2)
-                		kgvalue = kgslot.Value
-                	else
-                	    print("You have got: " .. kgvalue)
-                	end
-                else
-                    player.statz.spins:Destroy()
-                    game:GetService('TeleportService'):Teleport(game.PlaceId, player)
-    		    end
-    		end
-    	end)
-    end)
-    ee:Label("It will reset once you have 0 spin left",{
-        TextSize = 15;
-    	TextColor = Color3.fromRGB(255,255,255); 
-    	BgColor = Color3.fromRGB(247, 95, 28);
-    }) 
-    ee:Button("Save Element",function()
-        game:Shutdown()
-    end)
-end
-if game.PlaceId == worldxplace then
-	--World X
-	local village = player.yourvillage.Value
-	local g = w:CreateFolder("World X")
-    local side
-    g:Toggle("F Rank - Side Quest",function(bool)
-    	side = bool
-    end)
-    local nogrip
-    g:Toggle("No Grip",function(bool)
-    	nogrip = bool
-    end)
-    spawn(function()
-        while wait() do
-            if side then
-                if player.currentmission.Value == nil then
-                    for i,v in pairs(game:GetService("Workspace").sidequest.getmission:GetChildren()) do
-                        if v.Name == "rankd" and v:FindFirstChild("village").Value == village and v:FindFirstChild("ClickDetector") then
-                            --player.Character.HumanoidRootPart.CFrame=v.CFrame
-                            v.invoke:FireServer()
-                            fireclickdetector(v.ClickDetector)
-                        end
-                    end
-                else
-                    for i,v in pairs(game:GetService("Workspace").sidequest.weeds[village]:GetChildren()) do
-                        if v.Name == "grass" and v:FindFirstChild("ClickDetector") and v:FindFirstChild("taken").Value == true then
-                            fireclickdetector(v.ClickDetector)
-                        end
-                    end
-                    for i,v in pairs(game:GetService("Workspace").sidequest.dirt[village]:GetChildren()) do
-                        if v.Name == village and v:FindFirstChild("ClickDetector") and v:FindFirstChild("taken").Value == true then
-                            fireclickdetector(v.ClickDetector)
-                        end
-                    end
-                    for i,v in pairs(game:GetService("Workspace").sidequest.grafitti[village]:GetChildren()) do
-                        if v.Name == village and v:FindFirstChild("taken").Value == true and v:FindFirstChild("ClickDetector") then
-                            fireclickdetector(v.ClickDetector)
-                        end
-                    end
-                    for i,v in pairs(game:GetService("Workspace").sidequest.groceries[village]:GetChildren()) do
-                        if v.Name == village and v:FindFirstChild("taken").Value == true then
-                            player.Character.HumanoidRootPart.CFrame=v.CFrame
-                        end
-                    end
-                    for i,v in pairs(game:GetService("Workspace").sidequest.deliver:GetChildren()) do
-                        if v.Name == "point" and v:FindFirstChild("taken").Value == true then
-                            player.Character.HumanoidRootPart.CFrame=v.CFrame
-                        end
-                    end
-                end
-            end
-        end
-    end)
-end
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Frame.Position = UDim2.new(0.1, 0, 0.35, 0)
+Frame.Size = UDim2.new(0, 200, 0, 300)
 
-local f = w:CreateFolder("Credits")
-f:Label("made by reav#2966 | Shindo Life ver 045.3",{
-    TextSize = 15;
-    TextColor = Color3.fromRGB(255,255,255); 
-    BgColor = Color3.fromRGB(255, 140, 0);
-}) 
-f:Label("https://discord.gg/aDRStgw",{
-    TextSize = 17;
-    TextColor = Color3.fromRGB(255,255,255); 
-    BgColor = Color3.fromRGB(255, 140, 0); 
-}) 
-f:Button("Copy Discord Link",function()
-    setclipboard("https://discord.gg/aDRStgw")
-end)
+TextLabel.Parent = Frame
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 232, 117)
+TextLabel.Size = UDim2.new(0, 200, 0, 60)
+TextLabel.Font = Enum.Font.AmaticSC
+TextLabel.Text = "ShindoLife - reav Hub"
+TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 35.000
+TextLabel.TextWrapped = true
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(117, 50, 168)
+TextButton.Position = UDim2.new(0, 0, 0.400000006, 0)
+TextButton.Size = UDim2.new(0, 200, 0, 60)
+TextButton.Font = Enum.Font.AmaticSC
+TextButton.Text = "War Farm"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextScaled = true
+TextButton.TextSize = 40.000
+TextButton.TextWrapped = true
+
+
+
+TextButton_2.Parent = Frame
+TextButton_2.BackgroundColor3 = Color3.fromRGB(117, 50, 168)
+TextButton_2.Position = UDim2.new(0, 0, 0.600000024, 0)
+TextButton_2.Size = UDim2.new(0, 200, 0, 60)
+TextButton_2.Font = Enum.Font.AmaticSC
+TextButton_2.Text = "spins bypass"
+TextButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_2.TextScaled = true
+TextButton_2.TextSize = 40.000
+TextButton_2.TextWrapped = true
+
+function spins()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/reavscripts/sl2-hub/main/spins"))()
+    for i,v in pairs(player.PlayerGui:GetChildren()) do
+        if v.Name == "ScreenGui" then
+            v:Destroy()
+        end
+    end
+end
+TextButton_2.MouseButton1Click:connect(spins)
+
+TextButton_3.Parent = Frame
+TextButton_3.BackgroundColor3 = Color3.fromRGB(117, 50, 168)
+TextButton_3.Position = UDim2.new(0, 0, 0.800000012, 0)
+TextButton_3.Size = UDim2.new(0, 200, 0, 60)
+TextButton_3.Font = Enum.Font.AmaticSC
+TextButton_3.Text = "Utility"
+TextButton_3.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_3.TextScaled = true
+TextButton_3.TextSize = 40.000
+TextButton_3.TextWrapped = true
+
+function spins()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/reavscripts/sl2-hub/main/utility"))()
+    for i,v in pairs(player.PlayerGui:GetChildren()) do
+        if v.Name == "ScreenGui" then
+            v:Destroy()
+        end
+    end
+end
+TextButton_3.MouseButton1Click:connect(spins)
+
+TextButton_4.Parent = Frame
+TextButton_4.BackgroundColor3 = Color3.fromRGB(117, 50, 168)
+TextButton_4.Position = UDim2.new(0, 0, 0.200000003, 0)
+TextButton_4.Size = UDim2.new(0, 200, 0, 60)
+TextButton_4.Font = Enum.Font.AmaticSC
+TextButton_4.Text = "AutoFarm"
+TextButton_4.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton_4.TextScaled = true
+TextButton_4.TextSize = 14.000
+TextButton_4.TextWrapped = true
+
+function autofarm()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/reavscripts/sl2-hub/main/autofarm"))()
+    for i,v in pairs(player.PlayerGui:GetChildren()) do
+        if v.Name == "ScreenGui" then
+            v:Destroy()
+        end
+    end
+end
+TextButton_4.MouseButton1Click:connect(autofarm)
