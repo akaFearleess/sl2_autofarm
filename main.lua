@@ -16,17 +16,17 @@ Frame.Position = UDim2.new(0.1, 0, 0.35, 0)
 Frame.Size = UDim2.new(0, 200, 0, 300)
 
 TextLabel.Parent = Frame
-TextLabel.BackgroundColor3 = Color3.fromRGB(255, 232, 117)
+TextLabel.BackgroundColor3 = Color3.fromRGB(112, 112, 112)
 TextLabel.Size = UDim2.new(0, 200, 0, 60)
 TextLabel.Font = Enum.Font.AmaticSC
-TextLabel.Text = "ShindoLife - reav Hub"
+TextLabel.Text = "ShindoLife - Fearless"
 TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel.TextScaled = true
 TextLabel.TextSize = 35.000
 TextLabel.TextWrapped = true
 
 TextButton.Parent = Frame
-TextButton.BackgroundColor3 = Color3.fromRGB(117, 50, 168)
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextButton.Position = UDim2.new(0, 0, 0.400000006, 0)
 TextButton.Size = UDim2.new(0, 200, 0, 60)
 TextButton.Font = Enum.Font.AmaticSC
@@ -47,11 +47,11 @@ end
 TextButton.MouseButton1Click:connect(war)
 
 TextButton_2.Parent = Frame
-TextButton_2.BackgroundColor3 = Color3.fromRGB(117, 50, 168)
+TextButton_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextButton_2.Position = UDim2.new(0, 0, 0.600000024, 0)
 TextButton_2.Size = UDim2.new(0, 200, 0, 60)
 TextButton_2.Font = Enum.Font.AmaticSC
-TextButton_2.Text = "spins bypass"
+TextButton_2.Text = "spins"
 TextButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
 TextButton_2.TextScaled = true
 TextButton_2.TextSize = 40.000
@@ -68,11 +68,11 @@ end
 TextButton_2.MouseButton1Click:connect(spins)
 
 TextButton_3.Parent = Frame
-TextButton_3.BackgroundColor3 = Color3.fromRGB(117, 50, 168)
+TextButton_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextButton_3.Position = UDim2.new(0, 0, 0.800000012, 0)
 TextButton_3.Size = UDim2.new(0, 200, 0, 60)
 TextButton_3.Font = Enum.Font.AmaticSC
-TextButton_3.Text = "Utility"
+TextButton_3.Text = "Misc"
 TextButton_3.TextColor3 = Color3.fromRGB(0, 0, 0)
 TextButton_3.TextScaled = true
 TextButton_3.TextSize = 40.000
@@ -89,11 +89,11 @@ end
 TextButton_3.MouseButton1Click:connect(utility)
 
 TextButton_4.Parent = Frame
-TextButton_4.BackgroundColor3 = Color3.fromRGB(117, 50, 168)
+TextButton_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextButton_4.Position = UDim2.new(0, 0, 0.200000003, 0)
 TextButton_4.Size = UDim2.new(0, 200, 0, 60)
 TextButton_4.Font = Enum.Font.AmaticSC
-TextButton_4.Text = "AutoFarm"
+TextButton_4.Text = "Auto Farm"
 TextButton_4.TextColor3 = Color3.fromRGB(0, 0, 0)
 TextButton_4.TextScaled = true
 TextButton_4.TextSize = 14.000
