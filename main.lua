@@ -100,7 +100,7 @@ TextButton_4.TextSize = 14.000
 TextButton_4.TextWrapped = true
 
 function autofarm()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/reavscripts/sl2-hub/main/autofarm"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/akaFearleess/sl2-hub/patch-1/autofarm"))()
     for i,v in pairs(player.PlayerGui:GetChildren()) do
         if v.Name == "ScreenGui" then
             v:Destroy()
